@@ -19,13 +19,7 @@ const Navbar = () => {
               <li className="header__nav__item header__nav__item-active header__nav__item--mobile">
                 <NavLink
                   to="/"
-                  className={({ isActive, isPending }) =>
-                    isPending
-                      ? "pending"
-                      : isActive
-                      ? "header__nav__link header__nav__link--underline header__nav__item-active"
-                      : "header__nav__link"
-                  }
+                  className="header__nav__link header__nav__link--underline"
                 >
                   Dashboard
                 </NavLink>
@@ -33,13 +27,7 @@ const Navbar = () => {
               <li className="header__nav__item header__nav__item--mobile">
                 <NavLink
                   to="/favorites"
-                  className={({ isActive, isPending }) =>
-                    isPending
-                      ? "pending"
-                      : isActive
-                      ? "header__nav__link header__nav__link--underline"
-                      : "header__nav__link"
-                  }
+                  className="header__nav__link header__nav__link--underline"
                 >
                   My favorites
                 </NavLink>
@@ -47,13 +35,7 @@ const Navbar = () => {
               <li className="header__nav__item header__nav__item--mobile">
                 <NavLink
                   to="/upcoming-events"
-                  className={({ isActive, isPending }) =>
-                    isPending
-                      ? "pending"
-                      : isActive
-                      ? "header__nav__link header__nav__link--underline"
-                      : "header__nav__link"
-                  }
+                  className="header__nav__link header__nav__link--underline"
                 >
                   Upcoming events
                 </NavLink>
@@ -86,7 +68,7 @@ const Navbar = () => {
                     >
                       I want to see
                     </button>
-                    <a className="popup__link">Remind me later</a>
+                    <Link className="popup__link">Remind me later</Link>
                   </div>
                   <div className="popup__pointer"></div>
                   <div className="popup__close">
@@ -164,19 +146,19 @@ const Navbar = () => {
                   <ul className="nav">
                     <li className="nav__item">
                       <Link
-                        href="#english"
+                        to="#english"
                         className="nav__link nav__link--selected"
                       >
                         English
                       </Link>
                     </li>
                     <li className="nav__item">
-                      <Link href="#french" className="nav__link">
+                      <Link to="#french" className="nav__link">
                         French
                       </Link>
                     </li>
                     <li className="nav__item">
-                      <Link href="#arabic" className="nav__link">
+                      <Link to="#arabic" className="nav__link">
                         Arabic
                       </Link>
                     </li>
