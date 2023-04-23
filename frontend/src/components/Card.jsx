@@ -1,15 +1,12 @@
 import React from "react";
-import coverImg from "../assets/img/spa_0.png";
+//import coverImg from "../assets/img/spa_0.png";
 import overwhel from "../assets/img/overwhelmed.svg";
 
-import "swiper/css/bundle";
-import { SwiperSlide } from "swiper/react";
-//import { SwiperSlide } from "swiper/react";
-
-const Card = () => {
+const Card = ({coverImg}) => {
+    //console.log(coverImg);
     return (
         <>
-            <SwiperSlide className="swiper-slide">
+            
                 <a
                     href="completed-event-details.html"
                     className="recSlider__link"
@@ -219,7 +216,7 @@ const Card = () => {
                         </div>
                     </div>
                 </a>
-            </SwiperSlide>
+
         </>
     );
 };
