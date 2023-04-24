@@ -1,8 +1,8 @@
 import React from "react";
 //import coverImg from "../assets/img/spa_0.png";
-import overwhel from "../assets/img/overwhelmed.svg";
+import overwhel from "../../assets/img/overwhelmed.svg";
 
-const Card = ({coverImg}) => {
+const Card = (props) => {
     //console.log(coverImg);
     return (
         <>
@@ -12,7 +12,7 @@ const Card = ({coverImg}) => {
                     className="recSlider__link"
                 >
                     <div className="slider__image--wrapper">
-                        <img src={coverImg} alt="event title" />
+                        <img src={props.coverImg} alt="event title" />
                         <div className="weather">
                             {/* <div className="weather__icon">
                                         <img src="./assets/img/abstract.jpg" alt="Weather" />
@@ -160,7 +160,7 @@ const Card = ({coverImg}) => {
 
                     <div className="recSlider__info">
                         <h3 className="recSlider__info__title">
-                            Surfing at leasure
+                            {props.title}
                         </h3>
                         <div className="recSlider__info__rating">
                             <div className="rating"></div>
@@ -170,10 +170,7 @@ const Card = ({coverImg}) => {
                         </div>
                         <div className="recSlider__info__row">
                             <div className="recSlider__info__items recSlider__info__description">
-                                Lorem ipsum dolor sit amet, consetetur
-                                sadipscing elitr, sed diam nonumy eirmod tempor
-                                invidunt ut labore et dolore magna aliquyam
-                                erat…{" "}
+                                {props.eventDetails}
                                 <button className="read--more">
                                     read more
                                 </button>
@@ -182,19 +179,19 @@ const Card = ({coverImg}) => {
                         <div className="recSlider__info__row">
                             <div className="recSlider__info__items">
                                 <span className="icon icon-calendar"></span>
-                                Nov 10, 10:30 AM - Nov 29. 6:30 PM
+                                {props.duration}
                             </div>
                         </div>
                         <div className="recSlider__info__row">
                             <div className="recSlider__info__items">
                                 <span className="icon icon-location"></span>
-                                Sindalah City
+                                {props.location}
                             </div>
                         </div>
                         <div className="recSlider__info__row">
                             <div className="recSlider__info__items">
                                 <span className="icon icon-category"></span>
-                                Golf
+                                {props.category}
                             </div>
                         </div>
                         <div className="recSlider__info__row recSlider__footer">

@@ -1,8 +1,8 @@
 import React from "react";
 import "../assets/scss/_home.scss"
-import Slider from "../components/Slider";
-import MidSlider from "../components/MidSlider";
-import Card from "../components/Card";
+import Card from "../components/carousel/Card";
+import Slider from "../components/carousel/Slider";
+import MidSlider from "../components/carousel/MidSlider";
 
 
 const Home = () => {

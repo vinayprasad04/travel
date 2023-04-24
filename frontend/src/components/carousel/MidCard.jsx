@@ -1,41 +1,37 @@
 import React from 'react'
 
-import cardimg from "../assets/img/disappointed.svg";
-import overwhelImg from "../assets/img/overwhelmed.svg";
-import joy from "../assets/img/joy.svg";
-import anger from "../assets/img/anger.svg";
-import appri from "../assets/img/appreciation.svg";
-import dummyimg from "../assets/img/Event-Banner.png";
+//import cardimg from "../../assets/img/disappointed.svg";
+// import overwhelImg from "../assets/img/overwhelmed.svg";
+// import joy from "../assets/img/joy.svg";
+// import anger from "../assets/img/anger.svg";
+// import appri from "../assets/img/appreciation.svg";
+//import dummyimg from "../../assets/img/Event-Banner.png";
 
-const MidCard = () => {
+const MidCard = (props) => {
+
+
   return (
     <>
         <a href="#" className="recSlider__link">
                                 <div className="slider__image--wrapper">
                                     <img
-                                        src={dummyimg}
+                                        src={props.coverImg}
                                         alt="event title"
                                     />
                                 </div>
 
                                 <div className="recSlider__info">
                                     <h3 className="recSlider__info__title">
-                                        Indulge in the Finest Epicurean Cuisines
+                                        {props.title}
                                     </h3>
                                     <div className="recSlider__info__row">
                                         <div className="recSlider__info__items">
-                                            on Nov 17, 2022
+                                            {props.dated}
                                         </div>
                                     </div>
                                     <div className="recSlider__info__row">
                                         <div className="recSlider__info__items recSlider__info__description">
-                                            Hi Charlie, we came to from our chef
-                                            John that you didn't enjoyed the
-                                            Epicurean cuisines yesterday. As a
-                                            compensation we would like to offer
-                                            you a free Italian cuisines as a
-                                            goodwill gesture. Would you like to
-                                            accept our request?
+                                            {props.details}
                                         </div>
                                     </div>
                                     <div className="recSlider__info__row">
@@ -49,7 +45,7 @@ const MidCard = () => {
                                 </div>
 
                                 <div className="recSlider__emotion">
-                                    <img src={cardimg} alt="" />
+                                    <img src={props.expressionImg} alt="" />
                                 </div>
                             </a>
     </>
