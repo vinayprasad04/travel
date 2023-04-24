@@ -12,61 +12,61 @@ import EventReserveForm from "../components/Event-Details/EventReserveForm.jsx";
 import EventTitle from "../components/Event-Details/EventTitle.jsx";
 
 const EventDetails = () => {
-	useEffect(() => {
-		swiperHandle();
-	}, []);
+  useEffect(() => {
+    swiperHandle();
+  }, []);
 
-	return (
-		<div>
-			<main class="content event">
-				<div class="eventDetails">
-					<div class="container">
-						<EventTitle />
-						<EventImage />
-					</div>
-				</div>
+  return (
+    <div>
+      <main className="content event">
+        <div className="eventDetails">
+          <div className="container">
+            <EventTitle />
+            <EventImage />
+          </div>
+        </div>
 
-				<div class="eventReserve">
-					<div class="container">
-						<div class="eventReserve__grid">
-							<div class="eventReserve__grid--col">
-								<ViboMeter />
-								<EventDescription />
-								<EventReview />
-							</div>
-							<EventReserveForm />
-						</div>
-					</div>
-				</div>
-				{/* 
+        <div className="eventReserve">
+          <div className="container">
+            <div className="eventReserve__grid">
+              <div className="eventReserve__grid--col">
+                <ViboMeter />
+                <EventDescription />
+                <EventReview />
+              </div>
+              <EventReserveForm />
+            </div>
+          </div>
+        </div>
+        {/* 
 <!-- Recommendations --> */}
-				<div class="recSlider recSlider--ratingCards">
-					<div class="swiper tailored">
-						<div class="swiper-wrapper">
-							<RatingCard />
-						</div>
+        <div className="recSlider recSlider--ratingCards">
+          <div className="swiper tailored">
+            <div className="swiper-wrapper">
+              <RatingCard />
+            </div>
 
-						<div class="swiper-buttons">
-							<div class="swiper-button-prev"></div>
-							<div class="swiper-button-next"></div>
-						</div>
-					</div>
-				</div>
+            <div className="swiper-buttons">
+              <div className="swiper-button-prev"></div>
+              <div className="swiper-button-next"></div>
+            </div>
+          </div>
+        </div>
 
-				{/* <!-- Some other recommendations --> */}
-				<div class="recommendations event--recommendations">
-					<div class="container">
-						<h2 class="recommendations__title">
-							Some more recommendations for you, Charlie!
-						</h2>
-						<div class="card__grid">
-							<EventRecommendation />
-						</div>
-					</div>
-				</div>
-			</main>
-		</div>
-	);
+        {/* <!-- Some other recommendations --> */}
+        <div className="recommendations event--recommendations">
+          <div className="container">
+            <h2 className="recommendations__title">
+              Some more recommendations for you, Charlie!
+            </h2>
+            <div className="card__grid">
+              <EventRecommendation />
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
 };
 
 export default EventDetails;

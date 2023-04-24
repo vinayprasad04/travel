@@ -1,102 +1,56 @@
 import React, { Fragment, useState } from "react";
 import eventImage from "../../assets/img/Image118.jpg";
-import OwlCarousel from "react-owl-carousel";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import ShowModal from "./ShowModal";
 
 const EventImage = () => {
-	const [showbtnActive, setShowBtnActive] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleClose = () => setOpen(false);
 
-	const handleClick = () => {
-		setShowBtnActive(true);
-	};
+  const handleClick = () => {
+    setOpen(true);
+  };
 
-	return (
-		<Fragment>
-			{" "}
-			{showbtnActive ? (
-				<OwlCarousel
-					className="owl-theme"
-					margin={10}
-					nav={false}>
-					<div class="grid__box--sm">
-						<img
-							src={eventImage}
-							alt=""
-							class="grid__image border__rounded--topLeft"
-						/>
-					</div>
-					<div class="grid__box--sm">
-						<img
-							src={eventImage}
-							alt=""
-							class="grid__image"
-						/>
-					</div>
-					<div class="grid__box--sm">
-						<img
-							src={eventImage}
-							alt=""
-							class="grid__image border__rounded--bottomLeft"
-						/>
-					</div>
-					<div class="grid__box--sm">
-						<img
-							src={eventImage}
-							alt=""
-							class="grid__image"
-						/>
-					</div>
-				</OwlCarousel>
-			) : (
-				<div class="eventDetails__grid">
-					<div class="eventDetails__grid--col grid__box">
-						<div class="grid__box--sm">
-							<img
-								src={eventImage}
-								alt=""
-								class="grid__image border__rounded--topLeft"
-							/>
-						</div>
-						<div class="grid__box--sm">
-							<img
-								src={eventImage}
-								alt=""
-								class="grid__image"
-							/>
-						</div>
-						<div class="grid__box--sm">
-							<img
-								src={eventImage}
-								alt=""
-								class="grid__image border__rounded--bottomLeft"
-							/>
-						</div>
-						<div class="grid__box--sm">
-							<img
-								src={eventImage}
-								alt=""
-								class="grid__image"
-							/>
-						</div>
-					</div>
-					<div class="eventDetails__grid--col">
-						<img
-							src={eventImage}
-							alt=""
-							class="grid__image border__rounded--topRight border__rounded--bottomRight"
-						/>
-					</div>
-					<div class="status scheduled">Scheduled</div>
-					<button
-						class="btn__white"
-						onClick={handleClick}>
-						Show all
-					</button>{" "}
-				</div>
-			)}
-		</Fragment>
-	);
+  return (
+    <Fragment>
+      {" "}
+      <div className="eventDetails__grid">
+        <div className="eventDetails__grid--col grid__box">
+          <div className="grid__box--sm">
+            <img
+              src={eventImage}
+              alt=""
+              className="grid__image border__rounded--topLeft"
+            />
+          </div>
+          <div className="grid__box--sm">
+            <img src={eventImage} alt="" className="grid__image" />
+          </div>
+          <div className="grid__box--sm">
+            <img
+              src={eventImage}
+              alt=""
+              className="grid__image border__rounded--bottomLeft"
+            />
+          </div>
+          <div className="grid__box--sm">
+            <img src={eventImage} alt="" className="grid__image" />
+          </div>
+        </div>
+        <div className="eventDetails__grid--col">
+          <img
+            src={eventImage}
+            alt=""
+            className="grid__image border__rounded--topRight border__rounded--bottomRight"
+          />
+        </div>
+        <div className="status scheduled">Scheduled</div>
+        <button className="btn__white" onClick={handleClick}>
+          Show all
+        </button>{" "}
+      </div>
+      <ShowModal open={open} handleClose={handleClose} />
+    </Fragment>
+  );
 };
 
 export default EventImage;
