@@ -3,14 +3,14 @@ import EventBanner from "../../assets/img/Event-Banner.png";
 
 import overwhelmed from "../../assets/img/overwhelmed.svg";
 import appreciation from "../../assets/img/appreciation.svg";
-import spa_0 from "../../assets/img/spa_0.png";
+// import spa_0 from "../../assets/img/spa_0.png";
 import boredom from "../../assets/img/boredom.svg";
-import joy from "../../assets/img/joy.svg";
+// import joy from "../../assets/img/joy.svg";
 import dissappointed from "../../assets/img/disappointed.svg";
 import anger from "../../assets/img/anger.svg";
 
-import holiday from "../../assets/img/holiday_0.png";
-import cuisine from "../../assets/img/cusine_0.png";
+// import holiday from "../../assets/img/holiday_0.png";
+// import cuisine from "../../assets/img/cusine_0.png";
 
 function Cards() {
   const cardDescription = [
@@ -36,6 +36,7 @@ function Cards() {
       reviews: 123,
       rating: 5.0,
     },
+    
     {
       date: "Nov 10-29,2022",
       title: "Great experience!",
@@ -47,6 +48,7 @@ function Cards() {
       reviews: 123,
       rating: 5.0,
     },
+
     {
       date: "Nov 10-29,2022",
       title: "Great experience!",
