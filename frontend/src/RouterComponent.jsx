@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
+import LoginPg from './components/LoginPg'
 
 const RouterComponent = () => {
   return (
@@ -23,6 +24,7 @@ const RouterComponent = () => {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/login" element={<LoginPg />} />
       </Routes>
       <Footer />
     </>
