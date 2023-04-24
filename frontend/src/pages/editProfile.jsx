@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import ProfileImg from "../assets/img/music.png";
-import  { useFormik } from "formik";
+import { useFormik } from "formik";
 import { validation } from "../components/profileValidation";
 import axios from "axios";
+import { DatePicker, Select } from "antd";
 
 const EditProfile = () => {
+  const [date, setDate] = useState();
   const [images, setImages] = useState([
     { src: require("../assets/img/golf.png"), isLiked: false, text: "Golfs" },
     { src: require("../assets/img/music.png"), isLiked: false, text: "Music" },
@@ -82,9 +84,9 @@ const EditProfile = () => {
     formData.append("name", values.name);
     formData.append("email", values.email);
     formData.append("phone", values.phone);
-    formData.append("DOB", values.DOB);
     formData.append("interests", selectedImageText);
     formData.append("file", image);
+    formData.append("DOB", date);
 
     const data = axios.post("http://localhost:5000/api/v1", formData);
   };
@@ -95,7 +97,6 @@ const EditProfile = () => {
         name: "",
         email: "Charlie.mathwe@gmail.com",
         phone: "",
-        DOB: "",
         interests: [],
       },
       validationSchema: validation,
@@ -103,6 +104,10 @@ const EditProfile = () => {
         formSubmit();
       },
     });
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
   return (
     <div>
       <form autoComplete="off" onSubmit={handleSubmit}>
@@ -204,7 +209,8 @@ const EditProfile = () => {
                         name="email"
                         type="email"
                         placeholder=""
-                       onChange={handleChange}
+                        onChange={handleChange}
+                        disabled
                       />
                     </div>
                     <div className="form__group">
@@ -233,7 +239,7 @@ const EditProfile = () => {
                       <label className="form__label">
                         When can we wish a happy birthday?
                       </label>
-                      <input
+                      {/* <input
                         className={
                           errors.DOB && touched.DOB
                             ? "form__input error"
@@ -246,10 +252,20 @@ const EditProfile = () => {
                         onChange={handleChange}
                         id="DOB"
                         name="DOB"
+                      /> */}
+                      <DatePicker
+                        className={
+                          errors.DOB && touched.DOB
+                            ? "form__input error"
+                            : "form__input"
+                        }
+                        placeholder=""
+                        onBlur={handleBlur}
+                        onChange={(date, dateString) => setDate(dateString)}
+                        id="DOB"
+                        name="DOB"
+                        required
                       />
-                      {errors.DOB && touched.DOB && (
-                        <p className="error-text">{errors.DOB}</p>
-                      )}
                     </div>
                     <ul className="activity__list">
                       {images?.map((image, index) => {
