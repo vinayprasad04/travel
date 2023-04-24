@@ -1,7 +1,8 @@
-import React from "react";
+
 import notificationData from "../components/notificationModal/notificationData";
 import EventCard from "../components/notificationModal/EventCard";
 import Timeline from "../components/notificationModal/Timeline";
+import { useState } from "react";
 
 
 const Notifications = () => {
@@ -13,6 +14,13 @@ const modifiedItems = notificationData.map(notificationData => ({
   formattedDate: notificationData.timeline.toLocaleDateString(),
 }));
 //console.log(modifiedItems);
+
+const imagePerRow = 4;
+const [next, setNext] = useState(imagePerRow);
+const step=2;
+const handleMoreImage = () => {
+    setNext(next + step);
+  };
 
   return (
     <>
@@ -27,7 +35,7 @@ const modifiedItems = notificationData.map(notificationData => ({
               <div className="col_md_2">
                 <div className="notification__date">
                   <ul className="date__list">
-                    {modifiedItems.map((t,i) => {
+                    {modifiedItems?.slice(0, next)?.map((t,i) => {
                        return <Timeline data={t} key={i}/>;
                     })}
                     
@@ -38,14 +46,14 @@ const modifiedItems = notificationData.map(notificationData => ({
               <div className="col_sm_12 col_md_10">
                 <div className="notification__content">
                   <ul className="notification__list">
-                    {modifiedItems.map((d, i) => {
+                    {modifiedItems?.slice(0, next)?.map((d, i) => {
                       return  (  <EventCard data={d} key={i} />);
                     })}
                   </ul>
-
-                  <button className="btn btn__black" >
+                  {next < modifiedItems?.length && (
+                  <button className="btn btn__black" onClick={handleMoreImage}>
                     Load more
-                  </button>
+                  </button> )}
                 </div>
               </div>
             </div>
