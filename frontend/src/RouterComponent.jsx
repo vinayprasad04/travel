@@ -8,7 +8,6 @@ import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
-import HomeTest from "./pages/HomeTest";
 
 const RouterComponent = () => {
 
@@ -16,7 +15,7 @@ const RouterComponent = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<HomeTest />} />
+        <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/upcoming-events" element={<Favorites />} />
         <Route path="/notifications" element={<Notifications />} />

@@ -1,13 +1,12 @@
 import React from "react";
 // import Card3 from "../components/cards/Card3";
 // import Card2 from "../components/cards/Card2";
-import TodaysRecommendation from "../components/cards/TodaysRecommendation";
-import MasterJourney from "../components/cards/MasterJourney";
-import mapImg from "../assets/img/map.jpg"
-import eventImage from "../assets/img/spa_0.png"
-import eventImageSvg from "../assets/img/one.svg"
-import eventOverwhelmedImg from "../assets/img/overwhelmed.svg"
-
+import TodaysRecommendation from "./TodaysRecommendation";
+import MasterJourney from "./MasterJourney";
+import mapImg from "../../assets/img/map.jpg"
+import eventImage from "../../assets/img/spa_0.png"
+import eventImageSvg from "../../assets/img/one.svg"
+import eventOverwhelmedImg from "../../assets/img/overwhelmed.svg"
 const HomeTest = () => {
   const recommendationObj= [
     {
