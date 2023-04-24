@@ -1,12 +1,12 @@
 import React from "react";
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Favorites from "./pages/Favorites";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
-import Feedback from "./pages/Feedback";
+import Feedback from '../src/pages/Feedback/Feedback';
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
 
