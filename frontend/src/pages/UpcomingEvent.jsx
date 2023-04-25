@@ -1,8 +1,19 @@
 import React from "react";
-
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const UpcomingEvent = () => {
+  
+
+  const  ButtonGroup = () => {
+    const [selectedButton, setSelectedButton] = useState(null);
+  
+    const handleButtonClick = (buttonIndex) => {
+      setSelectedButton(buttonIndex);
+    };
+
+
+
   return (
     <>
       <main classNameName="content event">
@@ -18,7 +29,9 @@ const UpcomingEvent = () => {
             <div className="filterWrap">
               <div className="filterWrap__title">
                 Filters{" "}
-                <button className="filterWrap__close closeFilter">
+                <button className=  {selectedButton === 0 ? 'selected' : ''}
+        onClick={(ButtonGroup) => handleButtonClick(0)}
+      >
                   <svg
                     version="1.1"
                     id="Layer_1"
@@ -445,5 +458,5 @@ const UpcomingEvent = () => {
     </>
   );
 };
-
+}
 export default UpcomingEvent;
