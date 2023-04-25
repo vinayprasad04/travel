@@ -11,17 +11,21 @@ const ShowModal = (props) => {
   return ReactDOM.createPortal(
     <>
       {" "}
-      <Modal open={props.open} onClose={props.handleClose}>
+      <Modal
+        open={props.open}
+        onClose={props.handleClose}
+        className="modal-Container"
+      >
         <>
           {" "}
           <OwlCarousel
             items={1}
-            className="owl-theme modal-container"
+            className="owl-theme owl-set"
             margin={15}
             nav={true}
             navText={[
-              "<i  class='fa fa-chevron-left fa-lg manageIcon manageIcon-left'></i>",
-              "<i class='fa fa-chevron-right fa-lg manageIcon manageIcon-right'></i>",
+              "<i  class='fa fa-chevron-left fa-lg'></i>",
+              "<i class='fa fa-chevron-right fa-lg'></i>",
             ]}
           >
             <div className="grid__box--sm">

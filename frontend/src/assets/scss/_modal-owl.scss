@@ -1,190 +1,45 @@
 @use "./_variables" as *;
 
-.fa-chevron-left {
-  color: white;
-  position: relative;
-  right: 15em;
-  bottom: 22em;
-}
-
+.fa-chevron-left,
 .fa-chevron-right {
   color: white;
-  position: relative;
-  left: 15em;
-  bottom: 22em;
 }
 
-.modal-container {
-  z-index: 999;
-  position: relative;
-  width: 30%;
-  left: 33%;
-  top: 5%;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+.modal-Container {
+  background-repeat: no-repeat;
+  width: 30vw;
+  height: 90vh;
+  margin: auto auto auto auto;
 }
 
-.manageIcon {
-  top: -22em;
+.modal-Container .owl-set img {
+  width: 100%;
+  height: 100%;
 }
 
-@media screen and (max-width: $xs) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 5em;
-    right: 10em;
-  }
-
+@media screen and (max-width: 992px) {
+  .fa-chevron-left,
   .fa-chevron-right {
     color: white;
-    bottom: 5em;
-    left: 10em;
+  }
+
+  .modal-Container {
+    background-repeat: no-repeat;
+    width: 58vw;
+    height: 55%;
+    margin: auto auto auto auto;
   }
 }
 
-@media screen and (max-width: $sm) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 9em;
-    right: 13.8em;
-  }
-
+@media screen and (min-width: 1000px) and (max-width: 1900px) {
+  .fa-chevron-left,
   .fa-chevron-right {
     color: white;
-    bottom: 9em;
-    left: 3.8em;
   }
-
-  .modal-container {
-    z-index: 999;
-    position: relative;
-    width: 60%;
-    left: 20%;
-    top: 25%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-  .manageIcon {
-    top: -10em;
-  }
-}
-
-@media screen and (max-width: $md) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 3.5em;
-    right: 8em;
-  }
-
-  .fa-chevron-right {
-    color: white;
-    bottom: 3.5em;
-    left: 6em;
-  }
-
-  .manageIcon {
-    top: -9em;
-  }
-}
-
-@media screen and (min-width: $lg) and (max-width: 1000px) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 3.5em;
-    right: 6em;
-  }
-
-  .fa-chevron-right {
-    color: white;
-    bottom: 3.5em;
-    left: 6em;
-  }
-
-  .modal-container {
-    z-index: 999;
-    position: relative;
-    width: 50%;
-    left: 25%;
-    top: 22%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .manageIcon {
-    top: -10em;
-  }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 900px) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 3.5em;
-    right: 6em;
-  }
-
-  .fa-chevron-right {
-    color: white;
-    bottom: 3.5em;
-    left: 6em;
-  }
-
-  .modal-container {
-    z-index: 999;
-    position: relative;
-    width: 50%;
-    left: 25%;
-    top: 22%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-  }
-
-  .manageIcon {
-    top: -13em;
-  }
-}
-
-@media screen and (max-width: $xl) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 3.5em;
-    right: 6em;
-  }
-
-  .fa-chevron-right {
-    color: white;
-    bottom: 3.5em;
-    left: 6em;
-  }
-}
-
-@media screen and (max-width: $xxl) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 3.5em;
-    right: 6em;
-  }
-
-  .fa-chevron-right {
-    color: white;
-    bottom: 3.5em;
-    left: 6em;
-  }
-}
-
-@media screen and (max-width: $xxxl) {
-  .fa-chevron-left {
-    color: white;
-    bottom: 3.5em;
-    right: 6em;
-  }
-
-  .fa-chevron-right {
-    color: white;
-    bottom: 3.5em;
-    left: 6em;
+  .modal-Container {
+    background-repeat: no-repeat;
+    width: 30vw;
+    height: 70%;
+    margin: auto auto auto auto;
   }
 }
