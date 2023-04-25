@@ -1,7 +1,11 @@
 import React from "react";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <div>
+      <h2 style={{ marginTop: "10rem" }}>jiii</h2>
+    </div>
+  );
 };
 
 export default Profile;
