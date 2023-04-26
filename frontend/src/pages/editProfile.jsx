@@ -88,7 +88,7 @@ const EditProfile = () => {
     formData.append("file", image);
     formData.append("DOB", date);
 
-    const data = axios.post("http://localhost:5000/api/v1", formData);
+    const data = axios.post("http://localhost:5000/users/register", formData);
   };
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
