@@ -1,6 +1,6 @@
 .ar{
-    width: 3000rem;
-    height: 320rem;
+    width: 28rem;
+    height: 28rem;
     background-color: rgb(216, 230, 225);
     padding: 30px 50px;
     margin-left: 480px;
@@ -9,16 +9,18 @@
     box-shadow: 5px 5px 70px 10px rgb(99, 100, 100);
     position: absolute;
     opacity: 0.8;
-    margin-top: 110px;
+    margin-top: 5.5rem;
     
 }
-.para {
-    margin-left: 2rem;
-    padding-left: 20rem;
+.para{
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    color: rgb(63, 56, 56);
 }
     
 
 img{
-    margin-left: 100px;
-    margin-top: -25px;
+    margin-left: 7.9rem;
+    margin-top: -2rem;
+    justify-content: center;
 }
