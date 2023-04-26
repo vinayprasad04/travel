@@ -1,24 +1,21 @@
 import React from "react";
-import { useSelector } from "react-redux";
+
+import "../assets/scss/_home.scss"
+import Slider from "../components/carousel/Slider";
+import MidSlider from "../components/carousel/MidSlider";
+
+import HomeTest from '../components/cards/HomeTest'
 
 const Home = () => {
-  const { user } = useSelector((state) => state.users);
-  return (
-    <>
-      <main class="content">
-        <div class="recSlider recSlider--cardView">
-          <h2 class="recSlider__title">Good morning {user?.data.name}!</h2>
-          <div class="recSlider__subtitle">
-            <p>
-              Below listed are your itineraries, have a look to the timings and
-              the location.
-            </p>
-            <p>We wish you to enjoy the activities and the weather!</p>
-          </div>
+  return <>
+        <div className="container">
+          <Slider />
+          <MidSlider />
         </div>
-      </main>
-    </>
-  );
+    
+        
+        <HomeTest/>
+  </>;
 };
 
-export default Home;
+export default Home
