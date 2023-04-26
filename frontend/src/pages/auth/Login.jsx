@@ -47,6 +47,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="wrap">
+        <h4 style={{ marginBottom: "0.5rem" }}>Login</h4>
         <div className="form-group">
           <label>Email</label>
           <input

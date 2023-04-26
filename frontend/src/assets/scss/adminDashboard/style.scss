@@ -1,0 +1,57 @@
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #138CB0;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #4F96D8;
+}
+
+
+.detailPage{
+    label{
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: #525E69;
+      margin-bottom: 5px;
+      width: 100%;
+      display: inline-block;
+      em{
+        color: red;
+        font-style: normal;
+      }
+    }
+    input, textarea, select{
+      height: 42px;
+      background: #F5F7F9;
+      border: 1px solid #E4EBF2;
+      border-radius: 6px;
+      margin-bottom: 15px;
+      font-size: 14px;
+      line-height: 24px;
+      color: #9AA7B5;
+      width: 100%;
+      padding: 10px;
+      &:hover, &:active, &:focus-visible{
+        outline-color:dodgerblue;
+        border-color: dodgerblue;
+      }
+    }
+    textarea{
+      height: 130px;
+      resize: none;
+    }
+}
