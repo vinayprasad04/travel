@@ -3,16 +3,74 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const UpcomingEvent = () => {
-  
+  const [selectedButton, setSelectedButton] = useState(0);
 
-  const  ButtonGroup = () => {
-    const [selectedButton, setSelectedButton] = useState(null);
-  
-    const handleButtonClick = (buttonIndex) => {
-      setSelectedButton(buttonIndex);
-    };
+  const handleButtonClick = (buttonIndex) => {
+    setSelectedButton(buttonIndex);
+  };
 
-
+  const dummy = [
+    {
+      coverimg: "/images/holiday_0.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/Event-Banner.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/spa_0.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/holiday_0.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/Event-Banner.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/holiday_0.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/Event-Banner.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/spa_0.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/holiday_0.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+    {
+      coverimg: "/images/Event-Banner.png",
+      rating: 5.0,
+      reviews: 126,
+      date: "Nov 10-29",
+    },
+  ];
 
   return (
     <>
@@ -29,9 +87,10 @@ const UpcomingEvent = () => {
             <div className="filterWrap">
               <div className="filterWrap__title">
                 Filters{" "}
-                <button className=  {selectedButton === 0 ? 'selected' : ''}
-        onClick={(ButtonGroup) => handleButtonClick(0)}
-      >
+                <button
+                  className={selectedButton === 0 ? "selected" : ""}
+                  onClick={() => handleButtonClick(0)}
+                >
                   <svg
                     version="1.1"
                     id="Layer_1"
@@ -75,23 +134,66 @@ const UpcomingEvent = () => {
                     </div>
                     <div className="time">
                       <ul className="time__list">
-                        <li className="time__list--item">10 mins walking</li>
-                        <li className="time__list--item active">
+                        <li
+                          className={`time__list--item ${
+                            selectedButton === 1 ? "active" : ""
+                          } `}
+                          onClick={() => setSelectedButton(1)}
+                        >
+                          10 mins walking
+                        </li>
+                        <li
+                          className={`time__list--item ${
+                            selectedButton === 2 ? "active" : ""
+                          } `}
+                          onClick={() => setSelectedButton(2)}
+                        >
                           20 mins walking
                         </li>
-                        <li className="time__list--item">30 mins walking</li>
+                        <li
+                          className={`time__list--item ${
+                            selectedButton === 3 ? "active" : ""
+                          } `}
+                          onClick={() => setSelectedButton(3)}
+                        >
+                          30 mins walking
+                        </li>
                       </ul>
 
                       <ul className="time__list">
-                        <li className="time__list--item">10 mins drive</li>
-                        <li className="time__list--item active">
+                        <li
+                          className={`time__list--item ${
+                            selectedButton === 4 ? "active" : ""
+                          } `}
+                          onClick={() => setSelectedButton(4)}
+                        >
+                          10 mins drive
+                        </li>
+                        <li
+                          className={`time__list--item ${
+                            selectedButton === 5 ? "active" : ""
+                          } `}
+                          onClick={() => setSelectedButton(5)}
+                        >
                           20 mins drive
                         </li>
-                        <li className="time__list--item">30 mins drive</li>
+                        <li
+                          className={`time__list--item ${
+                            selectedButton === 6 ? "active" : ""
+                          } `}
+                          onClick={() => setSelectedButton(6)}
+                        >
+                          30 mins drive
+                        </li>
                       </ul>
 
                       <ul className="time__list">
-                        <li className="time__list--item border-rounded">
+                        <li
+                          className={`time__list--item ${
+                            selectedButton === 7 ? "active" : ""
+                          } `}
+                          onClick={() => setSelectedButton(7)}
+                        >
                           No limits
                         </li>
                       </ul>
@@ -124,330 +226,48 @@ const UpcomingEvent = () => {
             </div>
 
             <div className="card__grid">
-              <div className="card__item">
-                <Link  className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"/images/holiday_0.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
+              {dummy.map((item, i) => {
+                return (
+                  <>
+                    <div className="card__item">
+                      <Link className="card__link">
+                        <div className="card__thumb">
+                          <button className="card__fav">
+                            <span className="icon-heart"></span>
+                          </button>
+                          <img
+                            src={process.env.PUBLIC_URL + item.coverimg}
+                            alt="event name"
+                            className="card__img"
+                          />
+                        </div>
+                        <div className="card__info">
+                          <div className="card__row">
+                            <div className="card__rating">
+                              <span className="icon-star"></span>
+                              {item.rating} ({item.reviews} reviews)
+                            </div>
+                            <div className="vibes">
+                              <img
+                                src={
+                                  process.env.PUBLIC_URL +
+                                  "/images/overwhelmed.svg"
+                                }
+                                alt="Overwhelmed"
+                                className="vibes__icon"
+                              />
+                              <span className="vibes__text">Overwhelmed</span>
+                            </div>
+                            <div className="card__date">Nov 10-29</div>
+                          </div>
+                          <h3 className="card__title">Surfing at leasure</h3>
+                          <div className="card__price">AED 1800 per person</div>
+                        </div>
+                      </Link>
                     </div>
-                    <h3 className="card__title">Surfing at leasure</h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img src={process.env.PUBLIC_URL+"/images/Event-Banner.png"} alt="event name" className="card__img" />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">
-                      Swimming game for below 18 year kids
-                    </h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"/images/span_0.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">Surfing at leasure</h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"/images/holiday_0.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">Surfing at leasure</h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"./images/Event-Banner.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">
-                      Swimming game for below 18 year kids
-                    </h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"./images/Event-Banner.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">Surfing at leasure</h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"./images/Event-Banner.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">
-                      Swimming game for below 18 year kids
-                    </h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"./images/Event-Banner.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">Surfing at leasure</h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link  className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"/images/holiday_0.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">Surfing at leasure</h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
-              <div className="card__item">
-                <Link className="card__link">
-                  <div className="card__thumb">
-                    <button className="card__fav">
-                      <span className="icon-heart"></span>
-                    </button>
-                    <img
-                      src={process.env.PUBLIC_URL+"./images/Event-Banner.png"}
-                      alt="event name"
-                      className="card__img"
-                    />
-                  </div>
-                  <div className="card__info">
-                    <div className="card__row">
-                      <div className="card__rating">
-                        <span className="icon-star"></span> 4.9 (123 reviews)
-                      </div>
-                      <div className="vibes">
-                        <img
-                          src={process.env.PUBLIC_URL+"/images/overwhelmed.svg"}
-                          alt="Overwhelmed"
-                          className="vibes__icon"
-                        />
-                        <span className="vibes__text">Overwhelmed</span>
-                      </div>
-                      <div className="card__date">Nov 10-29</div>
-                    </div>
-                    <h3 className="card__title">
-                      Swimming game for below 18 year kids
-                    </h3>
-                    <div className="card__price">AED 1800 per person</div>
-                  </div>
-                </Link>
-              </div>
+                  </>
+                );
+              })}
             </div>
             <div className="recommendations__more">
               <button className="btn btn__black">Load more</button>
@@ -458,5 +278,5 @@ const UpcomingEvent = () => {
     </>
   );
 };
-}
+
 export default UpcomingEvent;

@@ -1,6 +1,8 @@
 import React from "react";
-import logo from "../assets/img/logo-black.svg";
+
 import { Link, useNavigate, NavLink } from "react-router-dom";
+
+import logo from "../assets/img/logo-black.svg";
 
 const Navbar = () => {
   const Navigate = useNavigate();
@@ -86,7 +88,7 @@ const Navbar = () => {
                     >
                       I want to see
                     </button>
-                    <a className="popup__link">Remind me later</a>
+                    <Link className="popup__link">Remind me later</Link>
                   </div>
                   <div className="popup__pointer"></div>
                   <div className="popup__close">
@@ -100,7 +102,7 @@ const Navbar = () => {
                       width="122.881px"
                       height="122.88px"
                       viewBox="0 0 122.881 122.88"
-                      //   enable-background="new 0 0 122.881 122.88"
+                    
                       space="preserve"
                     >
                       <g>

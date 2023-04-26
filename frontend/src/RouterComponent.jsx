@@ -1,8 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Favorites from "./pages/Favorites";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
@@ -10,10 +8,14 @@ import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import UpcomingEvent from "./pages/UpcomingEvent";
 
-const RouterComponent = () => {
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+const RouterComponent = () =>{
   return (
     <>
-      <Navbar />
+      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
