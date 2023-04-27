@@ -1,16 +1,10 @@
 import React from "react";
 import EventBanner from "../../assets/img/Event-Banner.png";
-
 import overwhelmed from "../../assets/img/overwhelmed.svg";
 import appreciation from "../../assets/img/appreciation.svg";
-// import spa_0 from "../../assets/img/spa_0.png";
 import boredom from "../../assets/img/boredom.svg";
-// import joy from "../../assets/img/joy.svg";
 import dissappointed from "../../assets/img/disappointed.svg";
 import anger from "../../assets/img/anger.svg";
-
-// import holiday from "../../assets/img/holiday_0.png";
-// import cuisine from "../../assets/img/cusine_0.png";
 
 function Cards() {
   const cardDescription = [
@@ -36,7 +30,7 @@ function Cards() {
       reviews: 123,
       rating: 5.0,
     },
-    
+
     {
       date: "Nov 10-29,2022",
       title: "Great experience!",
@@ -73,7 +67,6 @@ function Cards() {
     },
   ];
 
-  console.log("message ", cardDescription);
   return (
     <>
       {cardDescription.map((val, key) => {
@@ -87,7 +80,7 @@ function Cards() {
                 <h4>{val.title}</h4>
                 <p>{val.title}</p>
                 <div class="card--review">
-                  <a href="#">{val.reviews} reviews</a>
+                  <a href={"#"}>{val.reviews} reviews</a>
                   <div class="icon">
                     <span class="icon-star"></span>
                     {val.rating}
@@ -100,9 +93,9 @@ function Cards() {
               <h3 class="card--title">{val.title}</h3>
               <div class="card--description">{val.description}</div>
               <ul class="emotion__list">
-                {val.emotion.map((vl) => {
+                {val.emotion.map((vl,key) => {
                   return (
-                    <li class="emotion__list--item">
+                    <li class="emotion__list--item" index={key}>
                       {" "}
                       <img src={vl} alt=" " />
                     </li>
