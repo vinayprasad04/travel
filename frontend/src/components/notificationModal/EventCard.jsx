@@ -16,7 +16,7 @@ const EventCard = ({ data }) => {
           <div className="details">id :{data.id}</div>
         </div>
       </div>
-      <NavigationButton isRevieved={data.isRevieved} isCompleted={data.isCompleted} />
+      <NavigationButton isRevieved={data.isRevieved} isCompleted={data.isCompleted} id={data.id} />
     </li>
   );
 };

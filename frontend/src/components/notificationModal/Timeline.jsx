@@ -5,7 +5,7 @@ const Timeline = ({data}) => {
   
   return (
     <li className="date__list--item">
-        <div className="date">{data.formattedDate}</div>
+        <div className="date">{data.timeline}</div>
          <span className="circle-mark"></span>
     </li>
   )

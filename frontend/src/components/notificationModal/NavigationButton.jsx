@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const NavigationButton = ({ isCompleted, isRevieved }) => {
+const NavigationButton = ({ isCompleted, isRevieved , id }) => {
   const navigate = useNavigate();
 
   if (!isCompleted && !isRevieved) {
     return (
       <button
         className="btn__transparent"
-        onClick={() => navigate("/event-details")}
+        onClick={() => navigate(`/event-details/${id}`)}
       >
         View event
       </button>
