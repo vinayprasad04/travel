@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 const UpcomingEventCard = (props) => {
   return (
+
     <div className="card__item">
       <Link href="#" className="card__link">
         <div className="card__thumb">
@@ -21,7 +22,7 @@ const UpcomingEventCard = (props) => {
             {/* <!-- <div className="card__rating"><span className="icon-star"></span> 4.9 (123 reviews)</div> --> */}
             <div className="vibes">
               <img
-                src={ process.env.PUBLIC_URL +"/images/overwhelmed.svg" }
+                src={process.env.PUBLIC_URL + "/images/overwhelmed.svg"}
                 alt="Overwhelmed"
                 className="vibes__icon"
               />
@@ -34,6 +35,7 @@ const UpcomingEventCard = (props) => {
         </div>
       </Link>
     </div>
+
   );
 };
 

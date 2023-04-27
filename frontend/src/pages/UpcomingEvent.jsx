@@ -1,10 +1,9 @@
-import { set } from "mongoose";
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+
 import Event from "../components/Event";
 
-const UpcomingEvent = () => {
+  const UpcomingEvent = () => {
   const ImagePerLoad = 5;
   const [load, setLoad] = useState(ImagePerLoad);
 
@@ -12,20 +11,20 @@ const UpcomingEvent = () => {
   const handleLoad = () => {
     setLoad(ImagePerLoad + step);
   };
-  const [obj, setObj] = useState({
-    comedy: false,
-    walk: false,
-    box: false,
-    swiming: false,
-    golf: false,
-    singing: false,
-    show: false,
-    kite: false,
-    exhibtions: false,
-  });
-  const handleFilter = (filterIndex) => {
-    setObj(filterIndex);
-  };
+  // const [obj, setObj] = useState({
+  //   comedy: false,
+  //   walk: false,
+  //   box: false,
+  //   swiming: false,
+  //   golf: false,
+  //   singing: false,
+  //   show: false,
+  //   kite: false,
+  //   exhibtions: false,
+  // });
+  // const handleFilter = (filterIndex) => {
+  //   setObj(filterIndex);
+  // };
 
   const dummy = [
     {
@@ -152,15 +151,14 @@ const UpcomingEvent = () => {
 
   return (
     <>
-    <div classNameName="container">
       <Event load={load} />
       <div className="recommendations__more">
-        {load < dummy?.length && (
+          {load < dummy?.length && (
           <button className="btn btn__black" onClick={handleLoad}>
             Load more
           </button>
         )}
-      </div></div>
+      </div>
     </>
   );
 };

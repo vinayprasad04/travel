@@ -1,19 +1,21 @@
 import React from "react";
-import UpcomingEventCard from "./card/UpcomingEventCard";
 import { useState } from "react";
+import UpcomingEventCard from "./card/UpcomingEventCard";
+
 
 const Event = (p) => {
   const [selectedButton, setSelectedButton] = useState(0);
+  const [multiple, setMuliple] = useState(0);
+
 
   const handleButtonClick = (buttonIndex) => {
     setSelectedButton(buttonIndex);
   };
 
-  const [multiple, setMuliple] = useState(0);
-
-  const handleMulitpleClick = (buttonIndex) => {
-    setMuliple(buttonIndex);
-  };
+ 
+  // const handleMulitpleClick = (buttonIndex) => {
+  //   setMuliple(buttonIndex);
+  // };
 
   const dummy = [
     {
@@ -140,9 +142,9 @@ const Event = (p) => {
 
   return (
     <>
-      <main classNameName="content event">
-        <div classNameName="recommendations">
-          <div classNameName="container">
+      <main className="content event">
+        <div className="recommendations">
+          <div className="container">
             <h2 className="recommendations__title">Hey Charlie,</h2>
             <h3 className="recommendations__subtitle">
               Let's find something exiting for you.
@@ -201,25 +203,22 @@ const Event = (p) => {
                     <div className="time">
                       <ul className="time__list">
                         <li
-                          className={`time__list--item ${
-                            selectedButton === 1 ? "active" : ""
-                          } `}
+                          className={`time__list--item ${selectedButton === 1 ? "active" : ""
+                            } `}
                           onClick={() => setSelectedButton(1)}
                         >
                           10 mins walking
                         </li>
                         <li
-                          className={`time__list--item ${
-                            selectedButton === 2 ? "active" : ""
-                          } `}
+                          className={`time__list--item ${selectedButton === 2 ? "active" : ""
+                            } `}
                           onClick={() => setSelectedButton(2)}
                         >
                           20 mins walking
                         </li>
                         <li
-                          className={`time__list--item ${
-                            selectedButton === 3 ? "active" : ""
-                          } `}
+                          className={`time__list--item ${selectedButton === 3 ? "active" : ""
+                            } `}
                           onClick={() => setSelectedButton(3)}
                         >
                           30 mins walking
@@ -228,25 +227,22 @@ const Event = (p) => {
 
                       <ul className="time__list">
                         <li
-                          className={`time__list--item ${
-                            selectedButton === 4 ? "active" : ""
-                          } `}
+                          className={`time__list--item ${selectedButton === 4 ? "active" : ""
+                            } `}
                           onClick={() => setSelectedButton(4)}
                         >
                           10 mins drive
                         </li>
                         <li
-                          className={`time__list--item ${
-                            selectedButton === 5 ? "active" : ""
-                          } `}
+                          className={`time__list--item ${selectedButton === 5 ? "active" : ""
+                            } `}
                           onClick={() => setSelectedButton(5)}
                         >
                           20 mins drive
                         </li>
                         <li
-                          className={`time__list--item ${
-                            selectedButton === 6 ? "active" : ""
-                          } `}
+                          className={`time__list--item ${selectedButton === 6 ? "active" : ""
+                            } `}
                           onClick={() => setSelectedButton(6)}
                         >
                           30 mins drive
@@ -255,9 +251,8 @@ const Event = (p) => {
 
                       <ul className="time__list">
                         <li
-                          className={`time__list--item ${
-                            selectedButton === 7 ? "active" : ""
-                          } `}
+                          className={`time__list--item ${selectedButton === 7 ? "active" : ""
+                            } `}
                           onClick={() => setSelectedButton(7)}
                         >
                           No limits
@@ -273,73 +268,64 @@ const Event = (p) => {
                   </div>
                   <ul className="category__list">
                     <li
-                      className=/*{`category__list--item ${obj.comedy ? "active" :"" }`} */ {`category__list--item ${
-                        multiple === 1 ? "active" : ""
-                      } `}
+                      className={`category__list--item ${multiple === 1 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       Stand Up Comedy
                     </li>
                     <li
-                      className={`category__list--item active ${
-                        multiple === 3 ? "active" : ""
-                      } `}
+                      className={`category__list--item active ${multiple === 3 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       RAMP Walk
                     </li>
                     <li
-                      className={`category__list--item active ${
-                        multiple === 3 ? "active" : ""
-                      } `}
+                      className={`category__list--item active ${multiple === 3 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       Box Cricket
                     </li>
                     <li
-                      className={`category__list--item ${
-                        multiple === 4 ? "active" : ""
-                      } `}
+                      className={`category__list--item ${multiple === 4 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(4)}
                     >
                       Swimming
                     </li>
                     <li
-                      className={`category__list--item ${
-                        multiple === 5 ? "active" : ""
-                      } `}
+                      className={`category__list--item ${multiple === 5 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       Golf Tournament
                     </li>
                     <li
-                      className={`category__list--item ${
-                        multiple === 6 ? "active" : ""
-                      } `}
+                      className={`category__list--item ${multiple === 6 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       Singing
                     </li>
                     <li
-                      className={`category__list--item ${
-                        multiple === 7 ? "active" : ""
-                      } `}
+                      className={`category__list--item ${multiple === 7 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       Talks Shows
                     </li>
                     <li
-                      className={`category__list--item ${
-                        multiple === 8 ? "active" : ""
-                      } `}
+                      className={`category__list--item ${multiple === 8 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       Kite Surfing
                     </li>
                     <li
-                      className={`category__list--item ${
-                        multiple === 9 ? "active" : ""
-                      } `}
+                      className={`category__list--item ${multiple === 9 ? "active" : ""
+                        } `}
                       onClick={() => setMuliple(3)}
                     >
                       Book Exhibitions
