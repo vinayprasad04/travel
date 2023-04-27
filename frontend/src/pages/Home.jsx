@@ -8,13 +8,13 @@ import HomeTest from '../components/cards/HomeTest'
 
 const Home = () => {
   return <>
-        <div className="container">
+        <div style={{paddingLeft: "100px"}}>
           <Slider />
           <MidSlider />
         </div>
     
         
-        <HomeTest/>
+        {/* <HomeTest/> */}
   </>;
 };
 
