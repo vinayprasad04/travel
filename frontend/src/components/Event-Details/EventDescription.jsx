@@ -1,7 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+
 import pic from "../../assets/img/overwhelmed.svg";
 
-const EventDescription = () => {
+const EventDescription = ({eventData}) => {
+
   return (
     <Fragment>
       {" "}
@@ -13,7 +15,8 @@ const EventDescription = () => {
             <div className="description-details">
               <h5>Golf</h5>
               <p>
-                This is one of the many events comes under the Golf category.
+                This is one of the many events comes under the{" "}
+                {eventData?.[0].aboutevent.category} category.
               </p>
             </div>
           </li>
@@ -22,7 +25,8 @@ const EventDescription = () => {
             <div className="description-details">
               <h5>Great location</h5>
               <p>
-                This is one of the many events comes under the Golf category.
+                This is one of the many events comes under the{" "}
+                {eventData?.[0].aboutevent.category} category.
               </p>
             </div>
           </li>
@@ -31,30 +35,17 @@ const EventDescription = () => {
               <img src={pic} alt="" />
             </div>
             <div className="description-details">
-              <h5>Overwhelmed experience</h5>
+              <h5>{eventData?.[0].aboutevent.experience} experience</h5>
               <p>
-                This event has a rating of 5.0 that make this event overwhelmed.
+                This event has a rating of {eventData?.[0].eventrating} that
+                make this event {eventData?.[0].aboutevent.experience}.
               </p>
             </div>
           </li>
         </ul>
         <div className="event__description--content">
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elit.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elit.
-          </p>
+          <p>{eventData?.[0].eventdescription}</p>
+          <p>{eventData?.[0].eventdescription}</p>
         </div>
       </div>
     </Fragment>

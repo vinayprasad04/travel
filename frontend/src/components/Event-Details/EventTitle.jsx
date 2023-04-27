@@ -1,19 +1,21 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 
-const EventTitle = () => {
+
+const EventTitle = ({eventData}) => {
   return (
     <Fragment>
       {" "}
-      <h2 className="eventDetails__title">Surfing at leasure</h2>
+      <h2 className="eventDetails__title">{eventData?.[0].eventname}</h2>
       <div className="eventDetails__review">
         <div className="rating">
-          <Rating initialValue="5" size={20} readonly={true} />
+          <Rating initialValue={eventData?.[0].eventrating} size={20} readonly={true} />
         </div>
         <div className="review">
-          5.0 <span>23 reviews</span>
+          {eventData?.[0].eventrating} <span>23 reviews</span>
         </div>
-        <div className="location">Sindalah City, Dubai</div>
+        <div className="location">{eventData?.[0].place}</div>
       </div>
     </Fragment>
   );
