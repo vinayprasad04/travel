@@ -12,6 +12,7 @@ import UpcomingEvent from "./pages/UpcomingEvent";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
+
 const RouterComponent = () =>{
   return (
     <>
