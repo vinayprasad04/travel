@@ -1,12 +1,5 @@
 import React from "react";
 
-//import cardimg from "../../assets/img/disappointed.svg";
-// import overwhelImg from "../assets/img/overwhelmed.svg";
-// import joy from "../assets/img/joy.svg";
-// import anger from "../assets/img/anger.svg";
-// import appri from "../assets/img/appreciation.svg";
-//import dummyimg from "../../assets/img/Event-Banner.png";
-
 const MidCard = (props) => {
     return (
         <>
