@@ -9,12 +9,17 @@ import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
+import LoginPg from './components/LoginPg';
+import SignUp from  './components/SignUp/SignUp';
+
 
 const RouterComponent = () => {
   return (
     <>
-      <Navbar />
+      
+     <Navbar />
       <Routes>
+        <Route path="/login" element={<LoginPg />} />
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/upcoming-events" element={<Favorites />} />
@@ -23,8 +28,10 @@ const RouterComponent = () => {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        
       </Routes>
-      <Footer />
+      
     </>
   );
 };
