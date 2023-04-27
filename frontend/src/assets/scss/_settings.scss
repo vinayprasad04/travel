@@ -34,6 +34,7 @@
 
     &__list{
         &--item{
+
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -49,6 +50,7 @@
                     margin-bottom: 30px;
                 }
             }
+            
         }
 
         &--title{
@@ -88,6 +90,7 @@
                 align-items: flex-start;
                 width: 100%;
             }
+
 
             .form__group--toggle{
                 display: flex;
