@@ -7,7 +7,7 @@ import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import Wrapper from "./components/Wrapper";
+import Wrapper from "./components/utils/Wrapper";
 import CreateCategory from "./pages/admin/CreateCategory";
 import DisplayCategory from "./pages/admin/DisplayCategory";
 import UserList from "./pages/admin/UserList";
@@ -18,8 +18,8 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Error from "./pages/Error";
 
-import UserRoute from "./components/UserRoute";
-import AdminRoute from "./components/AdminRoute";
+import UserRoute from "./components/utils/UserRoute";
+import AdminRoute from "./components/utils/AdminRoute";
 
 const RouterComponent = () => {
   return (
@@ -65,12 +65,3 @@ const RouterComponent = () => {
 };
 
 export default RouterComponent;
-
-//  <Route path="/" element={<Home />} />
-//         <Route path="/favorites" element={<Favorites />} />
-//         <Route path="/upcoming-events" element={<Favorites />} />
-//         <Route path="/notifications" element={<Notifications />} />
-//         <Route path="/profile" element={<Profile />} />
-//         <Route path="/feedback" element={<Feedback />} />
-//         <Route path="/setting" element={<Setting />} />
-//         <Route path="/admin/dashboard" element={<AdminDashboard />} />

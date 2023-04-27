@@ -8,6 +8,7 @@ import {
   getEvents,
   load,
   login,
+  updateProfile,
 } from "../controllers/Auth.js";
 import { isAuthenticated } from "../middlewares/isAuthenticated.js";
 
@@ -16,6 +17,7 @@ const router = express.Router();
 router.post("/register", Register);
 router.post("/login", login);
 router.post("/load", isAuthenticated, load);
+router.patch("/update/profile", isAuthenticated, updateProfile);
 router.post("/create/category", createCategory);
 router.get("/get/category", getCategories);
 router.post("/delete/category", deleteCategory);

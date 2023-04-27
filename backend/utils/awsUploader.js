@@ -1,11 +1,12 @@
 import aws from "aws-sdk";
+import { config } from "dotenv";
 
+config({ path: "./config/.env" });
 ///configuration
 const awsConfig = {
-  secretAccessKey:
-    process.env.AWS_SECRET_KEY || "3ZJZ3QA1Ltwg6u1rwBo58mtx2L80CDjhpAwrk94H",
-  accessKeyId: process.env.AWS_KEY_ID || "AKIAXSEW3VQCFFQJ5J5D",
-  region: process.env.AWS_REGION || "us-east-1",
+  secretAccessKey: process.env.AWS_SECRET_KEY,
+  accessKeyId: process.env.AWS_KEY_ID,
+  region: process.env.AWS_REGION,
 };
 
 const S3 = new aws.S3(awsConfig);

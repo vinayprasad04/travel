@@ -16,13 +16,9 @@ const App = () => {
   };
 
   useEffect(() => {
-    loadUser();
+    if (token) loadUser();
   }, [dispatch]);
-  return (
-    <>
-      <RouterComponent />
-    </>
-  );
+  return <RouterComponent />;
 };
 
 export default App;

@@ -1,21 +1,18 @@
 import React from "react";
-
-import "../assets/scss/_home.scss"
-import Slider from "../components/carousel/Slider";
-import MidSlider from "../components/carousel/MidSlider";
-
-import HomeTest from '../components/cards/HomeTest'
+import IternearyCardSlider from "../components/sliders/IternearyCardSlider";
+import ExperianceCardSlider from "../components/sliders/ExperianceCardSlider";
+import Recommendation from "../components/Recommendation";
 
 const Home = () => {
-  return <>
-        <div className="container">
-          <Slider />
-          <MidSlider />
-        </div>
-    
-        
-        <HomeTest/>
-  </>;
+  return (
+    <>
+      <div style={{ paddingLeft: "100px" }}>
+        <IternearyCardSlider />
+        <ExperianceCardSlider />
+      </div>
+      <Recommendation />
+    </>
+  );
 };
 
-export default Home
+export default Home;

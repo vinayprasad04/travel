@@ -1,8 +1,9 @@
 import pool from "../config/Database.js";
 import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
-import { UploadFile } from "../utils/uploaderImage.js";
+import { RemoveFile, UploadFile } from "../utils/uploaderImage.js";
 import uploadToS3 from "../utils/awsUploader.js";
+import cloudinary from "cloudinary";
 
 export const Register = async (req, res) => {
   try {
@@ -105,14 +106,52 @@ export const load = async (req, res) => {
       req.email,
     ]);
     if (data.rows[0]) {
-      return res
-        .status(200)
-        .json({
-          msg: "user load successfully",
-          data: data.rows[0],
-          token: req.token,
-        });
+      return res.status(200).json({
+        msg: "user load successfully",
+        data: data.rows[0],
+        token: req.token,
+      });
     }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: error });
+  }
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const { name, email, contact, dob, category } = req.body;
+    console.log(req.files);
+    const images = [req.files.images];
+    const imageArray = [];
+
+    //1->find user
+    const existUser = await pool.query("SELECT * FROM users WHERE email=$1 ", [
+      email,
+    ]);
+    const user = existUser.rows[0];
+    for (var i = 0; i < images.length; i++) {
+      const avatarData = await uploadToS3(images[i].data)
+        .then((result) => {
+          return result;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      imageArray.push({
+        url: avatarData.key,
+        id: avatarData.ETag.toString(),
+      });
+    }
+    const category2 = [{ item: JSON.parse(category) }];
+
+    const updateData = await pool.query(
+      "UPDATE users SET name=$1,contact=$2,dob=$3,category=$4,profile=$5 RETURNING *",
+      [name, contact, dob, category2, imageArray]
+    );
+    res
+      .status(200)
+      .json({ msg: "Profile Update Successfully", data: updateData.rows[0] });
   } catch (error) {
     console.log(error);
     res.status(400).json({ msg: error });

@@ -1,11 +1,11 @@
-import React, { useCallback, useState } from "react";
-import logo from "../assets/img/logo-black.svg";
+import React, { useState } from "react";
+import logo from "../../assets/img/logo-black.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import Popup from "./Popup";
+import Popup from "../Popup";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 
-const Navbar = () => {
+const Header = () => {
   const [show, setShow] = useState(false);
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
@@ -165,4 +165,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Header;

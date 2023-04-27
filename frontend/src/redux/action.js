@@ -60,11 +60,23 @@ export const Loads = async (token) => {
   }
 };
 
+////Update Profile
+
+export const UpdateProfile = async (token, myForm) => {
+  try {
+    return await axios.patch(url + "/update/profile", myForm, {
+      headers: { token: token },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 /// Get Events
 
 export const GetEvents = async (token) => {
   try {
-    return await axios.post(url + "/events", { headers: { token: token } });
+    return await axios.post(url + "/events", {}, { headers: { token: token } });
   } catch (error) {
     console.log(error);
   }

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
-import "../../assets/scss/login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { Logins } from "../../redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 
 const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { isValid } = useSelector((state) => state.users);
+
   const Navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -29,16 +31,22 @@ const Login = () => {
         }).then(function () {
           navigate("/");
         });
-        setLoading(false);
+      } else {
+        swal({
+          icon: "error",
+          text: "Invalid Credintials",
+          type: "error",
+        });
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    console.log(isValid);
     if (isValid) {
       Navigate("/");
     }
