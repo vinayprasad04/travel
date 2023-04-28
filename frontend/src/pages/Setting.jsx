@@ -34,88 +34,88 @@ const Setting = () => {
 
   return (
     <>
-      <main classNameName="content">
-        <div classNameName="settings">
-          <div classNameName="container">
-            <h2 classNameName="settings__title">Good morning Charlie!</h2>
-            <div classNameName="settings__subtitle">
+      <main className="content">
+        <div className="settings">
+          <div className="container">
+            <h2 className="settings__title">Good morning Charlie!</h2>
+            <div className="settings__subtitle">
               You can change the settings your personal data and other
               inhtmlFormation.
             </div>
-            <ul classNameName="settings__list">
-              <li classNameName="settings__list--item">
-                <div classNameName="settings__flex--row">
-                  <h4 classNameName="settings__list--title">
+            <ul className="settings__list">
+              <li className="settings__list--item">
+                <div className="settings__flex--row">
+                  <h4 className="settings__list--title">
                     Personal and Account Information
                   </h4>
-                  <p classNameName="settings__list--details">
+                  <p className="settings__list--details">
                     Would you like to share your personal information with us to
                     know you better?
                   </p>
                 </div>
-                <div classNameName="htmlForm__group--toggle">
+                <div className="htmlForm__group--toggle">
                   <input
                     type="checkbox"
                     id="switch1"
-                    classNameName="checkbox"
+                    className="checkbox"
                     onChange={handleClick}
                   />
-                  <label htmlFor="switch1" classNameName="toggle"></label>
+                  <label htmlFor="switch1" className="toggle"></label>
                 </div>
               </li>
 
-              <li classNameName="settings__list--item">
-                <div classNameName="settings__flex--row">
-                  <h4 classNameName="settings__list--title">
+              <li className="settings__list--item">
+                <div className="settings__flex--row">
+                  <h4 className="settings__list--title">
                     Consent htmlFor sharing in information with operators
                   </h4>
-                  <p classNameName="settings__list--details">
+                  <p className="settings__list--details">
                     Would you like to share your personal information with the
                     operator to serve you better?
                   </p>
                 </div>
-                <div classNameName="htmlForm__group--toggle">
+                <div className="htmlForm__group--toggle">
                   <input
                     type="checkbox"
                     id="switch2"
-                    classNameName="checkbox"
+                    className="checkbox"
                     onChange={handleClick}
                   />
-                  <label htmlFor="switch2" classNameName="toggle"></label>
+                  <label htmlFor="switch2" className="toggle"></label>
                 </div>
               </li>
-              <li classNameName="settings__list--item">
-                <div classNameName="settings__flex--row">
-                  <h4 classNameName="settings__list--title">Manage your data</h4>
-                  <p classNameName="settings__list--details">
+              <li className="settings__list--item">
+                <div className="settings__flex--row">
+                  <h4 className="settings__list--title">Manage your data</h4>
+                  <p className="settings__list--details">
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                     diam nonumy eirmod?
                   </p>
                 </div>
 
-                <div classNameName="htmlForm__group--toggle">
+                <div className="htmlForm__group--toggle">
                   <input
                     type="checkbox"
                     id="switch3"
-                    classNameName="checkbox"
+                    className="checkbox"
                     onClick={handleClick}
                   />
-                  <label htmlFor="switch3" classNameName="toggle"></label>
+                  <label htmlFor="switch3" className="toggle"></label>
                 </div>
               </li>
-              <li classNameName="settings__list--item">
-                <div classNameName="settings__flex--row">
-                  <h4 classNameName="settings__list--title">
+              <li className="settings__list--item">
+                <div className="settings__flex--row">
+                  <h4 className="settings__list--title">
                     Password and Security
                   </h4>
-                  <p classNameName="settings__list--details">
+                  <p className="settings__list--details">
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                     diam nonumy eirmod?
                   </p>
                 </div>
-                <div classNameName="htmlForm__group--toggle">
-                  <input type="checkbox" id="switch4" classNameName="checkbox" />
-                  <label htmlFor="switch4" classNameName="toggle"></label>
+                <div className="htmlForm__group--toggle">
+                  <input type="checkbox" id="switch4" className="checkbox" />
+                  <label htmlFor="switch4" className="toggle"></label>
                 </div>
               </li>
               {/* NOtfiction  */}
@@ -134,7 +134,7 @@ const Setting = () => {
                     <span>Emails</span>
                   </div>
                   <div className="form__group--toggle">
-                    <input type="checkbox" id="switch6" classNameName="checkbox" />
+                    <input type="checkbox" id="switch6" className="checkbox" />
                     <label for="switch6" className="toggle"></label>
                     <span>Newsletters</span>
                   </div>
@@ -146,29 +146,29 @@ const Setting = () => {
                 </div>
               </li>
 
-              <li classNameName="settings__list--item settings__list--item-column">
-                <div classNameName="settings__flex--row">
-                  <h4 classNameName="settings__list--title">Language</h4>
-                  <p classNameName="settings__list--details">
+              <li className="settings__list--item settings__list--item-column">
+                <div className="settings__flex--row">
+                  <h4 className="settings__list--title">Language</h4>
+                  <p className="settings__list--details">
                     Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
                     diam nonumy eirmod?
                   </p>
                 </div>
-                <div classNameName="settings__toggle--list">
-                  <label classNameName="radio-container">
+                <div className="settings__toggle--list">
+                  <label className="radio-container">
                     English
                     <input type="radio" checked="checked" name="radio" />
-                    <span classNameName="checkmark"></span>
+                    <span className="checkmark"></span>
                   </label>
-                  <label classNameName="radio-container">
+                  <label className="radio-container">
                     French
                     <input type="radio" name="radio" />
-                    <span classNameName="checkmark"></span>
+                    <span className="checkmark"></span>
                   </label>
-                  <label classNameName="radio-container">
+                  <label className="radio-container">
                     Arabic
                     <input type="radio" name="radio" />
-                    <span classNameName="checkmark"></span>
+                    <span className="checkmark"></span>
                   </label>
                 </div>
               </li>
@@ -181,3 +181,4 @@ const Setting = () => {
 };
 
 export default Setting;
+
