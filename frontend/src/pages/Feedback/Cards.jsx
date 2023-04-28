@@ -6,7 +6,9 @@ import boredom from "../../assets/img/boredom.svg";
 import dissappointed from "../../assets/img/disappointed.svg";
 import anger from "../../assets/img/anger.svg";
 
+
 function Cards() {
+
   const cardDescription = [
     {
       date: "Nov 10-29,2022",
@@ -19,16 +21,16 @@ function Cards() {
       reviews: 123,
       rating: 5.0,
     },
+
     {
       date: "Nov 10-29,2022",
       title: "Great experience!",
       imageURL: EventBanner,
       eventName: "Surfing at leasure",
-      description:
-        "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
-      emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
+      description: false,
+      emotion: false,
       reviews: 123,
-      rating: 5.0,
+      rating: 5.0
     },
 
     {
@@ -40,7 +42,7 @@ function Cards() {
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
       emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
       reviews: 123,
-      rating: 5.0,
+      rating: 5.0
     },
 
     {
@@ -52,7 +54,7 @@ function Cards() {
         "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
       emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
       reviews: 123,
-      rating: 5.0,
+      rating: 5.0
     },
     {
       date: "Nov 10-29,2022",
@@ -67,9 +69,20 @@ function Cards() {
     },
   ];
 
+
+  const getData = () => {
+    fetch('http://localhost:5000/getData').then((res) => {
+      if(res.status === 200) {
+        res.json()
+      }
+    })
+  }
+
+
   return (
     <>
-      {cardDescription.map((val, key) => {
+      {
+      cardDescription.map((val, key) => {
         return (
           <li class="feedback__list--item" index={key}>
             <div class="feedback__list--image">
@@ -88,24 +101,38 @@ function Cards() {
                 </div>
               </div>
             </div>
+
             <div class="feedback__list--content">
               <div class="card--date"> {val.date} </div>
               <h3 class="card--title">{val.title}</h3>
-              <div class="card--description">{val.description}</div>
+              {val.emotion ? (
+                <div class="card--description">{val.description}</div>
+              ) : (
+                <h3 class="card--subtitle">
+                  Hey Charlie, you haven't added you feedback yet. Please share
+                  your experience with us to serve you better next time.
+                </h3>
+              )}
+
+              {/* <div class="card--description">{val.description}</div> */}
               <ul class="emotion__list">
-                {val.emotion.map((vl,key) => {
-                  return (
-                    <li class="emotion__list--item" index={key}>
-                      {" "}
-                      <img src={vl} alt=" " />
-                    </li>
-                  );
-                })}
+                {val.emotion ? (
+                  val.emotion.map((vl, key) => {
+                    return (
+                      <li class="emotion__list--item" index={key}>
+                        <img src={vl} alt=" " />
+                      </li>
+                    );
+                  })
+                ) : (
+                  <button class="btn btn__black">Add a review</button>
+                )}
               </ul>
             </div>
           </li>
         );
-      })}
+      })
+      }
     </>
   );
 }

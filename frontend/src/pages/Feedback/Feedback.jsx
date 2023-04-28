@@ -31,8 +31,11 @@ function Feedback() {
                   </div>
                 </div>
                 <div class="col_sm_12 col_md_12 col_lg_6">
+                  {/* Vibe-o-meter  */}
+
                   <div class="feedback__banner--graphic">
                     <img src={vibeometer} alt="" />
+                 
                   </div>
                 </div>
               </div>
