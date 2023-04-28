@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Rating } from "react-simple-star-rating";
 
-const EventReview = () => {
+const EventOperation = () => {
   return (
     <Fragment>
       {" "}
@@ -28,4 +28,4 @@ const EventReview = () => {
   );
 };
 
-export default EventReview;
+export default EventOperation;

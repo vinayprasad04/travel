@@ -8,28 +8,35 @@ import EventRecommendation from "../components/Event-Details/EventRecommendation
 import EventImage from "../components/Event-Details/EventImage.jsx";
 import ViboMeter from "../components/Event-Details/ViboMeter.jsx";
 import EventDescription from "../components/Event-Details/EventDescription.jsx";
-import EventReview from "../components/Event-Details/EventReview.jsx";
 import EventReserveForm from "../components/Event-Details/EventReserveForm.jsx";
 import EventTitle from "../components/Event-Details/EventTitle.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventsData } from "../store/dataStore.js";
+import { getEventsData, getUserReviews } from "../store/dataStore.js";
+import EventOperation from "../components/Event-Details/EventOperation.jsx";
 
 const EventDetails = () => {
   useEffect(() => {
     swiperHandle();
   }, []);
 
+  const review = useSelector((state) => state.reviews);
   const event = useSelector((state) => state.events);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getEventsData());
+    dispatch(getUserReviews());
   }, []);
 
   const { id } = useParams();
 
-  const eventData = event.events.data?.filter((item) => id === item.eventid.toString());
+  const eventData = event.events.data?.filter(
+    (item) => id === item.eventid.toString()
+  );
 
+  const reviewData = review.reviews.data?.filter(
+    (item) => id === item.eventid.toString()
+  );
 
   return (
     <div>
@@ -46,8 +53,11 @@ const EventDetails = () => {
             <div className="eventReserve__grid">
               <div className="eventReserve__grid--col">
                 <ViboMeter />
-                <EventDescription eventData={eventData} />
-                <EventReview />
+                <EventDescription
+                  eventData={eventData}
+                  reviewData={reviewData}
+                />
+                <EventOperation />
               </div>
               <EventReserveForm />
             </div>
@@ -58,7 +68,7 @@ const EventDetails = () => {
         <div className="recSlider recSlider--ratingCards">
           <div className="swiper tailored">
             <div className="swiper-wrapper">
-              <RatingCard />
+              <RatingCard reviewData={reviewData} />
             </div>
 
             <div className="swiper-buttons">
