@@ -1,68 +1,80 @@
 import React, { useState } from "react";
+import {json, useNavigate} from "react-router-dom";
 import ProfileImg from "../assets/img/music.png";
 import { useFormik } from "formik";
 import { validation } from "../components/profileValidation";
 import axios from "axios";
-import { DatePicker, Select } from "antd";
+import { DatePicker } from "antd";
 
 const EditProfile = () => {
-  const [date, setDate] = useState();
-  const [images, setImages] = useState([
-    { src: require("../assets/img/golf.png"), isLiked: false, text: "Golfs" },
-    { src: require("../assets/img/music.png"), isLiked: false, text: "Music" },
-    {
-      src: require("../assets/img/exploring.png"),
-      isLiked: false,
-      text: "Rooms",
-    },
-    {
-      src: require("../assets/img/cooking&dinner.png"),
-      isLiked: false,
-      text: "Exploring",
-    },
-    {
-      src: require("../assets/img/standup-comedy.png"),
-      isLiked: false,
-      text: "Socializing",
-    },
-    {
-      src: require("../assets/img/socializing.png"),
-      isLiked: false,
-      text: "Cooking & dining",
-    },
-    {
-      src: require("../assets/img/plays.png"),
-      isLiked: false,
-      text: "Plays",
-    },
-    {
-      src: require("../assets/img/chinese-food.png"),
-      isLiked: false,
-      text: "Chinese Food",
-    },
-    {
-      src: require("../assets/img/screaming-child.png"),
-      isLiked: false,
-      text: "Screaming Child",
-    },
-    {
-      src: require("../assets/img/walking-for-long.png"),
-      isLiked: false,
-      text: "Walking for long",
-    },
-    {
-      src: require("../assets/img/water-sports.png"),
-      isLiked: false,
-      text: "Water Sports",
-    },
-  ]);
 
-  const [selectedImageText, setSelectedImageText] = useState([]);
-  const [image, setImage] = useState();
-  const thumbHandlerOnImg = (index) => {
-    const updatedImages = [...images];
-    const selectedText = updatedImages[index].text;
-    updatedImages[index].isLiked = !updatedImages[index].isLiked; //Switching the thumbs on images
+    const navigate=useNavigate();
+
+    const [date, setDate] = useState();
+    const [images, setImages] = useState([
+        {
+            src: require("../assets/img/golf.png"),
+            isLiked: false,
+            text: "Golfs",
+        },
+        {
+            src: require("../assets/img/music.png"),
+            isLiked: false,
+            text: "Music",
+        },
+        {
+            src: require("../assets/img/exploring.png"),
+            isLiked: false,
+            text: "Rooms",
+        },
+        {
+            src: require("../assets/img/cooking&dinner.png"),
+            isLiked: false,
+            text: "Exploring",
+        },
+        {
+            src: require("../assets/img/standup-comedy.png"),
+            isLiked: false,
+            text: "Socializing",
+        },
+        {
+            src: require("../assets/img/socializing.png"),
+            isLiked: false,
+            text: "Cooking & dining",
+        },
+        {
+            src: require("../assets/img/plays.png"),
+            isLiked: false,
+            text: "Plays",
+        },
+        {
+            src: require("../assets/img/chinese-food.png"),
+            isLiked: false,
+            text: "Chinese Food",
+        },
+        {
+            src: require("../assets/img/screaming-child.png"),
+            isLiked: false,
+            text: "Screaming Child",
+        },
+        {
+            src: require("../assets/img/walking-for-long.png"),
+            isLiked: false,
+            text: "Walking for long",
+        },
+        {
+            src: require("../assets/img/water-sports.png"),
+            isLiked: false,
+            text: "Water Sports",
+        },
+    ]);
+
+    const [selectedImageText, setSelectedImageText] = useState([]);
+    const [image, setImage] = useState();
+    const thumbHandlerOnImg = (index) => {
+        const updatedImages = [...images];
+        const selectedText = updatedImages[index].text;
+        updatedImages[index].isLiked = !updatedImages[index].isLiked; //Switching the thumbs on images
 
     if (updatedImages[index].isLiked) {
       // Adding text in array with previous data
@@ -251,77 +263,98 @@ const EditProfile = () => {
                         id="DOB"
                         name="DOB"
                       /> */}
-                      <DatePicker
-                        className={
-                          errors.DOB && touched.DOB
-                            ? "form__input error"
-                            : "form__input"
-                        }
-                        placeholder=""
-                        onBlur={handleBlur}
-                        onChange={(date, dateString) => setDate(dateString)}
-                        id="DOB"
-                        name="DOB"
-                        required
-                      />
-                    </div>
-                    <ul className="activity__list">
-                      {images?.map((image, index) => {
-                        return (
-                          <li
-                            key={index}
-                            className={`activity__list--item ${
-                              image.isLiked ? "active" : null
-                            }`}
-                            onClick={() => {
-                              thumbHandlerOnImg(index);
-                            }}
-                          >
-                            <div className="activity__info">
-                              <div className="activity__image">
-                                <img src={image.src} alt="activity" />
-                                <div className="activity__image--overlay"></div>
-                                <div className="activity__name">
-                                  {image.text}
+                                            <DatePicker
+                                                className={
+                                                    errors.DOB && touched.DOB
+                                                        ? "form__input error"
+                                                        : "form__input"
+                                                }
+                                                placeholder=""
+                                                onBlur={handleBlur}
+                                                onChange={(date, dateString) =>
+                                                    setDate(dateString)
+                                                }
+                                                id="DOB"
+                                                name="DOB"
+                                                required
+                                            />
+                                        </div>
+                                        <ul className="activity__list">
+                                            {images?.map((image, index) => {
+                                                return (
+                                                    <li
+                                                        key={index}
+                                                        className={`activity__list--item ${
+                                                            image.isLiked
+                                                                ? "active"
+                                                                : null
+                                                        }`}
+                                                        onClick={() => {
+                                                            thumbHandlerOnImg(
+                                                                index
+                                                            );
+                                                        }}
+                                                    >
+                                                        <div className="activity__info">
+                                                            <div className="activity__image">
+                                                                <img
+                                                                    src={
+                                                                        image.src
+                                                                    }
+                                                                    alt="activity"
+                                                                />
+                                                                <div className="activity__image--overlay"></div>
+                                                                <div className="activity__name">
+                                                                    {image.text}
+                                                                </div>
+                                                            </div>
+                                                            <div className="activity__selected">
+                                                                <div className="icon-thumbs-up"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                        <div className="form__group m-0">
+                                            <label className="form__label">
+                                                Please let us know if you have
+                                                some interests
+                                            </label>
+                                            <input
+                                                disabled
+                                                type="text"
+                                                className="form__input"
+                                                value={selectedImageText.join(
+                                                    ", "
+                                                )}
+                                                onChange={() =>
+                                                    setSelectedImageText([])
+                                                }
+                                                placeholder="Add multiple interests comma ( , ) separated"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="btn--wrap">
+                                            <button
+                                                className="btn btn__red"
+                                                type="submit"
+                                            >
+                                                Save
+                                            </button>
+                                            <button className="btn btn__transparent">
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                              <div className="activity__selected">
-                                <div className="icon-thumbs-up"></div>
-                              </div>
                             </div>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                    <div className="form__group m-0">
-                      <label className="form__label">
-                        Please let us know if you have some interests
-                      </label>
-                      <input
-                        disabled
-                        type="text"
-                        className="form__input"
-                        value={selectedImageText.join(", ")}
-                        onChange={() => setSelectedImageText([])}
-                        placeholder="Add multiple interests comma ( , ) separated"
-                        required
-                      />
+                        </div>
                     </div>
-                    <div className="btn--wrap">
-                      <button className="btn btn__red" type="submit">
-                        Save
-                      </button>
-                      <button className="btn btn__transparent">Cancel</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-      </form>
-    </div>
-  );
+                </main>
+            </form>
+        </div>
+    );
 };
 
 export default EditProfile;
