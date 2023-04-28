@@ -141,7 +141,7 @@ const Navbar = () => {
                     </li>
                     <li className="nav__divider nav__item--mobile"></li>
                     <li className="nav__item">
-                      <Link to="/profile" className="nav__link">
+                      <Link to="/edit-profile" className="nav__link">
                         Edit profiles
                       </Link>
                     </li>

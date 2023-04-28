@@ -6,137 +6,161 @@ import UpcomingEventCard from "./card/UpcomingEventCard";
 const Event = (p) => {
   const [selectedButton, setSelectedButton] = useState(0);
   const [multiple, setMuliple] = useState(0);
-
+  const [filterDistance,setFilterdistance]=useState(0);
+ 
 
   const handleButtonClick = (buttonIndex) => {
     setSelectedButton(buttonIndex);
   };
 
- 
-  // const handleMulitpleClick = (buttonIndex) => {
-  //   setMuliple(buttonIndex);
-  // };
+  
+  const filterHandler=({a})=>{
+    
 
+  }
+
+  
+  
   const dummy = [
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 102-50",
+      distance:"10 km"
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:20 
     },
     {
       coverimg: "/images/spa_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"30 km"
     },
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"40 km"
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"50 km"
     },
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"60 km"
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"70 km"
     },
     {
       coverimg: "/images/spa_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"80 km"
     },
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"90 km"
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"50 km"
     },
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 102-50",
+      distance:"60 km"
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"60 km"
     },
     {
       coverimg: "/images/spa_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"80 km"
     },
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"70 km"
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"10 km"
     },
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"60 km"
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"40 km"
     },
     {
       coverimg: "/images/spa_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:"30 km"
     },
     {
       coverimg: "/images/holiday_0.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:90 
     },
     {
       coverimg: "/images/Event-Banner.png",
       rating: 5.0,
       reviews: 126,
       date: "Nov 10-29",
+      distance:30 
     },
   ];
 
@@ -205,21 +229,21 @@ const Event = (p) => {
                         <li
                           className={`time__list--item ${selectedButton === 1 ? "active" : ""
                             } `}
-                          onClick={() => setSelectedButton(1)}
+                          onClick={(e,a=10) =>filterHandler(a)}
                         >
                           10 mins walking
                         </li>
                         <li
                           className={`time__list--item ${selectedButton === 2 ? "active" : ""
                             } `}
-                          onClick={() => setSelectedButton(2)}
+                            onClick={(e,a=20) =>filterHandler(a)}
                         >
                           20 mins walking
                         </li>
                         <li
                           className={`time__list--item ${selectedButton === 3 ? "active" : ""
                             } `}
-                          onClick={() => setSelectedButton(3)}
+                            onClick={(e,a=30) =>filterHandler(a)}
                         >
                           30 mins walking
                         </li>
@@ -340,7 +364,10 @@ const Event = (p) => {
             </div>
 
             <div class="card__grid">
-              {dummy?.slice(0, p.load).map((a, i) => (
+              {dummy?.slice(0, p.load).filter((item,a)=>{
+    item.distance=a;
+  })
+.map((a, i) => (
                 <UpcomingEventCard key={i + a} data={a} />
               ))}
             </div>
