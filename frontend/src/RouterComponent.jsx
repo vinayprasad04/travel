@@ -9,9 +9,9 @@ import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
+import ModalForm from "./components/modalForm/ModalForm";
 
 const RouterComponent = () => {
-
   return (
     <>
       <Navbar />
@@ -24,6 +24,7 @@ const RouterComponent = () => {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/addreview" element={<ModalForm />} />
       </Routes>
       <Footer />
     </>

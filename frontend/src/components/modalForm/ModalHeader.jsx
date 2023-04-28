@@ -1,10 +1,19 @@
 import React from "react";
+import { displayModal } from "../../redux/features/ModalSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const ModalHeader = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const cancelHandler = () => {
+    dispatch(displayModal());
+    navigate(-1);
+  };
   return (
     <div className="modal-header">
-      <button className="close">
-        {/* <!-- <img src="./assets/img/close.svg" alt="Close"> --> */}
+      <button className="close" onClick={() => cancelHandler()}>
         <xml version="1.0" encoding="utf-8" />
         <svg
           version="1.1"

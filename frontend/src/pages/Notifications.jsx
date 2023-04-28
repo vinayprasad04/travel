@@ -1,24 +1,21 @@
-
 import notificationData from "../components/notificationModal/notificationData";
 import EventCard from "../components/notificationModal/EventCard";
 import Timeline from "../components/notificationModal/Timeline";
 import { useState } from "react";
-
+import ModalForm from "../components/modalForm/ModalForm";
 
 const Notifications = () => {
+  notificationData.sort((a, b) => b.timeline - a.timeline);
+  const modifiedItems = notificationData.map((notificationData) => ({
+    ...notificationData,
+    formattedDate: notificationData.timeline.toLocaleDateString(),
+  }));
+  //console.log(modifiedItems);
 
-
-notificationData.sort((a, b) => b.timeline - a.timeline);
-const modifiedItems = notificationData.map(notificationData => ({
-  ...notificationData,
-  formattedDate: notificationData.timeline.toLocaleDateString(),
-}));
-//console.log(modifiedItems);
-
-const imagePerRow = 4;
-const [next, setNext] = useState(imagePerRow);
-const step=2;
-const handleMoreImage = () => {
+  const imagePerRow = 4;
+  const [next, setNext] = useState(imagePerRow);
+  const step = 2;
+  const handleMoreImage = () => {
     setNext(next + step);
   };
 
@@ -35,10 +32,9 @@ const handleMoreImage = () => {
               <div className="col_md_2">
                 <div className="notification__date">
                   <ul className="date__list">
-                    {modifiedItems?.slice(0, next)?.map((t,i) => {
-                       return <Timeline data={t} key={i}/>;
+                    {modifiedItems?.slice(0, next)?.map((t, i) => {
+                      return <Timeline data={t} key={i} />;
                     })}
-                    
                   </ul>
                 </div>
               </div>
@@ -47,13 +43,17 @@ const handleMoreImage = () => {
                 <div className="notification__content">
                   <ul className="notification__list">
                     {modifiedItems?.slice(0, next)?.map((d, i) => {
-                      return  (  <EventCard data={d} key={i} />);
+                      return <EventCard data={d} key={i} />;
                     })}
                   </ul>
                   {next < modifiedItems?.length && (
-                  <button className="btn btn__black" onClick={handleMoreImage}>
-                    Load more
-                  </button> )}
+                    <button
+                      className="btn btn__black"
+                      onClick={handleMoreImage}
+                    >
+                      Load more
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
