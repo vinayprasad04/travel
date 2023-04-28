@@ -17,7 +17,7 @@ export const validation = Yup.object({
   phone: Yup.string()
     .matches(phoneRegExp, "Please enter the valid phone number !")
     .required("Reuired field !"),
-  DOB: Yup.string().required("Required field !"),
+ 
   // .max(
   //   new Date(Date.now() - 567648000000),
   //   "You must be at least 18 years old !"

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {json, useNavigate} from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import ProfileImg from "../assets/img/music.png";
 import { useFormik } from "formik";
 import { validation } from "../components/profileValidation";
@@ -7,74 +7,80 @@ import axios from "axios";
 import { DatePicker } from "antd";
 
 const EditProfile = () => {
+  const navigate = useNavigate();
 
-    const navigate=useNavigate();
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
 
-    const [date, setDate] = useState();
-    const [images, setImages] = useState([
-        {
-            src: require("../assets/img/golf.png"),
-            isLiked: false,
-            text: "Golfs",
-        },
-        {
-            src: require("../assets/img/music.png"),
-            isLiked: false,
-            text: "Music",
-        },
-        {
-            src: require("../assets/img/exploring.png"),
-            isLiked: false,
-            text: "Rooms",
-        },
-        {
-            src: require("../assets/img/cooking&dinner.png"),
-            isLiked: false,
-            text: "Exploring",
-        },
-        {
-            src: require("../assets/img/standup-comedy.png"),
-            isLiked: false,
-            text: "Socializing",
-        },
-        {
-            src: require("../assets/img/socializing.png"),
-            isLiked: false,
-            text: "Cooking & dining",
-        },
-        {
-            src: require("../assets/img/plays.png"),
-            isLiked: false,
-            text: "Plays",
-        },
-        {
-            src: require("../assets/img/chinese-food.png"),
-            isLiked: false,
-            text: "Chinese Food",
-        },
-        {
-            src: require("../assets/img/screaming-child.png"),
-            isLiked: false,
-            text: "Screaming Child",
-        },
-        {
-            src: require("../assets/img/walking-for-long.png"),
-            isLiked: false,
-            text: "Walking for long",
-        },
-        {
-            src: require("../assets/img/water-sports.png"),
-            isLiked: false,
-            text: "Water Sports",
-        },
-    ]);
+  const userId = currentUser?.data?.user?.id;
+  // console.log("id", userId);
+  const [pic, setPic] = useState();
+  const [date, setDate] = useState();
+  const [images, setImages] = useState([
+    {
+      src: require("../assets/img/golf.png"),
+      isLiked: false,
+      text: "Golfs",
+    },
+    {
+      src: require("../assets/img/music.png"),
+      isLiked: false,
+      text: "Music",
+    },
+    {
+      src: require("../assets/img/exploring.png"),
+      isLiked: false,
+      text: "Rooms",
+    },
+    {
+      src: require("../assets/img/cooking&dinner.png"),
+      isLiked: false,
+      text: "Exploring",
+    },
+    {
+      src: require("../assets/img/standup-comedy.png"),
+      isLiked: false,
+      text: "Socializing",
+    },
+    {
+      src: require("../assets/img/socializing.png"),
+      isLiked: false,
+      text: "Cooking & dining",
+    },
+    {
+      src: require("../assets/img/plays.png"),
+      isLiked: false,
+      text: "Plays",
+    },
+    {
+      src: require("../assets/img/chinese-food.png"),
+      isLiked: false,
+      text: "Chinese Food",
+    },
+    {
+      src: require("../assets/img/screaming-child.png"),
+      isLiked: false,
+      text: "Screaming Child",
+    },
+    {
+      src: require("../assets/img/walking-for-long.png"),
+      isLiked: false,
+      text: "Walking for long",
+    },
+    {
+      src: require("../assets/img/water-sports.png"),
+      isLiked: false,
+      text: "Water Sports",
+    },
+  ]);
 
-    const [selectedImageText, setSelectedImageText] = useState([]);
-    const [image, setImage] = useState();
-    const thumbHandlerOnImg = (index) => {
-        const updatedImages = [...images];
-        const selectedText = updatedImages[index].text;
-        updatedImages[index].isLiked = !updatedImages[index].isLiked; //Switching the thumbs on images
+  const [selectedImageText, setSelectedImageText] = useState([]);
+  const [image, setImage] = useState();
+  const thumbHandlerOnImg = (index) => {
+    const updatedImages = [...images];
+    const selectedText = updatedImages[index].text;
+    updatedImages[index].isLiked = !updatedImages[index].isLiked; //Switching the thumbs on images
 
     if (updatedImages[index].isLiked) {
       // Adding text in array with previous data
@@ -91,32 +97,27 @@ const EditProfile = () => {
     setImages(updatedImages);
   };
 
-  const formSubmit = () => {
-    let formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("email", values.email);
-    formData.append("phone", values.phone);
-    formData.append("interests", selectedImageText);
-    formData.append("file", image);
-    formData.append("DOB", date);
-
-    const data = axios.post("http://localhost:5000/api/v1", formData);
-  };
-
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
         name: "",
-        email: "Charlie.mathwe@gmail.com",
-        phone: "",
-        interests: [],
+        // date: date,
+        email: currentUser?.data?.user?.email,
+        phone: currentUser?.data?.user?.phone,
+        // interests: selectedImageText,
       },
       validationSchema: validation,
       onSubmit: () => {
-        formSubmit();
+        formSubmit(values, pic, date, selectedImageText);
       },
     });
 
+  const formSubmit = (data, pic, date, selectedImageText) => {
+    console.log("data", data);
+    console.log("interests",selectedImageText);
+    console.log("pic",pic);
+    console.log("date",date)
+  };
 
   return (
     <div>
@@ -139,8 +140,8 @@ const EditProfile = () => {
                             <input
                               className="profile-uploads-input"
                               type="file"
-                              accept="image/jpeg, image/png"
-                              onChange={(e) => setImage(e.target.files[0])}
+                              accept="image/*"
+                              onChange={(e) => setPic(e.target.files[0])}
                               name="file"
                             />
                           </div>
@@ -240,6 +241,7 @@ const EditProfile = () => {
                         value={values.phone}
                         type="number"
                         placeholder=""
+                        disabled
                       />
                       {errors.phone && touched.phone && (
                         <p className="error-text">{errors.phone}</p>
@@ -249,112 +251,70 @@ const EditProfile = () => {
                       <label className="form__label">
                         When can we wish a happy birthday?
                       </label>
-                      {/* <input
-                        className={
-                          errors.DOB && touched.DOB
-                            ? "form__input error"
-                            : "form__input"
-                        }
-                        type="date"
+
+                      <DatePicker
+                        className="form__input"
                         placeholder=""
-                        value={values.DOB}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        id="DOB"
-                        name="DOB"
-                      /> */}
-                                            <DatePicker
-                                                className={
-                                                    errors.DOB && touched.DOB
-                                                        ? "form__input error"
-                                                        : "form__input"
-                                                }
-                                                placeholder=""
-                                                onBlur={handleBlur}
-                                                onChange={(date, dateString) =>
-                                                    setDate(dateString)
-                                                }
-                                                id="DOB"
-                                                name="DOB"
-                                                required
-                                            />
-                                        </div>
-                                        <ul className="activity__list">
-                                            {images?.map((image, index) => {
-                                                return (
-                                                    <li
-                                                        key={index}
-                                                        className={`activity__list--item ${
-                                                            image.isLiked
-                                                                ? "active"
-                                                                : null
-                                                        }`}
-                                                        onClick={() => {
-                                                            thumbHandlerOnImg(
-                                                                index
-                                                            );
-                                                        }}
-                                                    >
-                                                        <div className="activity__info">
-                                                            <div className="activity__image">
-                                                                <img
-                                                                    src={
-                                                                        image.src
-                                                                    }
-                                                                    alt="activity"
-                                                                />
-                                                                <div className="activity__image--overlay"></div>
-                                                                <div className="activity__name">
-                                                                    {image.text}
-                                                                </div>
-                                                            </div>
-                                                            <div className="activity__selected">
-                                                                <div className="icon-thumbs-up"></div>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                );
-                                            })}
-                                        </ul>
-                                        <div className="form__group m-0">
-                                            <label className="form__label">
-                                                Please let us know if you have
-                                                some interests
-                                            </label>
-                                            <input
-                                                disabled
-                                                type="text"
-                                                className="form__input"
-                                                value={selectedImageText.join(
-                                                    ", "
-                                                )}
-                                                onChange={() =>
-                                                    setSelectedImageText([])
-                                                }
-                                                placeholder="Add multiple interests comma ( , ) separated"
-                                                required
-                                            />
-                                        </div>
-                                        <div className="btn--wrap">
-                                            <button
-                                                className="btn btn__red"
-                                                type="submit"
-                                            >
-                                                Save
-                                            </button>
-                                            <button className="btn btn__transparent">
-                                                Cancel
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        onChange={(date, dateString) => setDate(dateString)}
+                      />
                     </div>
-                </main>
-            </form>
-        </div>
-    );
+                    <ul className="activity__list">
+                      {images?.map((image, index) => {
+                        return (
+                          <li
+                            key={index}
+                            className={`activity__list--item ${
+                              image.isLiked ? "active" : null
+                            }`}
+                            onClick={() => {
+                              thumbHandlerOnImg(index);
+                            }}
+                          >
+                            <div className="activity__info">
+                              <div className="activity__image">
+                                <img src={image.src} alt="activity" />
+                                <div className="activity__image--overlay"></div>
+                                <div className="activity__name">
+                                  {image.text}
+                                </div>
+                              </div>
+                              <div className="activity__selected">
+                                <div className="icon-thumbs-up"></div>
+                              </div>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                    <div className="form__group m-0">
+                      <label className="form__label">
+                        Please let us know if you have some interests
+                      </label>
+                      <input
+                        disabled
+                        type="text"
+                        className="form__input"
+                        value={selectedImageText.join(", ")}
+                        onChange={() => setSelectedImageText([])}
+                        placeholder="Add multiple interests comma ( , ) separated"
+                        required
+                      />
+                    </div>
+                    <div className="btn--wrap">
+                      <button className="btn btn__red" type="submit">
+                        Save
+                      </button>
+                      <button className="btn btn__transparent">Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </form>
+    </div>
+  );
 };
 
 export default EditProfile;
