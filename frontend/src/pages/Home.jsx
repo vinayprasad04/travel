@@ -1,10 +1,11 @@
 import React from "react";
 
-import "../assets/scss/_home.scss"
+import "../assets/scss/_home.scss";
 import Slider from "../components/carousel/Slider";
 import MidSlider from "../components/carousel/MidSlider";
 
-import HomeTest from '../components/cards/HomeTest'
+import HomeTest from "../components/cards/HomeTest";
+import { style } from "@mui/system";
 
 const Home = () => {
   return <>
@@ -18,4 +19,4 @@ const Home = () => {
   </>;
 };
 
-export default Home
+export default Home;

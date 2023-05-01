@@ -8,8 +8,7 @@ const initialState = {
     { id: 3, name: "Operator of Event", value: 0 },
     { id: 4, name: "Staff Politeness", value: 0 },
   ],
-  feedback: "",
-  experience: "",
+  comments: "",
 };
 console.log(initialState);
 
@@ -39,6 +38,6 @@ const ModalDisplaySlice = createSlice({
 });
 
 export default modalSlice.reducer;
-export const { ModalDisplayReducer } = ModalDisplaySlice.reducer;
+export const { reducer } = ModalDisplaySlice;
 export const { displayModal } = ModalDisplaySlice.actions;
 export const { addRating, addComment } = modalSlice.actions;
