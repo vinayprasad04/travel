@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { json, useNavigate } from "react-router-dom";
-import ProfileImg from "../assets/img/music.png";
+
 import { useFormik } from "formik";
-import { validation } from "../components/profileValidation";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { json, useNavigate } from "react-router-dom";
+
+import ProfileImg from "../assets/img/music.png";
+import { validation } from "../components/profileValidation";
 import { DatePicker } from "antd";
 
 const EditProfile = () => {
@@ -14,7 +17,6 @@ const EditProfile = () => {
   );
 
   const userId = currentUser?.data?.user?.id;
-  // console.log("id", userId);
   const [pic, setPic] = useState();
   const [date, setDate] = useState();
   const [images, setImages] = useState([
@@ -80,7 +82,8 @@ const EditProfile = () => {
   const thumbHandlerOnImg = (index) => {
     const updatedImages = [...images];
     const selectedText = updatedImages[index].text;
-    updatedImages[index].isLiked = !updatedImages[index].isLiked; //Switching the thumbs on images
+    updatedImages[index].isLiked = !updatedImages[index].isLiked; 
+    //Switching the thumbs on images
 
     if (updatedImages[index].isLiked) {
       // Adding text in array with previous data
@@ -100,7 +103,7 @@ const EditProfile = () => {
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
-        name: "",
+        name: currentUser?.data?.user?.name,
         // date: date,
         email: currentUser?.data?.user?.email,
         phone: currentUser?.data?.user?.phone,
@@ -113,10 +116,35 @@ const EditProfile = () => {
     });
 
   const formSubmit = (data, pic, date, selectedImageText) => {
-    console.log("data", data);
-    console.log("interests",selectedImageText);
-    console.log("pic",pic);
-    console.log("date",date)
+    const user = {
+      file: pic,
+      name: data.name,
+      DOB: date,
+      interests: selectedImageText,
+    };
+
+    console.log(user);
+
+    axios
+      .patch(`http://localhost:5000/users/update/${data.email}`, user)
+      .then((res) => {
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Profile Updated !",
+          });
+          const data = res;
+          console.log(data);
+          localStorage.setItem("user", JSON.stringify(data));
+        }
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Something went wrong !",
+        });
+        console.log(err);
+      });
   };
 
   return (
