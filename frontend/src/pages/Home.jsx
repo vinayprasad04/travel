@@ -1,10 +1,8 @@
 import React from "react";
 
-import "../assets/scss/_home.scss"
 import ItinerarySlider from "../components/dashboardSliders/ItinerarySlider";
 import ExperienceSlider from "../components/dashboardSliders/ExperienceSlider";
-
-import HomeTest from '../components/cards/HomeTest'
+import DashboardMidSection from "../components/dashboardMid/DashboardMidSection";
 
 const Home = () => {
   return <>
@@ -12,7 +10,7 @@ const Home = () => {
           <ItinerarySlider />
           <ExperienceSlider />
         </div>
-        <HomeTest/>
+        <DashboardMidSection />
   </>;
 };
 

@@ -15,7 +15,8 @@ const ItinerarySlider = () => {
 
     const getData = async () => {
         try {
-            const result = await axios.get(process.env.URL+"/events");
+            console.log("url", process.env.REACT_APP_URL)
+            const result = await axios.get(process.env.REACT_APP_URL+"/events");
             setCardData(result?.data);
             console.log(cardData);
         } catch (err) {

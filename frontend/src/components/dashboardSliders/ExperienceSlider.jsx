@@ -3,7 +3,7 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css/bundle";
-import ExperienceCard from "./ExperiencedCard";
+import ExperienceCard from "./ExperienceCard";
 
 import {experienceData} from "../../constant";
 
