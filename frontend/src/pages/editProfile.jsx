@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {json, useNavigate} from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProfileImg from "../assets/img/music.png";
 import { useFormik } from "formik";
 import { validation } from "../components/profileValidation";
@@ -7,8 +7,14 @@ import axios from "axios";
 import { DatePicker } from "antd";
 
 const EditProfile = () => {
+    const navigate = useNavigate();
 
-    const navigate=useNavigate();
+    const auth = localStorage.getItem("user");
+    useEffect(() => {
+        if (auth) {
+            navigate("/");
+        }
+    }, [auth, navigate]);
 
     const [date, setDate] = useState();
     const [images, setImages] = useState([
@@ -104,13 +110,15 @@ const EditProfile = () => {
 
             console.log(result);
 
-            if(result.data.token){
-                localStorage.setItem("user",JSON.stringify({...values, token: result.data.token}));
+            if (result.data.token) {
+                localStorage.setItem(
+                    "user",
+                    JSON.stringify({ ...values, token: result.data.token })
+                );
                 navigate("/");
-            }else{
+            } else {
                 console.log("Not an authorized User");
             }
-
         } catch (err) {
             console.log("Error: ", err);
         }
@@ -120,7 +128,7 @@ const EditProfile = () => {
         useFormik({
             initialValues: {
                 name: "",
-                email: "Charlie.mathwe@gmail.com",
+                email: "",
                 phone: "",
                 interests: [],
             },
@@ -237,15 +245,25 @@ const EditProfile = () => {
                                                 What's your email address?
                                             </label>
                                             <input
-                                                className="form__input"
+                                                className={
+                                                    errors.email &&
+                                                    touched.email
+                                                        ? "form__input error"
+                                                        : "form__input"
+                                                }
                                                 value={values.email}
                                                 id="email"
                                                 name="email"
                                                 type="email"
                                                 placeholder=""
                                                 onChange={handleChange}
-                                                disabled
+                                                onBlur={handleBlur}
                                             />
+                                            {errors.email && touched.email && (
+                                                <p className="error-text">
+                                                    {errors.email}
+                                                </p>
+                                            )}
                                         </div>
                                         <div className="form__group">
                                             <label className="form__label">

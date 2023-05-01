@@ -1413,7 +1413,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     display: block;
   }
 }
-.header__nav__item:hover .dropdown-menu, .header__nav__item:hover .popup {
+.header__nav__item:hover .dropdown-menu, .header__nav__item:hover .popup {   /*notification popup*/
   opacity: 1;
   visibility: visible;
   pointer-events: unset;

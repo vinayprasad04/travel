@@ -38,6 +38,27 @@ const ModalDisplaySlice = createSlice({
   },
 });
 
+
+
+const userSlice= createSlice({
+  name:"userSlice",
+  initialState : {
+    name:"",
+    email:"",
+    phone:"",
+    dob:"",
+    interests:[]
+  },
+  reducers: {
+    setUser: (state, action)=>{
+      
+    }
+  }
+})
+
+
+
+
 export default modalSlice.reducer;
 export const { ModalDisplayReducer } = ModalDisplaySlice.reducer;
 export const { displayModal } = ModalDisplaySlice.actions;
