@@ -13,7 +13,7 @@ const EventCard = ({ data }) => {
           <div className="subtitle">{data.name}</div>
           <div className="details">AED {data.price} per person</div>
           <div className="details">{data.time}</div>
-          <div className="details">id :{data.id}</div>
+          {/* <div className="details">id :{data.id}</div> */}
         </div>
       </div>
       <NavigationButton isRevieved={data.isRevieved} isCompleted={data.isCompleted} id={data.id} />

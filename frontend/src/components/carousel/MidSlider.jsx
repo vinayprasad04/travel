@@ -74,19 +74,17 @@ function MidSlider() {
                     }}
                 >
                     <div className="swiper-wrapper">
-                        {dummy.map((item) => {
+                        {dummy.map((item, i) => {
                             return (
-                                <>
-                                    <SwiperSlide className="swiper-slide">
+                                    <SwiperSlide className="swiper-slide" key={i}>
                                         <MidCard
-                                          expressionImg={item.expressionImg}
-                                          coverImg={item.coverImg}
-                                          title={item.title}
-                                          dated={item.dated}
-                                          details={item.details}
+                                            expressionImg={item.expressionImg}
+                                            coverImg={item.coverImg}
+                                            title={item.title}
+                                            dated={item.dated}
+                                            details={item.details}
                                         />
                                     </SwiperSlide>
-                                </>
                             );
                         })}
                     </div>

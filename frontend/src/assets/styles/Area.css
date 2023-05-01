@@ -1,0 +1,25 @@
+.ar{
+    width: 26rem;
+    height:25rem;
+    background-color: rgb(216, 230, 225);
+    padding: 30px 50px;
+    margin-left: 480px;
+    border: 2px solid rgb(214, 224, 214);
+    border-radius: 7px;
+    box-shadow: 2px 4px 40px 5px rgb(99, 100, 100);
+    position: absolute;
+    opacity: 0.8;
+    margin-top: 9rem;
+    
+}
+.p1{
+    margin-top: 3px;
+    font-size: 20px;
+    text-align: center;
+}
+.image{
+    display: block;
+    margin-left: 7rem;
+    margin-top: -2rem;
+
+}

@@ -1,0 +1,119 @@
+label {
+  display: block;
+  text-align: center;
+  transition: color 500ms ease, background-color 500ms ease;
+  height: 42px;
+  font-size: 1.2rem;
+  font-family: "BrownLight";
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
+  font-size: 15px;
+}
+.Email {
+  margin-top: 0rem;
+  width: 23rem;
+  height: 2.5rem;
+  outline: none;
+
+  border-radius: 4px;
+  padding: 14px 5px;
+  font-size: 14px;
+  font-weight: 400;
+
+  border: 1px solid #555;
+  margin-right: 10px;
+  margin-left: -10px;
+}
+
+.Email:hover {
+  border-color: rgb(231, 26, 26);
+}
+.password {
+  margin-top: 1rem;
+  width: 23rem;
+  height: 2.5rem;
+  outline: none;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 14px 5px;
+  font-size: 14px;
+  font-weight: 400;
+
+  margin-right: 10px;
+  margin-left: -10px;
+}
+.password:hover {
+  border-color: rgb(231, 26, 26);
+}
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(82, 72, 72);
+  font-size: 1.2rem;
+  opacity: 1; /* Firefox */
+}
+
+.lb1 {
+  margin-top: 1rem;
+  font-size: 0.99rem;
+  margin-right: rem;
+}
+.lb2 {
+  margin-top: 2px;
+}
+.button {
+  border-radius: 4px;
+  background-color: #1fc3e0;
+  border-color: #d15d5d;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 4px;
+  width: 375px;
+  height: 40px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  margin-top: 2rem;
+  margin-left: -10px;
+  border-radius: 7px;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.button {
+  margin-top: 1rem;
+  padding: 10px 29px;
+  font-size: 16.5px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  background-color: #e9143b;
+  border: none;
+  border-radius: 5px;
+}
+
+.button:hover {
+  background-color: #eb4462;
+}
+
+.button:active {
+  background-color: #e47589;
+}
+
+.link,
+a {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  margin-top: 12px;
+}
+.errors {
+  color: #e9143b;
+  margin-left: -10px;
+  margin-top: 4px;
+}
+.error {
+  border: 2px solid red;
+}
