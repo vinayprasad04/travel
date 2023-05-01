@@ -7,6 +7,8 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { signUpSchenam } from "../schemas";
 //import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import Neom from '../SignUp/Neom_img.jpg'
 
 const initialValues = {
   email : "",
@@ -24,8 +26,16 @@ export default function SignUp() {
   validationSchema: signUpSchenam,
   onSubmit : (values) =>{
     console.log(values)
+    Swal.fire({
+      position: 'centre',
+      icon: 'success',
+      title: 'Details Submitted Successfully',
+      showConfirmButton: false,
+      timer: 1500
+    })
     const res = axios.post("http://localhost:4000/adduser",values)
     .then(response=>{setMessage(response.values)});
+    
     
   }
  });
@@ -72,7 +82,14 @@ console.log(errors)
   // }
 
   return (
-    <div className="arr">
+    <>
+    
+    <img className="bg-image" src={Neom}></img>
+   
+    
+    
+    
+    <div className="arr" >
       <div className="imager">
         <img className="image" src={logoBlack} alt="dfg" />
       </div>
@@ -98,7 +115,7 @@ console.log(errors)
           />
         </div>
         {errors.email && touched.email ? (
-        <p>{errors.email}</p>) : null }
+        <p className="error-para" >{errors.email}</p>) : null }
         <div>
           <input
             placeholder="Phone Number"
@@ -114,7 +131,7 @@ console.log(errors)
           />
         </div>
         {errors.phone && touched.phone ? (
-        <p>{errors.phone}</p>) : null }
+        <p className="error-para">{errors.phone}</p>) : null }
         <div>
           <input
             placeholder="Password"
@@ -130,7 +147,7 @@ console.log(errors)
           />
         </div>
         {errors.password && touched.password ? (
-        <p>{errors.password}</p>) : null }
+        <p className="error-para">{errors.password}</p>) : null }
         <div>
           <input
             placeholder="Confirm Password"
@@ -146,7 +163,7 @@ console.log(errors)
           />
         </div>
         {errors.confirmpassword && touched.confirmpassword ? (
-        <p>{errors.confirmpassword}</p>) : null }
+        <p className="error-para">{errors.confirmpassword}</p>) : null }
         <div>
           <button type="submit" className="bnt">
             CREATE
@@ -154,5 +171,6 @@ console.log(errors)
         </div>
       </form>
     </div>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 .arr{
     width: 28rem;
-    height: 28rem;
+    height: 30rem;
     background-color: rgb(216, 230, 225);
     padding: 30px 50px;
     margin-left: 480px;
@@ -8,10 +8,20 @@
     border-radius: 7px;
     box-shadow: 5px 5px 70px 10px rgb(99, 100, 100);
     position: absolute;
+    bottom: 100px;
     opacity: 1;
     margin-top: 5.5rem;
     
 }
+
+ 
+.bg-image{
+    width: 85.2rem;
+    height:40.9rem;
+   /* object-fit: cover; */
+   
+}
+
 .parar{
     margin-top: 1rem;
     margin-bottom: 2.5rem;
@@ -139,3 +149,7 @@
    
     
   }
+
+.error-para{
+    color: #f00a0a;
+}
