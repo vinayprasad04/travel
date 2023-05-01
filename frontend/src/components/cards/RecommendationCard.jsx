@@ -1,6 +1,7 @@
 import React from "react";
 import "../../assets/scss/_dashboard.scss";
 import imgSvg from "../../assets/img/one.svg";
+import { Link } from "react-router-dom";
 import overwhelmedImg from "../../assets/img/overwhelmed.svg";
 
 const TodaysRecommendation = ({ data, i }) => {
@@ -8,7 +9,7 @@ const TodaysRecommendation = ({ data, i }) => {
   return (
     <>
       <div class="card__item">
-        <a href="#" class="card__link">
+        <Link to={`/event-details/${data.id}`} class="card__link">
           <div class="card__thumb">
             <button class="card__fav">
               <span class="icon-heart"></span>
@@ -45,7 +46,7 @@ const TodaysRecommendation = ({ data, i }) => {
             <h3 class="card__title">{data.title}</h3>
             <div class="card__price">{2000} AED/person</div>
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );

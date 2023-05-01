@@ -39,6 +39,16 @@ const AdminDashboard = () => {
               <i className="bx bx-list-check"></i>
             </Link>
           </Tooltip>
+          <Tooltip title=" Create Notifications" placement="left">
+            <Link to="/admin/dashboard/create/notification" className="link">
+              <i className="bx bxs-bell-plus"></i>
+            </Link>
+          </Tooltip>
+          <Tooltip title=" Display Notifications" placement="left">
+            <Link to="/admin/dashboard/get/notification" className="link">
+              <i className="bx bx-bell"></i>
+            </Link>
+          </Tooltip>
           <Tooltip title="Logout" placement="left">
             <Link to="/" className="link">
               <i className="bx bx-log-out-circle"></i>

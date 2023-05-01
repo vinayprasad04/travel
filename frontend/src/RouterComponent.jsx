@@ -17,9 +17,12 @@ import DisplayEvents from "./pages/admin/DisplayEvents";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Error from "./pages/Error";
-
+import EventDetails from "./pages/EventDetails";
 import UserRoute from "./components/utils/UserRoute";
 import AdminRoute from "./components/utils/AdminRoute";
+import Recomandations from "./pages/Recomandations";
+import CreateNotification from "./pages/admin/CreateNotification";
+import DisplayAllNotifications from "./pages/admin/DisplayAllNotifications";
 
 const RouterComponent = () => {
   return (
@@ -40,6 +43,8 @@ const RouterComponent = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/feedback" element={<Feedback />} />
           <Route path="/setting" element={<Setting />} />
+          <Route path="/event-details/:id" element={<EventDetails />} />
+          <Route path="/recomandations" element={<Recomandations />} />
         </Route>
         <Route
           path="/admin/dashboard"
@@ -54,6 +59,11 @@ const RouterComponent = () => {
           <Route path="users" element={<UserList />} />
           <Route path="itenearies" element={<Iternearies />} />
           <Route path="event" element={<CreateEvent />} />
+          <Route path="create/notification" element={<CreateNotification />} />
+          <Route
+            path="get/notification"
+            element={<DisplayAllNotifications />}
+          />
           <Route path="display/events" element={<DisplayEvents />} />
         </Route>
         <Route path="/login" element={<Login />} />

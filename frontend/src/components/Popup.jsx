@@ -1,38 +1,86 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
+import { displayAllNotifications } from "../redux/action";
+import { DatePicker, Modal } from "antd";
+import { Select } from "antd";
 
-const Popup = ({ show, setShow }) => {
+const Popup = ({ setShowNotification }) => {
+  const { user } = useSelector((state) => state.users);
   const Navigate = useNavigate();
-  console.log(show);
+  const [news, setNews] = useState();
+  const [active, setActive] = useState(0);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const getNotification = async () => {
+    try {
+      const res = await displayAllNotifications();
+      console.log(res);
+      if (res?.data.data) {
+        setNews(res?.data.data[0]);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onChange = (value) => {
+    console.log(`selected ${value}`);
+  };
+  const onSearch = (value) => {
+    console.log("search:", value);
+  };
+
+  useEffect(() => {
+    getNotification();
+  }, []);
+
   return (
     <>
-      <span className="circle" onClick={() => setShow(true)}></span>
+      <span className="circle"></span>
 
-      <div className={show ? " popup active-p" : "popup"}>
+      <div className={`popup1 star`}>
         <h4 className="popup__title">
-          Hey Charlie
+          Hey {user?.data.name}
           <span className="popup__icon">
             <img src="./assets/img/hand.svg" alt="" />
           </span>
         </h4>
-        <p className="popup__content">
-          We noticed that you have changed your preferences. We have added some
-          new events keeping in mind your new settings.
-        </p>
-        <p className="popup__content">
-          Please visit the home page to check the new events and activities!
-        </p>
+        <p className="popup__content">{news?.msg}</p>
+
         <div className="popup__actions">
-          <button
-            className="popup__btn"
-            onClick={() => Navigate("/notifications")}
-          >
-            I want to see
+          <button className="popup__btn" onClick={() => showModal()}>
+            Reschedule
           </button>
-          <Link className="popup__link">Remind me later</Link>
+          <button
+            onClick={() => setShowNotification(false)}
+            style={{
+              padding: "1.3rem 1.5rem",
+              background: "transparent",
+              border: "1px solid white",
+              borderRadius: "5px",
+              color: "#fff",
+              fontSize: "1rem",
+            }}
+          >
+            Cancel
+          </button>
         </div>
         <div className="popup__pointer"></div>
-        <div className="popup__close" onClick={() => setShow(false)}>
+        <div
+          className="popup__close"
+          onClick={() => setShowNotification(false)}
+        >
           <svg
             version="1.1"
             id="Layer_1"
@@ -52,6 +100,71 @@ const Popup = ({ show, setShow }) => {
           </svg>
         </div>
       </div>
+      <Modal
+        okText="Reschedule"
+        sty
+        className="pop"
+        title=""
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+      >
+        <p style={{ marginTop: "1rem", fontSize: "1rem" }}>
+          {user?.data.name}, considering your golf handicap we have few
+          recommendations for you
+        </p>
+        <div className="form-group">
+          <label>Date</label>
+          <div className="wrap">
+            {["02/06/2023", "08/06/2023"].map((d, i) => (
+              <div class="inputWrap" key={i}>
+                <input type="radio" name="date" id={d + i} value={d} checked />
+                <label>{d}</label>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="form-group">
+          <label>Time</label>
+          <div className="wrap">
+            {["10:30Am - 12:30Am", "1:30Pm : 3:30Pm"].map((d, i) => (
+              <div class="inputWrap" key={i}>
+                <input type="radio" name="Time" id={d + i} value={d} checked />
+                <label>{d}</label>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="form-group">
+          <label>No of Guest</label>
+          <Select
+            showSearch
+            placeholder="Select a person"
+            optionFilterProp="children"
+            onChange={onChange}
+            onSearch={onSearch}
+            filterOption={(input, option) =>
+              (option?.label ?? "").toLowerCase().includes(input.toLowerCase())
+            }
+            options={[
+              {
+                value: 1,
+                label: 1,
+              },
+              {
+                value: 2,
+                label: 2,
+              },
+              {
+                value: 3,
+                label: 3,
+              },
+            ]}
+          />
+        </div>
+        <button className="res">Reserve</button>
+      </Modal>
     </>
   );
 };

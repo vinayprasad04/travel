@@ -292,3 +292,79 @@ export const getEvents = async (req, res) => {
     res.status(400).json({ message: error });
   }
 };
+
+export const getEventDetails = async (req, res) => {
+  try {
+    const id = req.body.id;
+    const data = await pool.query("SELECT * from events WHERE id=$1 ", [id]);
+    return res
+      .status(200)
+      .json({ msg: "Events Fetch Successfully", data: data.rows[0] });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: error });
+  }
+};
+
+////   create Notifications
+
+export const createNotification = async (req, res) => {
+  try {
+    const { title, eventId, msg } = req.body;
+    const data = await pool.query(
+      "INSERT INTO notification (title,eventId,msg) VALUES($1,$2,$3)",
+      [title, eventId, msg]
+    );
+    res
+      .status(201)
+      .json({ msg: "Notification Create Successfully!", data: data });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ message: error });
+  }
+};
+
+///Display All Notifications
+
+export const displayAllNotifications = async (req, res) => {
+  try {
+    const data = await pool.query("SELECT * FROM notification");
+
+    res.status(200).json({ msg: "Fetch Successfully", data: data.rows });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: error });
+  }
+};
+
+///// Specific Notification
+
+export const notificationById = async (req, res) => {
+  try {
+    const id = req.params.id;
+
+    const result = await pool.query(
+      "SELECT * from notification WHERE eventId = $1",
+      [id]
+    );
+
+    if (result.rows.length < 1) {
+      res.status(200).json({ msg: "Notification", data: result.rows[0] });
+    } else {
+      res.status(200).json({ msg: "No Notification" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: error });
+  }
+};
+
+export const listUsers = async (req, res) => {
+  try {
+    const users = await pool.query("SELECT * FROM users");
+    res.status(200).json({ data: users.rows });
+  } catch (error) {
+    res.status(400).json({ msg: error });
+    console.log(error);
+  }
+};

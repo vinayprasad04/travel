@@ -59,3 +59,27 @@
 ::-webkit-file-upload-button {
   display: none;
 }
+
+.notify {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-top: 2rem;
+  }
+  .wrap {
+    padding: 1rem;
+  }
+}
+
+.all {
+  width: 100%;
+  height: 100%;
+  h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+}

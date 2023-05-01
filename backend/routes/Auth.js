@@ -3,11 +3,16 @@ import {
   Register,
   createCategory,
   createEvent,
+  createNotification,
   deleteCategory,
+  displayAllNotifications,
   getCategories,
+  getEventDetails,
   getEvents,
+  listUsers,
   load,
   login,
+  notificationById,
   updateProfile,
 } from "../controllers/Auth.js";
 import { isAuthenticated } from "../middlewares/isAuthenticated.js";
@@ -23,5 +28,10 @@ router.get("/get/category", getCategories);
 router.post("/delete/category", deleteCategory);
 router.post("/create/event", createEvent);
 router.get("/get/events", getEvents);
+router.post("/get/events/details", getEventDetails);
+router.post("/create/notification", createNotification);
+router.get("/get/all/notification", displayAllNotifications);
+router.get("/get/notification/:id", notificationById);
+router.get("/get/users", listUsers);
 
 export default router;

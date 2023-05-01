@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { DatePicker, Select } from "antd";
+import { DatePicker, Select, TimePicker } from "antd";
 import { CreateEvent, getCategories } from "../../redux/action";
 import { City } from "country-state-city";
 const CreateEvents = () => {
@@ -87,13 +87,16 @@ const CreateEvents = () => {
         <div className="form-group">
           <label>Event Start Date</label>
           <DatePicker
-            onChange={(date, dateString) => setEventStartDate(dateString)}
+            showTime={true}
+            onChange={(date, dateString) => setEventStartDate(new Date(date))}
           />
         </div>
+
         <div className="form-group">
           <label>Event End Date</label>
           <DatePicker
-            onChange={(date, dateString) => setEventEndDate(dateString)}
+            showTime={true}
+            onChange={(date, dateString) => setEventEndDate(new Date(date))}
           />
         </div>
       </div>

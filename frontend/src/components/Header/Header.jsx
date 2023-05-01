@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../../assets/img/logo-black.svg";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Popup from "../Popup";
@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 
 const Header = () => {
-  const [show, setShow] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const { user } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const Navigate = useNavigate();
@@ -25,6 +25,16 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowNotification(true);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
+  console.log(showNotification);
   return (
     <>
       <header className="header">
@@ -65,7 +75,9 @@ const Header = () => {
                   <span className="icon-bell"></span>
                   {/* <!-- The below span will be displayed if there is any unread notification in the system othersie hide this --> */}
                 </Link>
-                <Popup show={show} setShow={setShow} />
+                {showNotification && (
+                  <Popup setShowNotification={setShowNotification} />
+                )}
               </li>
               <li className="header__nav__item header__nav__item--menu">
                 <Link className="header__nav__link">
@@ -99,6 +111,11 @@ const Header = () => {
                     <li className="nav__item nav__item--mobile">
                       <Link to="/favorites" className="nav__link">
                         My favorites
+                      </Link>
+                    </li>
+                    <li className="nav__item ">
+                      <Link to="/recomandations" className="nav__link">
+                        Recomandations
                       </Link>
                     </li>
                     <li className="nav__item nav__item--mobile">

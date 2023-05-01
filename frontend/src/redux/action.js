@@ -131,3 +131,58 @@ export const DisplayEvent = async () => {
     console.log(error);
   }
 };
+
+////Get Events Details
+
+export const GetEventDetails = async (token, id) => {
+  try {
+    return await axios.post(
+      url + "/get/events/details",
+      { id },
+      { headers: { token: token } }
+    );
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+///create Notification
+export const CreateNotifications = async (title, eventId, msg) => {
+  try {
+    return await axios.post(url + "/create/notification", {
+      title,
+      eventId,
+      msg,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/// get All Notification
+export const displayAllNotifications = async () => {
+  try {
+    return await axios.get(url + "/get/all/notification");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//// get Notificatins
+export const getNotificationById = async (id) => {
+  try {
+    return await axios.get(url + `/get/notification/${id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+/// get list of users
+
+export const getUserList = async () => {
+  try {
+    return await axios.get(url + "/get/users");
+  } catch (error) {
+    console.log(error);
+  }
+};

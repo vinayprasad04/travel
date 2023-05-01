@@ -1,0 +1,80 @@
+.pop {
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+    justify-content: flex-start;
+
+    label {
+      color: rgb(214, 214, 214);
+    }
+    .time {
+      display: flex;
+      gap: 10px;
+      button {
+        border: none;
+        padding: 0.7rem;
+        border-radius: 5px;
+      }
+      .active {
+        background-color: rgb(231, 168, 6);
+        color: #fff;
+      }
+    }
+  }
+  .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+  }
+  .inputWrap {
+    position: relative;
+    width: 150px;
+    padding: 20px;
+    margin-right: 10px;
+    float: left;
+    height: 35px;
+  }
+  .res {
+    border: none;
+    outline: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 20px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: rgb(231, 168, 6);
+    color: #fff;
+    cursor: pointer;
+  }
+  .inputWrap label {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border: 1px solid #8f8f8f;
+    border-radius: 5px;
+  }
+  .inputWrap input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    z-index: 1;
+    cursor: pointer;
+    opacity: 0;
+  }
+  .inputWrap input:checked + label {
+    border: 1px solidrgb(231, 168, 6);
+    color: #fff;
+    background-color: rgb(231, 168, 6);
+  }
+}
