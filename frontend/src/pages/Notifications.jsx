@@ -15,7 +15,7 @@ const Notifications = () => {
   const getNotification = async () => {
     try {
       const allNotification = await axios.get(
-        "http://localhost:5000/notifications/"
+        "http://localhost:5000/notifications"
       );
       setNotificationCard(allNotification.data);
     } catch (err) {
