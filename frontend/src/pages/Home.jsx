@@ -1,17 +1,16 @@
 import React from "react";
 
-import "../assets/scss/_home.scss"
-import Card from "../components/carousel/Card";
+// import "../assets/scss/_home.scss"
+
 import Slider from "../components/carousel/Slider";
 import MidSlider from "../components/carousel/MidSlider";
-
-import HomeTest from '../components/cards/HomeTest'
+import MidPageDashboard from '../components/cards/MidPageDashboard'
 
 const Home = () => {
   return <>
-    <Slider />
+        <Slider />
         <MidSlider />
-        <HomeTest/>
+        <MidPageDashboard/>
   </>;
 };
 

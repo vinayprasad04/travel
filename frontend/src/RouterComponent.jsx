@@ -8,6 +8,8 @@ import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
+import EditProfile from "./pages/editProfile";
+import EventDetails from "./pages/EventDetails";
 
 const RouterComponent = () => {
 
@@ -22,6 +24,8 @@ const RouterComponent = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/event-details/:id" element={<EventDetails />} />
       </Routes>
       <Footer />
     </>

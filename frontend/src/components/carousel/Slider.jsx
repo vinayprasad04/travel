@@ -4,6 +4,7 @@ import Card from "./Card";
 import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
+import { Link } from "react-router-dom";
 
 const Slider = () => {
     let dummy = [
@@ -86,10 +87,11 @@ const Slider = () => {
                     }}
                 >
                     <div className="swiper-wrapper">
-                        {dummy.map((item) => {
+                        {dummy.map((item,i) => {
                             return (
                                 <>
                                     <SwiperSlide className="swiper-slide">
+                                        <Link to={`/event-details/${i}`}>
                                         <Card
                                           coverImg={item.coverImg}
                                           title={item.title}
@@ -98,6 +100,8 @@ const Slider = () => {
                                           location={item.location}
                                           category={item.category}
                                         />
+                                        </Link>
+                                     
                                     </SwiperSlide>
                                 </>
                             );

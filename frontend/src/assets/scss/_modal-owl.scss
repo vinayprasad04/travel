@@ -1,0 +1,38 @@
+.fa-chevron-left,
+.fa-chevron-right {
+  color: white;
+}
+
+.modal-Container {
+  background-repeat: no-repeat;
+  width: 30vw;
+  height: 90vh;
+  margin: auto auto auto auto;
+}
+
+@media screen and (max-width: 992px) {
+  .fa-chevron-left,
+  .fa-chevron-right {
+    color: white;
+  }
+
+  .modal-Container {
+    background-repeat: no-repeat;
+    width: 58vw;
+    height: 55%;
+    margin: auto auto auto auto;
+  }
+}
+
+@media screen and (min-width: 1000px) and (max-width: 1900px) {
+  .fa-chevron-left,
+  .fa-chevron-right {
+    color: white;
+  }
+  .modal-Container {
+    background-repeat: no-repeat;
+    width: 30vw;
+    height: 70%;
+    margin: auto auto auto auto;
+  }
+}
