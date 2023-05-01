@@ -15,11 +15,17 @@ console.log(initialState);
 const modalSlice = createSlice({
   name: "modal",
   initialState,
+
   reducers: {
     addRating: (state, action) => {
-      state.ratings[action.payload.id].value = action.payload.newValue;
+      for (let i = 0; i < action.payload.length; i++) {
+        state.ratings[i].value = action.payload[i].value;
+        state.ratings[i].name = action.payload[i].name;
+      }
     },
+
     addComment: (state, action) => {
+      console.log("payload comment", action.payload);
       state.comments = action.payload;
     },
   },
@@ -30,6 +36,7 @@ const ModalDisplaySlice = createSlice({
   initialState: {
     display: false,
   },
+
   reducers: {
     displayModal: (state) => {
       state.display = !state.display;

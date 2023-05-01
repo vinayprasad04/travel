@@ -1,10 +1,7 @@
 import React from "react";
 import GaugeChart from "react-gauge-chart";
-import { useSelector } from "react-redux";
-const GaugeMeter = () => {
-  const ratings = useSelector((state) => state.modal.ratings);
-  console.log("ratings", ratings);
-  console.log("length", ratings.length);
+
+const GaugeMeter = ({ ratings }) => {
   const gaugeAverage = (arr) => {
     let sum = 0;
     for (let i = 0; i < arr.length; i++) {
@@ -12,8 +9,10 @@ const GaugeMeter = () => {
     }
     return sum / arr.length;
   };
+
   const gaugeValue = gaugeAverage(ratings);
   console.log("gauge", gaugeValue);
+
   return (
     <GaugeChart
       id="gauge-chart5"

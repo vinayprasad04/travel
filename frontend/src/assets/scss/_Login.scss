@@ -1,0 +1,84 @@
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(254, 255, 165) 0%,
+    rgb(255, 232, 182) 90%
+  );
+  min-height: 100vh;
+  @extend .flex;
+
+  .login-card {
+    animation: FadeIn 1s ease-in-out;
+    height: 83.7vh;
+    display: flex;
+    background-color: transparent;
+    border: 2px solid black;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1pc;
+  }
+}
+
+.left-elements {
+  width: 27vw;
+  height: 65vh;
+  @extend .flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-basis: auto;
+
+  h1 {
+    font-size: 40px;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    width: 20vw;
+    height: 2.5rem;
+    padding: 5px 15px;
+    border-radius: 1.5pc;
+    border: 1px solid black;
+  }
+}
+
+.right-elements {
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    margin-top: 3px;
+  }
+}
+
+.login-btn-container {
+  @extend .flex;
+  flex-direction: column;
+  gap: 12px;
+
+  button {
+    width: 20vw;
+    border-radius: 1.5pc;
+    background-color: black;
+    font-weight: bolder;
+    color: white;
+    padding: 8px 0px;
+  }
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0%;
+  }
+  50% {
+    opacity: 50%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}

@@ -239,20 +239,7 @@ const EditProfile = () => {
                       <label className="form__label">
                         When can we wish a happy birthday?
                       </label>
-                      {/* <input
-                        className={
-                          errors.DOB && touched.DOB
-                            ? "form__input error"
-                            : "form__input"
-                        }
-                        type="date"
-                        placeholder=""
-                        value={values.DOB}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        id="DOB"
-                        name="DOB"
-                      /> */}
+
                       <DatePicker
                         className={
                           errors.DOB && touched.DOB

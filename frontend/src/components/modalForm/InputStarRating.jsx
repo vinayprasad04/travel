@@ -22,7 +22,7 @@ const StyledRating = styled(Rating)({
   },
 });
 
-const InputStarRating = ({ id }) => {
+const InputStarRating = ({ id, valueChange, name }) => {
   const [value, setValue] = useState(0);
   // const [hover, setHover] = useState(-1);
 
@@ -43,9 +43,9 @@ const InputStarRating = ({ id }) => {
             precision={0.5}
             size="large"
             value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-              dispatch(addRating({ newValue, id }));
+            onChange={(event, value) => {
+              setValue(value);
+              valueChange({ value, id, name });
             }}
             icon={<StarIcon fontSize="inherit" />}
             emptyIcon={<StarBorderIcon fontSize="inherit" />}

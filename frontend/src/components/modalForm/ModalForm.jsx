@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import trending1 from "../../assets/img/trending1.jpg";
 import stars1 from "../../assets/img/star1.svg";
 import InputStarRating from "./InputStarRating";
@@ -11,28 +11,36 @@ import overwhelemed from "../../assets/img/overwhelmed.svg";
 import ModalHeader from "./ModalHeader";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../../redux/features/ModalSlice";
+import { addComment, addRating } from "../../redux/features/ModalSlice";
 import GaugeMeter from "./GaugeMeter";
 import { useNavigate } from "react-router-dom";
 
 const ModalForm = () => {
   const [NextPage, setNextPage] = useState(false);
+  const [comment, setComment] = useState("");
+  const [ratingData, setRatingData] = useState([]);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const n = 5;
   const globalState = useSelector((state) => state);
 
+  const ratingChangeHandler = (data) => {
+    const copy = [...ratingData, data];
+    setRatingData(copy);
+  };
+
   const SubmitHandler = () => {
     if (NextPage) {
       navigate("/");
+      dispatch(addComment(comment));
+      dispatch(addRating(ratingData));
     } else {
-      setNextPage(true);
+      setNextPage(!NextPage);
     }
   };
 
   const reviewDetails = globalState.modal;
-  const ShowModal = globalState.showModal;
-  console.log("Global state :", globalState);
+
   return (
     <div id="modal" className="modal">
       {/* <!-- Modal content --> */}
@@ -48,7 +56,7 @@ const ModalForm = () => {
           {NextPage ? (
             // Vibe-O-meter
             <div className="vibe-meter modal-image">
-              <GaugeMeter />
+              <GaugeMeter ratings={ratingData} />
             </div>
           ) : (
             <>
@@ -88,7 +96,11 @@ const ModalForm = () => {
                   return (
                     <div key={item.id} className="ratings__row--item">
                       <div className="ratings--title">{item.name}</div>
-                      <InputStarRating id={item.id} />
+                      <InputStarRating
+                        id={item.id}
+                        name={item.name}
+                        valueChange={(data) => ratingChangeHandler(data)}
+                      />
                     </div>
                   );
                 })}
@@ -103,7 +115,7 @@ const ModalForm = () => {
             <textarea
               name="comment"
               rows="5"
-              onChange={(e) => dispatch(addComment(e.target.value))}
+              onChange={(e) => setComment(e.target.value)}
               placeholder="Share your feedback and suggestions about this event..."
             ></textarea>
           </div>

@@ -6,9 +6,7 @@ import ModalForm from "../modalForm/ModalForm";
 
 const NavigationButton = ({ isCompleted, isRevieved }) => {
   const navigate = useNavigate();
-
   const ShowModal = useSelector((state) => state.showModal);
-  console.log("bjffjdddddd", ShowModal);
   const dispatch = useDispatch();
 
   if (!isCompleted && !isRevieved) {
