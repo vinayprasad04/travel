@@ -1,9 +1,10 @@
 import React from "react";
 import logo from "../assets/img/logo-black.svg";
 import Link from "antd/es/typography/Link";
-import * as Yup from "yup";
 import { useFormik } from "formik";
 import "react-datepicker/dist/react-datepicker.css";
+import Input from "../components/Input";
+import { UserRegistrationSchema } from "../schemas/UserRegistrationSchema";
 
 const UserRegistration = () => {
   const formik = useFormik({
@@ -13,14 +14,7 @@ const UserRegistration = () => {
       password: "",
       confirmPassword: "",
     },
-    validationSchema: Yup.object({
-      userName: Yup.string()
-        .max(15, "Must be 15 characters or less")
-        .required("Required"),
-      email: Yup.string().email("Invalid email address").required("Required"),
-      password: Yup.string().required("Required"),
-      confirmPassword: Yup.string().required("required"),
-    }),
+    validationSchema: UserRegistrationSchema,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -31,51 +25,47 @@ const UserRegistration = () => {
       <div className="register-card">
         <div className="register-elements">
           <img src={logo} alt="logo" style={{ margin: "0px" }} />
-          <h1>Login</h1>
+          <h1>Register</h1>
           <form onSubmit={formik.handleSubmit}>
             {" "}
-            <input
+            <Input
               id="userName"
               name="userName"
               type="text"
               placeholder="UserName..."
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              formik={formik}
+              touched={formik.touched.userName}
+              errors={formik.errors.userName}
               value={formik.values.userName}
             />
-            {formik.touched.userName && formik.errors.userName ? (
-              <div>{formik.errors.userName}</div>
-            ) : null}
-            <input
+            <Input
               id="email"
               name="email"
               type="email"
               placeholder="Email..."
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              formik={formik}
+              touched={formik.touched.email}
+              errors={formik.errors.email}
               value={formik.values.email}
             />
-            {formik.touched.email && formik.errors.email ? (
-              <div>{formik.errors.email}</div>
-            ) : null}
-            <input
+            <Input
               id="password"
               name="password"
               type="password"
               placeholder="Password..."
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              formik={formik}
+              touched={formik.touched.password}
+              errors={formik.errors.password}
               value={formik.values.password}
             />
-            {formik.touched.password && formik.errors.password ? (
-              <div>{formik.errors.password}</div>
-            ) : null}
-            <input
+            <Input
               id="confirmPassword"
               name="confirmPassword"
+              type="password"
               placeholder="Confirm-Password..."
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              formik={formik}
+              touched={formik.touched.confirmPassword}
+              errors={formik.errors.confirmPassword}
               value={formik.values.confirmPassword}
             />
             <div className="register-btn-container">

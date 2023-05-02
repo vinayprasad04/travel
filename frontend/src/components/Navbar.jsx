@@ -86,7 +86,7 @@ const Navbar = () => {
                     >
                       I want to see
                     </button>
-                    <a className="popup__link">Remind me later</a>
+                    <Link className="popup__link">Remind me later</Link>
                   </div>
                   <div className="popup__pointer"></div>
                   <div className="popup__close">
@@ -151,6 +151,11 @@ const Navbar = () => {
                     <li className="nav__item">
                       <Link to="/setting" className="nav__link">
                         Settings
+                      </Link>
+                    </li>
+                    <li className="nav__item">
+                      <Link to="/login" className="nav__link">
+                        Logout
                       </Link>
                     </li>
                   </ul>

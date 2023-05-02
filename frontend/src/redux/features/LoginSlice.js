@@ -6,14 +6,14 @@ const userSlice = createSlice({
     isLoggedIn: false,
   },
   reducers: {
-    Login: (state) => {
+    login: (state) => {
       state.isLoggedIn = true;
     },
-    Logout: (state) => {
+    logout: (state) => {
       state.isLoggedIn = false;
     },
   },
 });
 
-export const { Login, Logout } = userSlice.actions;
+export const { login, logout } = userSlice.actions;
 export const UserLoginReducer = userSlice.reducer;
