@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Favorites from "./pages/Favorites";
+import Favorites from "./pages/Favourites";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
