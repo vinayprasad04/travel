@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // import vibeometer from "../../assets/img/vibe-o-meter.svg";
 import GaugeChart from "react-gauge-chart";
 
@@ -12,12 +12,18 @@ import joy from "../../assets/img/joy.svg";
 
 import "./arc.css";
 
-function VibeOMeter(props) {
+function VibeMeter(props) {
+  // const [emotions, setEmotions] = useState(props);
+
   const emoji = [overwhelmed, joy, appreciation, anger, dissappointed, boredom];
 
-  console.log(props);
+  // console.log(emotions);
 
-  const [emotions , setEmotions] = useState("");
+  
+
+  // const [emotions , setEmotions] = useState("");
+
+  let val = 10;
 
   return (
     <>
@@ -33,9 +39,8 @@ function VibeOMeter(props) {
           </div>
         </div>
 
-
         <GaugeChart
-          id="gauge-chart5"
+          id="gauge-chart3"
           nrOfLevels={30}
           colors={[
             "#55bf3b",
@@ -47,17 +52,36 @@ function VibeOMeter(props) {
           ]}
           arcWidth={0.2}
           cornerRadius={0}
-          percent={0.001}
           arcPadding={0.007}
-          needleColor="black"
+          percent={val / 100}
           hideText={true}
           needleBaseColor="black"
+          needleColor="black"
         />
       </div>
     </>
   );
 }
 
-export default VibeOMeter;
+export default VibeMeter;
 
 // ["#55bf3b", "#9acc0d", "#ace50d","#d8d90f", "#ffb03a", "#ff385c"]
+/* <GaugeChart
+id="gauge-chart5"
+nrOfLevels={30}
+colors={[
+  "#55bf3b",
+  "#9acc0d",
+  "#ace50d",
+  "#d8d90f",
+  "#ffb03a",
+  "#ff385c",
+]}
+arcWidth={0.2}
+cornerRadius={0}
+percent={0.001}
+arcPadding={0.007}
+needleColor="black"
+hideText={true}
+needleBaseColor="black"
+/> */
