@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Loads } from "./redux/action";
+import { Loads } from "./redux/actions/authAction";
 import { useDispatch } from "react-redux";
 import RouterComponent from "./RouterComponent";
 const App = () => {

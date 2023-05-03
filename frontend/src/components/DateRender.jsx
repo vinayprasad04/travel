@@ -49,7 +49,7 @@ const DateRender = ({ days, hours, minutes, seconds, completed }) => {
           style={{ width: "rem", height: "2rem" }}
           value={seconds}
           maxValue={60}
-          text={`${seconds}sec`}
+          text={`${seconds} sec`}
         />
       </div>
     );

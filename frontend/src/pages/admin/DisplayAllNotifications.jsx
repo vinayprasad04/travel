@@ -1,25 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Space, Table, Tag } from "antd";
-import { displayAllNotifications } from "../../redux/action";
-
-const columns = [
-  {
-    title: "Title",
-    dataIndex: "title",
-    key: "title",
-    render: (text) => text,
-  },
-  {
-    title: "Event",
-    dataIndex: "eventid",
-    key: "eventid",
-  },
-  {
-    title: "Message",
-    dataIndex: "msg",
-    key: "msg",
-  },
-];
+import { Table } from "antd";
+import { displayAllNotifications } from "../../redux/actions/notificationAction";
+import { columns } from "../../DummyText";
 
 const DisplayAllNotifications = () => {
   const [data, setData] = useState();

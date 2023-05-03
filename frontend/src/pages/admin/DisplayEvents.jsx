@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DisplayEvent } from "../../redux/action";
+import { DisplayEvent } from "../../redux/actions/eventAction";
 import { Avatar } from "antd";
 
 const DisplayEvents = () => {

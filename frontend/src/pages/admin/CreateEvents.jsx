@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { DatePicker, Select, TimePicker } from "antd";
-import { CreateEvent, getCategories } from "../../redux/action";
+import { DatePicker, Select } from "antd";
+import { CreateEvent } from "../../redux/actions/eventAction";
+import { getCategories } from "../../redux/actions/categoryAction";
 import { City } from "country-state-city";
 const CreateEvents = () => {
   const [category, setCategory] = useState();

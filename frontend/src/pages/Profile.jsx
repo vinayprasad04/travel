@@ -3,9 +3,11 @@ import { useFormik } from "formik";
 import { ProfileValidation } from "../schemas/ValidationSchema";
 import { useSelector } from "react-redux";
 import { DatePicker } from "antd";
-import { UpdateProfile, getCategories } from "../redux/action";
+import { UpdateProfile } from "../redux/actions/profileAction";
+import { getCategories } from "../redux/actions/categoryAction";
 import swal from "sweetalert";
 import { useNavigate } from "react-router-dom";
+import FormInput from "../components/utils/FormInput";
 
 const Profile = () => {
   const { user } = useSelector((state) => state.users);
@@ -160,65 +162,40 @@ const Profile = () => {
                   </div>
                 </div>
                 <div className="profile__content">
-                  <div className="form__group">
-                    <label className="form__label">
-                      What should we call you?
-                    </label>
-                    <input
-                      className={
-                        errors.name && touched.name
-                          ? "form__input error"
-                          : "form__input"
-                      }
-                      value={values.name}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder=""
-                    />
-                    {errors.name && touched.name && (
-                      <p className="error-text">{errors.name}</p>
-                    )}
-                  </div>
-                  <div className="form__group">
-                    <label className="form__label">
-                      What's your email address?
-                    </label>
-                    <input
-                      className="form__input"
-                      value={values.email}
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder=""
-                      onChange={handleChange}
-                      disabled
-                    />
-                  </div>
-                  <div className="form__group">
-                    <label className="form__label">
-                      On which number can we contact you?
-                    </label>
-                    <input
-                      className={
-                        errors.phone && touched.phone
-                          ? "form__input error"
-                          : "form__input"
-                      }
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      id="phone"
-                      name="phone"
-                      value={values.phone}
-                      type="number"
-                      placeholder=""
-                    />
-                    {errors.phone && touched.phone && (
-                      <p className="error-text">{errors.phone}</p>
-                    )}
-                  </div>
+                  <FormInput
+                    label={"    What should we call you?"}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    errors={errors.name}
+                    touched={touched.name}
+                    name="name"
+                    id="name"
+                    values={values.name}
+                    type="text"
+                  />
+                  <FormInput
+                    label={"     What's your email address?"}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    errors={errors.email}
+                    touched={touched.email}
+                    name="email"
+                    id="email"
+                    values={values.email}
+                    type="email"
+                    disabled={true}
+                  />
+                  <FormInput
+                    label={"On which number can we contact you?"}
+                    handleBlur={handleBlur}
+                    handleChange={handleChange}
+                    errors={errors.phone}
+                    touched={touched.phone}
+                    name="phone"
+                    id="phone"
+                    values={values.phone}
+                    type="text"
+                  />
                   <div className="form__group">
                     <label className="form__label">
                       When can we wish a happy birthday?

@@ -34,7 +34,7 @@ const Header = () => {
       clearTimeout(timeout);
     };
   }, []);
-  console.log(showNotification);
+
   return (
     <>
       <header className="header">
@@ -71,7 +71,7 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className="header__nav__item header__nav__item--notifications">
-                <Link className="header__nav__link">
+                <Link to="/notifications" className="header__nav__link">
                   <span className="icon-bell"></span>
                   {/* <!-- The below span will be displayed if there is any unread notification in the system othersie hide this --> */}
                 </Link>

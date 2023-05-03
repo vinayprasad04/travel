@@ -66,9 +66,9 @@ const Slider = () => {
 
   return (
     <>
-      <div class="recSlider recSlider--cardView">
-        <h2 class="recSlider__title">Good morning {user?.data.name}!</h2>
-        <div class="recSlider__subtitle">
+      <div className="recSlider recSlider--cardView">
+        <h2 className="recSlider__title">Good morning {user?.data.name}!</h2>
+        <div className="recSlider__subtitle">
           <p>
             Below listed are your itineraries, have a look to the timings and
             the location.
@@ -87,18 +87,18 @@ const Slider = () => {
           }}
         >
           <div className="swiper-wrapper">
-            {dummy.map((item) => {
+            {dummy.map((item, i) => {
               return (
-                <SwiperSlide className="swiper-slide">
+                <SwiperSlide className="swiper-slide" key={i}>
                   <IternearyCard item={item} />
                 </SwiperSlide>
               );
             })}
           </div>
 
-          <div class="swiper-buttons">
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
+          <div className="swiper-buttons">
+            <div className="swiper-button-prev"></div>
+            <div className="swiper-button-next"></div>
           </div>
         </Swiper>
       </div>

@@ -1,11 +1,12 @@
 import React from "react";
 import eventImg from "../../assets/img/spa_0.png";
+import { Link } from "react-router-dom";
 
 const MasterJourneyCard = () => {
   return (
     <>
       <div className="card__item">
-        <a href="#" className="card__link">
+        <Link className="card__link">
           <div className="card__thumb">
             <img src={eventImg} alt="event name" className="card__img" />
           </div>
@@ -28,7 +29,7 @@ const MasterJourneyCard = () => {
               </div>
             </div>
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );

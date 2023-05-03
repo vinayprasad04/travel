@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from "react";
-import eventImage from "../../assets/img/Image118.jpg";
 import ShowModal from "./ShowModal";
 
 const EventImage = ({ event }) => {

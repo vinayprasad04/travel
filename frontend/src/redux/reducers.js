@@ -15,6 +15,7 @@ export const userReducer = createReducer(
     user: null,
     isValid: false,
     role: null,
+    model: false,
   },
   (builder) => {
     builder
@@ -32,6 +33,15 @@ export const userReducer = createReducer(
         state.user = null;
         state.isValid = false;
         state.role = null;
+      })
+      .addCase("addToFav", (state, action) => {
+        state.fav = action.payload;
+      })
+      .addCase("openModel", (state, action) => {
+        state.model = true;
+      })
+      .addCase("closeModel", (state, action) => {
+        state.model = false;
       });
   }
 );

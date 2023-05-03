@@ -1,6 +1,7 @@
 import express from "express";
 import {
   Register,
+  addToFav,
   createCategory,
   createEvent,
   createNotification,
@@ -9,10 +10,12 @@ import {
   getCategories,
   getEventDetails,
   getEvents,
+  getFav,
   listUsers,
   load,
   login,
   notificationById,
+  removeFav,
   updateProfile,
 } from "../controllers/Auth.js";
 import { isAuthenticated } from "../middlewares/isAuthenticated.js";
@@ -33,5 +36,8 @@ router.post("/create/notification", createNotification);
 router.get("/get/all/notification", displayAllNotifications);
 router.get("/get/notification/:id", notificationById);
 router.get("/get/users", listUsers);
+router.post("/add/fav", isAuthenticated, addToFav);
+router.post("/delete/fav", isAuthenticated, removeFav);
+router.post("/get/fav", isAuthenticated, getFav);
 
 export default router;

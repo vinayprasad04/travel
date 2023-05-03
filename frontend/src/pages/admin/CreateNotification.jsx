@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Select } from "antd";
-import { CreateNotifications, DisplayEvent } from "../../redux/action";
+import { CreateNotifications } from "../../redux/actions/notificationAction";
+import { DisplayEvent } from "../../redux/actions/eventAction";
 import { useNavigate } from "react-router-dom";
 
 const CreateNotification = () => {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Button, DatePicker, Select } from "antd";
-import { DisplayEvent, getUserList } from "../../redux/action";
+import { Button, Select } from "antd";
+import { getUserList } from "../../redux/actions/authAction";
+import { DisplayEvent } from "../../redux/actions/eventAction";
 
 const Iternearies = () => {
   const [users, setUsers] = useState();

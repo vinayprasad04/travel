@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import img1 from "../../assets/img/music.png";
-import { Registers, getCategories } from "../../redux/action";
+import { Registers } from "../../redux/actions/authAction";
+import { getCategories } from "../../redux/actions/categoryAction";
 import { DatePicker } from "antd";
 import "../../assets/scss/login.scss";
 import swal from "sweetalert";

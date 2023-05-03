@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
-import { displayAllNotifications } from "../redux/action";
+import { displayAllNotifications } from "../redux/actions/notificationAction";
 import { DatePicker, Modal } from "antd";
 import { Select } from "antd";
 
@@ -25,7 +25,6 @@ const Popup = ({ setShowNotification }) => {
   const getNotification = async () => {
     try {
       const res = await displayAllNotifications();
-      console.log(res);
       if (res?.data.data) {
         setNews(res?.data.data[0]);
       }
@@ -34,12 +33,8 @@ const Popup = ({ setShowNotification }) => {
     }
   };
 
-  const onChange = (value) => {
-    console.log(`selected ${value}`);
-  };
-  const onSearch = (value) => {
-    console.log("search:", value);
-  };
+  const onChange = (value) => {};
+  const onSearch = (value) => {};
 
   useEffect(() => {
     getNotification();

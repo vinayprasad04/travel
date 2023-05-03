@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../assets/scss/admin.scss";
-import { CreateCategorys } from "../../redux/action";
+import { CreateCategorys } from "../../redux/actions/categoryAction";
 const CreateCategory = () => {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState();

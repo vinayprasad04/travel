@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { deleteCategory, getCategories } from "../../redux/action";
+import {
+  deleteCategory,
+  getCategories,
+} from "../../redux/actions/categoryAction";
 
 const DisplayCategory = () => {
   const [category, setCategory] = useState();

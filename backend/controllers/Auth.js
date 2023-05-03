@@ -368,3 +368,75 @@ export const listUsers = async (req, res) => {
     console.log(error);
   }
 };
+
+export const addToFav = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const user = await pool.query("SELECT * FROM users WHERE email=$1", [
+      req.email,
+    ]);
+    console.log(user.rows[0]);
+    let fav = await user.rows[0].fav;
+    let f;
+
+    if (fav === null) {
+      f = [{ id: id }];
+    } else {
+      if (fav.find((u) => u.id === id)) {
+        return res.status(200).json({ msg: "Event already Present" });
+      }
+      f = [...fav, { id: id }];
+    }
+
+    const data = await pool.query("UPDATE users SET fav=$1  RETURNING *", [f]);
+
+    res.status(201).json({ msg: "Event Add Successfully", data: data.rows[0] });
+  } catch (error) {
+    res.status(400).json({ msg: error });
+    console.log(error);
+  }
+};
+
+export const removeFav = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const user = await pool.query("SELECT * FROM users WHERE email=$1", [
+      req.email,
+    ]);
+
+    const fav2 = await user.rows[0].fav.filter((f) => f.id !== id);
+    console.log(fav2);
+    const data = await pool.query("UPDATE users SET fav=$1  RETURNING *", [
+      fav2,
+    ]);
+
+    return res
+      .status(201)
+      .json({ msg: "Event remove Successfully", data: data.rows[0] });
+  } catch (error) {
+    res.status(400).json({ msg: error });
+    console.log(error);
+  }
+};
+
+export const getFav = async (req, res) => {
+  try {
+    const user = await pool.query("SELECT * FROM users WHERE email=$1", [
+      req.email,
+    ]);
+    const events = [];
+    if (user?.rows[0].fav === null) {
+      return res.status({ msg: "No Events Available..." });
+    }
+    for (var i = 0; i < user.rows[0].fav.length; i++) {
+      const data = await pool.query("SELECT * FROM events WHERE id=$1 ", [
+        user.rows[0].fav[i].id,
+      ]);
+      events.push(data.rows[0]);
+    }
+    res.status(200).json({ msg: "Events fetch Successfully", data: events });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: error });
+  }
+};

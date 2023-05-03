@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import DataReader from "../components/DateRender";
 import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { DisplayEvent } from "../redux/action";
+import { DisplayEvent } from "../redux/actions/eventAction";
 const Recomandations = () => {
   const { user } = useSelector((state) => state.users);
   const [events, setEvents] = useState();

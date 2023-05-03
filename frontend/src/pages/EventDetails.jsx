@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { swiperHandle } from "../assets/js/swiper-handle.js";
 import "../assets/scss/index.css";
-// import "../assets/scss/swiper-bundle.min.css";
 import RatingCard from "../components/cards/RatingCard.jsx";
 import RecommendationCard from "../components/cards/RecommendationCard.jsx";
 import EventImage from "../components/Event-Details/EventImage.jsx";
@@ -10,7 +9,7 @@ import EventDescription from "../components/Event-Details/EventDescription.jsx";
 import EventReview from "../components/Event-Details/EventReview.jsx";
 import EventReserveForm from "../components/Event-Details/EventReserveForm.jsx";
 import EventTitle from "../components/Event-Details/EventTitle.jsx";
-import { DisplayEvent, GetEventDetails } from "../redux/action.js";
+import { DisplayEvent, GetEventDetails } from "../redux/actions/eventAction";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 

@@ -1,63 +1,12 @@
-import React from "react";
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css/bundle";
 import MidCard from "../cards/ExperianceCard";
 import { useSelector } from "react-redux";
+import { ExperianceData } from "../../DummyText/index.js";
 
 function ExperianceCardSlider() {
   const { user } = useSelector((state) => state.users);
-  const dummy = [
-    {
-      expressionImg: require("../../assets/img/disappointed.svg").default,
-      coverImg: require("../../assets/img/Event-Banner.png"),
-      title: "Indulge in the Finest Epicurean Cuisines",
-      dated: "Nov 17, 2022",
-      details:
-        "Hi Charlie, we came to from our chef John that you didn't enjoyed the Epicurean cuisines yesterday. As a compensation we would like to offer you a free Italian cuisines as a goodwill gesture. Would you like to accept our request?",
-    },
-    {
-      expressionImg: require("../../assets/img/disappointed.svg").default,
-      coverImg: require("../../assets/img/Event-Banner.png"),
-      title: "Indulge in the Finest Epicurean Cuisines",
-      dated: "Nov 17, 2022",
-      details:
-        "Hi Charlie, we came to from our chef John that you didn't enjoyed the Epicurean cuisines yesterday. As a compensation we would like to offer you a free Italian cuisines as a goodwill gesture. Would you like to accept our request?",
-    },
-    {
-      expressionImg: require("../../assets/img/disappointed.svg").default,
-      coverImg: require("../../assets/img/Event-Banner.png"),
-      title: "Indulge in the Finest Epicurean Cuisines",
-      dated: "Nov 17, 2022",
-      details:
-        "Hi Charlie, we came to from our chef John that you didn't enjoyed the Epicurean cuisines yesterday. As a compensation we would like to offer you a free Italian cuisines as a goodwill gesture. Would you like to accept our request?",
-    },
-    {
-      expressionImg: require("../../assets/img/disappointed.svg").default,
-      coverImg: require("../../assets/img/Event-Banner.png"),
-      title: "Indulge in the Finest Epicurean Cuisines",
-      dated: "Nov 17, 2022",
-      details:
-        "Hi Charlie, we came to from our chef John that you didn't enjoyed the Epicurean cuisines yesterday. As a compensation we would like to offer you a free Italian cuisines as a goodwill gesture. Would you like to accept our request?",
-    },
-    {
-      expressionImg: require("../../assets/img/disappointed.svg").default,
-      coverImg: require("../../assets/img/Event-Banner.png"),
-      title: "Indulge in the Finest Epicurean Cuisines",
-      dated: "Nov 17, 2022",
-      details:
-        "Hi Charlie, we came to from our chef John that you didn't enjoyed the Epicurean cuisines yesterday. As a compensation we would like to offer you a free Italian cuisines as a goodwill gesture. Would you like to accept our request?",
-    },
-    {
-      expressionImg: require("../../assets/img/disappointed.svg").default,
-      coverImg: require("../../assets/img/Event-Banner.png"),
-      title: "Indulge in the Finest Epicurean Cuisines",
-      dated: "Nov 17, 2022",
-      details:
-        "Hi Charlie, we came to from our chef John that you didn't enjoyed the Epicurean cuisines yesterday. As a compensation we would like to offer you a free Italian cuisines as a goodwill gesture. Would you like to accept our request?",
-    },
-  ];
 
   return (
     <>
@@ -76,19 +25,17 @@ function ExperianceCardSlider() {
           }}
         >
           <div className="swiper-wrapper">
-            {dummy.map((item) => {
+            {ExperianceData?.map((item, i) => {
               return (
-                <>
-                  <SwiperSlide className="swiper-slide">
-                    <MidCard
-                      expressionImg={item.expressionImg}
-                      coverImg={item.coverImg}
-                      title={item.title}
-                      dated={item.dated}
-                      details={item.details}
-                    />
-                  </SwiperSlide>
-                </>
+                <SwiperSlide className="swiper-slide" key={i}>
+                  <MidCard
+                    expressionImg={item.expressionImg}
+                    coverImg={item.coverImg}
+                    title={item.title}
+                    dated={item.dated}
+                    details={item.details}
+                  />
+                </SwiperSlide>
               );
             })}
           </div>

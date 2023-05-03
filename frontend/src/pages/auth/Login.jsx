@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Logins } from "../../redux/action";
+import { Logins } from "../../redux/actions/authAction";
 import { useDispatch, useSelector } from "react-redux";
 import swal from "sweetalert";
 

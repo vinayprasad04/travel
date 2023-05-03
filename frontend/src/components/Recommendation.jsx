@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import MasterJourneyCard from "./cards/MasterJourneyCard";
 
-import { DisplayEvent } from "../redux/action";
+import { DisplayEvent } from "../redux/actions/eventAction";
 import { useEffect, useState } from "react";
 import TodayRecomandation from "./TodayRecomandation";
 import Map from "./Map";
@@ -25,17 +25,17 @@ const Recommendation = () => {
 
   return (
     <>
-      <main class="content">
+      <main className="content">
         <TodayRecomandation recommendation={recommendation} user={user} />
 
         {/* here is master journety ends */}
 
-        <div class="recommendations">
-          <div class="container">
-            <h2 class="recommendations__title">
+        <div className="recommendations">
+          <div className="container">
+            <h2 className="recommendations__title">
               {user?.data.name}, here is your master journey with us so far
             </h2>
-            <div class="card__grid card__grid--dashboard">
+            <div className="card__grid card__grid--dashboard">
               {[1, 2, 3, 4].map((a, i) => (
                 <MasterJourneyCard data={a} key={i} />
               ))}
