@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+
 import Home from "./pages/Home";
 import Favorites from "./pages/Favorites";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
-import EditProfile from "./pages/editProfile";
 import UpcomingEvent from "./pages/UpcomingEvent";
 
 
@@ -26,7 +26,6 @@ const RouterComponent = () =>{
         <Route path="/profile" element={<Profile />} />
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
       </Routes>
       <Footer />
     </>
