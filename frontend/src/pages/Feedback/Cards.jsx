@@ -9,15 +9,12 @@ import anger from "../../assets/img/anger.svg";
 import axios from "axios";
 
 function Cards() {
-  const [emoji, setEmoji] = useState(false);
   const [data, setData] = useState([]);
 
   const emotion = [overwhelmed, appreciation, anger, dissappointed, boredom];
 
-  const emojiHandler = (i) => {
-    alert(i + 1);
-    setEmoji(true);
-    setEmoji(false);
+  const addReview = () => {
+     alert("hi");
   };
 
   const getData = () => {
@@ -32,40 +29,53 @@ function Cards() {
       });
   };
 
-  const removeData = ()=>{
-       axios.get("http://localhost:5000/removeData").then((res)=>{  
-       }).catch((err)=>{
+  const removeData = () => {
+    axios
+      .get("http://localhost:5000/removeData")
+      .then((res) => {})
+      .catch((err) => {
         console.log(err);
-       })
-  }
+      });
+  };
 
+  const addData = () => {
+    axios
+      .get("http://localhost:5000/addData")
+      .then((res) => {
+        console.log("addData", res);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     getData();
-    removeData();
+    // removeData();
+    // addData();
   }, []);
 
-  console.log(data);
 
   return (
     <>
-      {data.map((val, item) => {
+      {
+      data.map((val, item) => {
         return (
           <li className="feedback__list--item" key={item}>
             <div className="feedback__list--image">
               <div className="card--image">
-                <img src={val.imageURL} alt="" />
+                <img src={EventBanner} alt="" />
               </div>
+
               <div className="card--text">
                 <h4>{val.eventname}</h4>
-                <p>{val.eventtitle}</p>
+                <p>{val.eventdate}</p>
 
                 <div className="card--review">
-                  <a>{val.reviews} reviews</a>
-
+                  <a>{val.eventreview} reviews</a>
                   <div className="icon">
                     <span className="icon-star"></span>
-                    {val.rating} 
+                    {val.eventrating}
                   </div>
                 </div>
               </div>
@@ -73,38 +83,34 @@ function Cards() {
 
             <div className="feedback__list--content">
               <div className="card--date"> {val.eventdate} </div>
-              <h3 className="card--title">{val.eventtitle}</h3>
-              {val.emotion ? (
+           
+              { 
+              val.emotions ? ( <>
+                <h3 className="card--title">{val.eventtitle}</h3>
                 <div className="card--description">{val.eventdescription}</div>
+              </>
               ) : (
-                <h3 className="card--subtitle">
-                  Hey Charlie, you haven't added you feedback yet. Please share
-                  your experience with us to serve you better next time.
-                </h3>
+                <>
+                  <h3 className="card--subtitle">
+                    Hey Charlie, you haven't added you feedback yet. Please
+                    share your experience with us to serve you better next time.
+                  </h3>
+                 
+                </>
               )}
 
               <ul className="emotion__list">
-                {val.emotion ? (
-                  val.emotion.map((vl, index) => {
-                    return !emoji ? (
+                {
+                val.emotions ? (
+                  emotion.map((vl, index) => {
+                    return (
                       <li className="emotion__list--item" key={index}>
-                        <img
-                          src={vl}
-                          alt=""
-                          onClick={() => emojiHandler(index)}
-                        />
+                        <img src={vl} alt="" />
                       </li>
-                    ) : (
-                      ""
                     );
-
-                    // <li class="emotion__list--item" key={index}>
-
-                    //   <img src={vl} alt="" onClick={()=> emojiHandler(index) } />
-                    // </li>
                   })
                 ) : (
-                  <button className="btn btn__black">Add a review</button>
+                  <button className="btn btn__black" onClick={addReview}>Add a review</button> 
                 )}
               </ul>
             </div>
@@ -178,3 +184,15 @@ export default Cards;
 //     rating: 5.0,
 //   },
 // ];
+
+
+// ('Swimming game for below 18 year kids', 'Hey Charlie, you havent added you feedback yet. Please share your experience with us to serve you better next time!', 'Nov 17, 2022', '123', '5.0'
+// 	  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elit.'
+// , 'false'),
+
+// ('Live comedy Performance in front of live audience', 'Thank you Unified Guests for this great experience!', 'Nov 17, 2022', '123', '5.0'
+// 	  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elit.'
+// , 'true'),
+// ('Surfing at leasure', 'Love all the activities!', 'Nov 17, 2022', '123', '5.0'
+// 	  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elit.'
+// , 'true')

@@ -23,7 +23,7 @@ function VibeMeter(props) {
 
   // const [emotions , setEmotions] = useState("");
 
-  let val = 10;
+  let val = 60;
 
   return (
     <>
