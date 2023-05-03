@@ -1,14 +1,23 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 
 const EventTitle = ({ eventData, reviewData }) => {
-  // const avgRating = reviewData?.[0]?.reviews.map((item) => {
-  //   const sum = 0;
-  //   const avg = 0;
-  //   sum += item.rating;
-  //   return (avg = sum / item.length);
-  // });
+  let content = "review";
+  const reviewLength = reviewData?.[0]?.reviews.length;
+
+  if (reviewLength > 1) {
+    content = "reviews";
+  }
+
+  let sum = 0;
+
+  const avgRatingData = reviewData?.[0]?.reviews.map((item) => {
+    sum += item.rating;
+    return sum;
+  });
+
+  const avgRating = avgRatingData?.slice(-1)[0] / reviewLength;
 
   return (
     <Fragment>
@@ -17,13 +26,16 @@ const EventTitle = ({ eventData, reviewData }) => {
       <div className="eventDetails__review">
         <div className="rating">
           <Rating
-            initialValue={eventData?.[0].eventrating}
+            initialValue={Math.floor(avgRating)}
             size={20}
             readonly={true}
           />
         </div>
         <div className="review">
-          {eventData?.[0].eventrating} <span>23 reviews</span>
+          {avgRating}{" "}
+          <span>
+            {reviewLength} {content}
+          </span>
         </div>
         <div className="location">{eventData?.[0].place}</div>
       </div>

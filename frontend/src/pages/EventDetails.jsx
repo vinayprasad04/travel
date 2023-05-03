@@ -43,7 +43,7 @@ const EventDetails = () => {
       <main className="content event">
         <div className="eventDetails">
           <div className="container">
-            <EventTitle eventData={eventData} />
+            <EventTitle eventData={eventData} reviewData={reviewData} />
             <EventImage />
           </div>
         </div>

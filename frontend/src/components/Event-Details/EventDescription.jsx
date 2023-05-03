@@ -2,8 +2,7 @@ import React, { Fragment, useEffect } from "react";
 
 import pic from "../../assets/img/overwhelmed.svg";
 
-const EventDescription = ({eventData}) => {
-
+const EventDescription = ({ eventData }) => {
   return (
     <Fragment>
       {" "}
@@ -13,7 +12,7 @@ const EventDescription = ({eventData}) => {
           <li className="event__description--list-item">
             <div className="icon icon-category"></div>
             <div className="description-details">
-              <h5>Golf</h5>
+              <h5> {eventData?.[0].aboutevent.category} category</h5>
               <p>
                 This is one of the many events comes under the{" "}
                 {eventData?.[0].aboutevent.category} category.
