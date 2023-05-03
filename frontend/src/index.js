@@ -4,7 +4,9 @@ import App from "./App";
 import "./assets/scss/index.scss";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import store from "./redux/store";
+import store from "./redux/store";        //Shivansh
+//import store from "./store/dataStore";          //Utkarsh
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>

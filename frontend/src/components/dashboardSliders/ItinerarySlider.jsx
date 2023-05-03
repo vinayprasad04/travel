@@ -5,9 +5,9 @@ import ItineraryCard from "./ItineraryCard";
 
 import coverImg from "../../assets/img/spa_0.png";
 
-import "swiper/css/bundle";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
+import "swiper/css/bundle";
 
 const ItinerarySlider = () => {
     

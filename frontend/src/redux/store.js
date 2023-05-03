@@ -1,11 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ModalReducer from "./features/ModalSlice";
-import ModalDisplayReducer from "./features/ModalSlice";
+
+import ModalReducer, { ModalDisplayReducer } from "./features/ModalSlice";
+
+console.log(ModalDisplayReducer)
+
 const store = configureStore({
-  reducer: {
-    modal: ModalReducer,
-    showModal: ModalDisplayReducer,
-  },
+    reducer: {
+        modal: ModalReducer,
+        showModal: ModalDisplayReducer,
+    
+    },
 });
 
 export default store;

@@ -4,6 +4,11 @@ import eventImage from "./assets/img/spa_0.png";
 import eventImageSvg from "./assets/img/one.svg";
 import eventOverwhelmedImg from "./assets/img/overwhelmed.svg";
 
+import userPic from "./assets/img/user1.png";
+
+import imgCard from "./assets/img/trending1.jpg";
+import emoji from "./assets/img/overwhelmed.svg";
+
 // const dateString = '2022-01-06';
 // const date = new Date(dateString);
 // const month = date.toLocaleString('default', { month: 'long' });
@@ -263,5 +268,159 @@ const recommendationData = [
     },
 ];
 
+const ratingData = [
+    // dummy data
+    {
+        userPic: userPic,
+        userName: "Anastasia",
+        date: "Nov 2022",
+        ratingDescription: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+  sed diam nonumy eirmod tempor invidunt ut labore et dolore
+  magna aliquyam erat, sed diam voluptua. At vero eos et
+  accusam et justo...`,
+        rating: "5.0",
+        starValue: 5.0,
+    },
+    {
+        userPic: userPic,
+        userName: "Anastasia",
+        date: "Nov 2022",
+        ratingDescription: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+  sed diam nonumy eirmod tempor invidunt ut labore et dolore
+  magna aliquyam erat, sed diam voluptua. At vero eos et
+  accusam et justo...`,
+        rating: "5.0",
+        starValue: 5.0,
+    },
+    {
+        userPic: userPic,
+        userName: "Anastasia",
+        date: "Nov 2022",
+        ratingDescription: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+  sed diam nonumy eirmod tempor invidunt ut labore et dolore
+  magna aliquyam erat, sed diam voluptua. At vero eos et
+  accusam et justo...`,
+        rating: "5.0",
+        starValue: 5.0,
+    },
+    {
+        userPic: userPic,
+        userName: "Anastasia",
+        date: "Nov 2022",
+        ratingDescription: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+  sed diam nonumy eirmod tempor invidunt ut labore et dolore
+  magna aliquyam erat, sed diam voluptua. At vero eos et
+  accusam et justo...`,
+        rating: "5.0",
+        starValue: 5.0,
+    },
+    {
+        userPic: userPic,
+        userName: "Anastasia",
+        date: "Nov 2022",
+        ratingDescription: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+  sed diam nonumy eirmod tempor invidunt ut labore et dolore
+  magna aliquyam erat, sed diam voluptua. At vero eos et
+  accusam et justo...`,
+        rating: "5.0",
+        starValue: 5.0,
+    },
+    {
+        userPic: userPic,
+        userName: "Anastasia",
+        date: "Nov 2022",
+        ratingDescription: `Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+  sed diam nonumy eirmod tempor invidunt ut labore et dolore
+  magna aliquyam erat, sed diam voluptua. At vero eos et
+  accusam et justo...`,
+        rating: "5.0",
+        starValue: 5.0,
+    },
+];
 
-export {notificationData, itineraryData, experienceData, recommendationData};
+const eventRecomendationCardData = [
+    // dummy data
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+    {
+        cardImage: imgCard,
+        emoji: emoji,
+        experience: "Overwhelmed",
+        date: "Nov 10-29",
+        event: "Surfing at leasure",
+        cost: "AED 1800 per person",
+    },
+];
+
+
+export {notificationData, itineraryData, experienceData, recommendationData, ratingData, eventRecomendationCardData};
