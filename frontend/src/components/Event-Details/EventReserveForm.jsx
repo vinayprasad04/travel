@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 
 const EventReserveForm = () => {
   return (
@@ -65,9 +66,9 @@ const EventReserveForm = () => {
             </div>
           </form>
 
-          <a href="#" className="eventReserve__form--help">
+          <Link to="/" className="eventReserve__form--help">
             Need help?
-          </a>
+          </Link>
         </div>
       </div>
     </Fragment>

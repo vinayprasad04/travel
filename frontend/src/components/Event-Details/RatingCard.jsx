@@ -1,6 +1,7 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 import { Rating } from "react-simple-star-rating";
 import userPic from "../../assets/img/user1.png";
+import { Link } from "react-router-dom";
 
 const RatingCard = () => {
   const ratingData = [
@@ -79,7 +80,7 @@ const RatingCard = () => {
         ratingData.map((item) => {
           return (
             <div className="swiper-slide">
-              <a href="#" className="recSlider__link">
+              <Link to="/" className="recSlider__link">
                 <div className="recSlider__profile">
                   <img
                     src={item.userPic}
@@ -109,7 +110,7 @@ const RatingCard = () => {
                   </div>
                 </div>
                 <button className="recSlider__button">Read more</button>
-              </a>
+              </Link>
             </div>
           );
         })}{" "}

@@ -10,14 +10,17 @@ import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
 import EventDetails from "./pages/EventDetails";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 const RouterComponent = () => {
-
   return (
     <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/upcoming-events" element={<Favorites />} />
         <Route path="/notifications" element={<Notifications />} />

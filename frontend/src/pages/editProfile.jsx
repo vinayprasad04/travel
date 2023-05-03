@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ProfileImg from "../assets/img/music.png";
-import  { useFormik } from "formik";
+import { useFormik } from "formik";
 import { validation } from "../components/profileValidation";
 import axios from "axios";
 
@@ -86,7 +86,7 @@ const EditProfile = () => {
     formData.append("interests", selectedImageText);
     formData.append("file", image);
 
-    const data = axios.post("http://localhost:5000/api/v1", formData);
+    axios.post("http://localhost:5000/api/v1", formData);
   };
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
@@ -204,7 +204,7 @@ const EditProfile = () => {
                         name="email"
                         type="email"
                         placeholder=""
-                       onChange={handleChange}
+                        onChange={handleChange}
                       />
                     </div>
                     <div className="form__group">

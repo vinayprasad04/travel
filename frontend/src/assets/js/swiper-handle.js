@@ -1,17 +1,17 @@
 import "swiper/css";
-import Swiper from "swiper/bundle";
+// import Swiper from "swiper/bundle";
 import "swiper/css/bundle";
 
 export const swiperHandle = () => {
-  const swiper = new Swiper(".mainbanner", {
-    autoplay: {
-      delay: 3000,
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
+  // const swiper = new Swiper(".mainbanner", {
+  //   autoplay: {
+  //     delay: 3000,
+  //   },
+  //   navigation: {
+  //     nextEl: ".swiper-button-next",
+  //     prevEl: ".swiper-button-prev",
+  //   },
+  // });
 
   const setRecSlider = () => {
     let wWidth = window.innerWidth,
@@ -27,13 +27,13 @@ export const swiperHandle = () => {
   window.onresize = setRecSlider;
   window.onload = setRecSlider;
 
-  const swiperRec = new Swiper(".tailored", {
-    slidesPerView: "auto",
-    spaceBetween: 30,
-    parallax: true,
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
-  });
+  // const swiperRec = new Swiper(".tailored", {
+  //   slidesPerView: "auto",
+  //   spaceBetween: 30,
+  //   parallax: true,
+  //   navigation: {
+  //     nextEl: ".swiper-button-next",
+  //     prevEl: ".swiper-button-prev",
+  //   },
+  // });
 };

@@ -4,8 +4,9 @@ import { getEvents } from "../../redux/action";
 import TodaysRecommendation from "./TodaysRecommendation";
 import MasterJourney from "./MasterJourney";
 import mapImg from "../../assets/img/map.jpg";
+import { useSelector } from "react-redux";
 
-const HomeTest = () => {
+const MidPageDashboard = () => {
   const [eventDetails, setEventDetails] = useState([]);
   const getEventsDetails = async () => {
     const data = await getEvents();
@@ -16,19 +17,19 @@ const HomeTest = () => {
     getEventsDetails();
   }, []);
 
-  console.log(eventDetails);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <>
-      <main class="content">
-        <div class="trending">
-          <div class="container">
-            <h2 class="trending__title">
-              Today's recommendations for you, Charlie!
+      <main className="content">
+        <div className="trending">
+          <div className="container">
+            <h2 className="trending__title">
+              Today's recommendations for you, {user?.name}!
             </h2>
-            <div class="card__grid">
-              {eventDetails?.slice(0,10).map((a, i) => (
-                <TodaysRecommendation key={a?.id} data={a} />
+            <div className="card__grid">
+              {eventDetails?.slice(0, 10).map((a, i) => (
+                <TodaysRecommendation key={a?.id} data={a} id={i} />
               ))}
             </div>
           </div>
@@ -36,14 +37,14 @@ const HomeTest = () => {
 
         {/* here is master journety ends */}
 
-        <div class="recommendations">
-          <div class="container">
-            <h2 class="recommendations__title">
-              Charlie, here is your master journey with us so far
+        <div className="recommendations">
+          <div className="container">
+            <h2 className="recommendations__title">
+              {user?.name}, here is your master journey with us so far
             </h2>
-            <div class="card__grid card__grid--dashboard">
-              {eventDetails?.slice(0,10).map((a, i) => (
-                <MasterJourney key={i}  data={a}/>
+            <div className="card__grid card__grid--dashboard">
+              {eventDetails?.slice(0, 10).map((a, i) => (
+                <MasterJourney key={i} data={a} id={i} />
               ))}
             </div>
           </div>
@@ -51,10 +52,10 @@ const HomeTest = () => {
 
         {/* here is master journey ends */}
 
-        <div class="onmap">
-          <div class="container">
-            <h2 class="onmap__title">Find events on map</h2>
-            <div class="onmap__map">
+        <div className="onmap">
+          <div className="container">
+            <h2 className="onmap__title">Find events on map</h2>
+            <div className="onmap__map">
               <img src={mapImg} alt="" />
             </div>
           </div>
@@ -64,4 +65,4 @@ const HomeTest = () => {
   );
 };
 
-export default HomeTest;
+export default MidPageDashboard;

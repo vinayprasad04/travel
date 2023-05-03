@@ -1,43 +1,40 @@
 import React from "react";
 import "../../assets/scss/_dashboard.scss";
-import img from "../../assets/img/spa_0.png"
+import img from "../../assets/img/spa_0.png";
 import imgSvg from "../../assets/img/one.svg";
 import overwhelmedImg from "../../assets/img/overwhelmed.svg";
+import { Link } from "react-router-dom";
 
-const TodaysRecommendation = ({data}) => {
+const TodaysRecommendation = ({ data, id }) => {
   return (
     <>
-      <div class="card__item">
-        <a href="#" class="card__link">
-          <div class="card__thumb">
-            <button class="card__fav">
-              <span class="icon-heart"></span>
+      <div className="card__item">
+        <Link to={`/event-details/${id}`} className="card__link">
+          <div className="card__thumb">
+            <button className="card__fav">
+              <span className="icon-heart"></span>
             </button>
-            <img
-              src={img}
-              alt="event name"
-              class="card__img"
-            />
-            <span class="card__count">
+            <img src={img} alt="event name" className="card__img" />
+            <span className="card__count">
               <img src={imgSvg} alt="Top ranking 1" />
             </span>
           </div>
-          <div class="card__info">
-            <div class="card__row">
-              <div class="vibes">
+          <div className="card__info">
+            <div className="card__row">
+              <div className="vibes">
                 <img
                   src={overwhelmedImg}
                   alt="Overwhelmed"
-                  class="vibes__icon"
+                  className="vibes__icon"
                 />
-                <span class="vibes__text">Overwhelmed</span>
+                <span className="vibes__text">Overwhelmed</span>
               </div>
-              <div class="card__date">{data?.event_date}</div>
+              <div className="card__date">{data?.event_date}</div>
             </div>
-            <h3 class="card__title">{data?.title}</h3>
-            <div class="card__price">{data?.price} AED/person</div>
+            <h3 className="card__title">{data?.title}</h3>
+            <div className="card__price">{data?.price} AED/person</div>
           </div>
-        </a>
+        </Link>
       </div>
     </>
   );

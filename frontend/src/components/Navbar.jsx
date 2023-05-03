@@ -86,7 +86,9 @@ const Navbar = () => {
                     >
                       I want to see
                     </button>
-                    <a className="popup__link">Remind me later</a>
+                    <Link to="/" className="popup__link">
+                      Remind me later
+                    </Link>
                   </div>
                   <div className="popup__pointer"></div>
                   <div className="popup__close">

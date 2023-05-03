@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import imgCard from "../../assets/img/trending1.jpg";
 import emoji from "../../assets/img/overwhelmed.svg";
+import { Link } from "react-router-dom";
 
 const EventRecommendation = () => {
   const cardData = [
@@ -94,7 +95,7 @@ const EventRecommendation = () => {
         cardData.map((item) => {
           return (
             <div className="card__item">
-              <a href="#" className="card__link">
+              <Link to="/" className="card__link">
                 <div className="card__thumb">
                   <button className="card__fav">
                     <span className="icon-heart"></span>
@@ -121,7 +122,7 @@ const EventRecommendation = () => {
                   <h3 className="card__title">{item.event}</h3>
                   <div className="card__price">{item.cost}</div>
                 </div>
-              </a>
+              </Link>
             </div>
           );
         })}
