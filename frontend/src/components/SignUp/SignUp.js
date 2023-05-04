@@ -39,7 +39,8 @@ export default function SignUp() {
     
   }
  });
-console.log(errors)
+
+console.log(errors.length)
 
   // const {register,formState:{errors},handleSubmit}=useForm();
   // const [message,setMessage] = useState('');
