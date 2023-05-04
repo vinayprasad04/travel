@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import vibeometer from "../../assets/img/vibe-o-meter.svg";
 import GaugeChart from "react-gauge-chart";
 
@@ -13,17 +13,17 @@ import joy from "../../assets/img/joy.svg";
 import "./arc.css";
 
 function VibeMeter(props) {
-  // const [emotions, setEmotions] = useState(props);
+  const [emotions, setEmotions] = useState(0);
 
   const emoji = [overwhelmed, joy, appreciation, anger, dissappointed, boredom];
 
-  // console.log(emotions);
+  console.log(props.currentEmotion);
 
-  
+
 
   // const [emotions , setEmotions] = useState("");
 
-  let val = 60;
+  let val = 70;
 
   return (
     <>

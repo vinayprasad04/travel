@@ -5,18 +5,25 @@ import appreciation from "../../assets/img/appreciation.svg";
 import boredom from "../../assets/img/boredom.svg";
 import dissappointed from "../../assets/img/disappointed.svg";
 import anger from "../../assets/img/anger.svg";
+import joy from "../../assets/img/joy.svg";
 
 import axios from "axios";
 
-function Cards() {
+function Cards(props) {
+
   const [data, setData] = useState([]);
 
-  const emotion = [overwhelmed, appreciation, anger, dissappointed, boredom];
+  const emotion = [
+    overwhelmed,
+    joy,
+    appreciation,
+    anger,
+    dissappointed,
+    boredom,
+  ];
 
-  const addReview = () => {
-     alert("hi");
-  };
 
+  // Get all Data
   const getData = () => {
     axios
       .get("http://localhost:5000/getData")
@@ -29,6 +36,9 @@ function Cards() {
       });
   };
 
+
+
+  // Remove Data
   const removeData = () => {
     axios
       .get("http://localhost:5000/removeData")
@@ -38,6 +48,8 @@ function Cards() {
       });
   };
 
+
+  // Add Data
   const addData = () => {
     axios
       .get("http://localhost:5000/addData")
@@ -49,12 +61,13 @@ function Cards() {
       });
   };
 
+//console.log("Main Data: ", data);
+
   useEffect(() => {
     getData();
     // removeData();
     // addData();
   }, []);
-
 
   return (
     <>
@@ -75,7 +88,7 @@ function Cards() {
                   <a>{val.eventreview} reviews</a>
                   <div className="icon">
                     <span className="icon-star"></span>
-                    {val.eventrating}
+                    {props.handleCallback(val.eventrating)}
                   </div>
                 </div>
               </div>
@@ -83,34 +96,36 @@ function Cards() {
 
             <div className="feedback__list--content">
               <div className="card--date"> {val.eventdate} </div>
-           
-              { 
-              val.emotions ? ( <>
-                <h3 className="card--title">{val.eventtitle}</h3>
-                <div className="card--description">{val.eventdescription}</div>
-              </>
+
+              {val.emotions ? (
+                <>
+                  <h3 className="card--title">{val.eventtitle}</h3>
+                  <div className="card--description">
+                    {val.eventdescription}
+                  </div>
+                </>
               ) : (
                 <>
                   <h3 className="card--subtitle">
                     Hey Charlie, you haven't added you feedback yet. Please
                     share your experience with us to serve you better next time.
                   </h3>
-                 
                 </>
               )}
-
               <ul className="emotion__list">
-                {
-                val.emotions ? (
+                {val.emotions ? (
                   emotion.map((vl, index) => {
                     return (
+
                       <li className="emotion__list--item" key={index}>
                         <img src={vl} alt="" />
                       </li>
                     );
                   })
                 ) : (
-                  <button className="btn btn__black" onClick={addReview}>Add a review</button> 
+                  <button className="btn btn__black">
+                    Add a review
+                  </button>
                 )}
               </ul>
             </div>
@@ -184,7 +199,6 @@ export default Cards;
 //     rating: 5.0,
 //   },
 // ];
-
 
 // ('Swimming game for below 18 year kids', 'Hey Charlie, you havent added you feedback yet. Please share your experience with us to serve you better next time!', 'Nov 17, 2022', '123', '5.0'
 // 	  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elit.'
