@@ -11,7 +11,12 @@ import EventDescription from "../components/Event-Details/EventDescription.jsx";
 import EventReserveForm from "../components/Event-Details/EventReserveForm.jsx";
 import EventTitle from "../components/Event-Details/EventTitle.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { getEventsData, getUserReviews } from "../store/dataStore.js";
+import {
+  getEventOperations,
+  getEventsData,
+  getScheduledEvents,
+  getUserReviews,
+} from "../store/dataStore.js";
 import EventOperation from "../components/Event-Details/EventOperation.jsx";
 
 const EventDetails = () => {
@@ -21,11 +26,16 @@ const EventDetails = () => {
 
   const review = useSelector((state) => state.reviews);
   const event = useSelector((state) => state.events);
+  const scheduled = useSelector((state) => state.schedules);
+  const operation = useSelector((state) => state.operations);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getEventsData());
     dispatch(getUserReviews());
+    dispatch(getScheduledEvents());
+    dispatch(getEventOperations());
   }, []);
 
   const { id } = useParams();
@@ -38,13 +48,23 @@ const EventDetails = () => {
     (item) => id === item.eventid.toString()
   );
 
+  const scheduledData = scheduled.schedules.data?.filter(
+    (item) => id === item.eventid.toString()
+  );
+
+  const eventOperationData = operation.operations.data?.filter(
+    (item) => id === item.eventid.toString()
+  );
+
+  // console.log("sd,kjkjjj", eventData);
+
   return (
     <div>
       <main className="content event">
         <div className="eventDetails">
           <div className="container">
             <EventTitle eventData={eventData} reviewData={reviewData} />
-            <EventImage />
+            <EventImage scheduledData={scheduledData} />
           </div>
         </div>
 
@@ -52,12 +72,16 @@ const EventDetails = () => {
           <div className="container">
             <div className="eventReserve__grid">
               <div className="eventReserve__grid--col">
-                <ViboMeter />
+                <ViboMeter
+                  reviewData={reviewData}
+                  id={id}
+                  eventData={eventData}
+                />
                 <EventDescription
                   eventData={eventData}
                   reviewData={reviewData}
                 />
-                <EventOperation />
+                <EventOperation eventOperationData={eventOperationData} />
               </div>
               <EventReserveForm />
             </div>

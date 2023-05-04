@@ -1,41 +1,47 @@
 import React, { Fragment, useEffect, useState } from "react";
 import eventImage from "../../assets/img/Image118.jpg";
 import ShowModal from "./ShowModal";
-import useFetch from "../../hooks/useFetch";
 
-const EventImage = () => {
+const EventImage = ({ scheduledData }) => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  let status = "Scheduled";
 
   const handleClick = () => {
     setOpen(true);
   };
 
-  const data = useFetch(
-    "http://localhost:8080/api/scheduled/get-scheduled-events"
-  );
-  // console.log(data);
-  // console.log(
-  //   "new ",
-  //   data[0]?.data[0]?.scheduledevents[1].scheduledtime,
-  //   data[0]?.data[0]?.scheduledevents[1].completed
-  // );
-  // const b =
-  //   Date.parse(
-  //     `2023-05-03 ${data[0]?.data[0]?.scheduledevents[1].completed}`
-  //   ) === Date.parse(`2023-05-03 ${new Date().toLocaleTimeString()}`);
+  const completedTime =
+    scheduledData?.[0]?.scheduledevents[
+      scheduledData?.[0]?.scheduledevents?.length - 1
+    ].completed;
 
-  // console.log(b);
+  const time = new Date();
+  if (completedTime) {
+    const [hours, minutes, seconds] = completedTime.split(":");
 
-  // useEffect(() => {}, []);
+    time.setHours(hours);
+    time.setMinutes(minutes);
+    time.setSeconds(seconds);
+  }
 
-  // console.log("hi", new Date().toLocaleTimeString());
-  // console.log(
-  //   "nn",
-  //   Date.parse(
-  //     `2023-05-03 ${data[0]?.data[0]?.scheduledevents[0].scheduledtime}`
-  //   ) > Date.parse(`2023-05-03 ${new Date().toLocaleTimeString()}`)
-  // );
+  const currentTime = new Date().toLocaleTimeString();
+  const time2 = new Date();
+
+  if (currentTime) {
+    const fullTime = currentTime.split(":");
+    const [hours2, minutes2] = currentTime.split(":");
+    const seconds2 = fullTime[2].split(" ")[0];
+
+    time2.setHours(hours2);
+    time2.setMinutes(minutes2);
+    time2.setSeconds(seconds2);
+  }
+
+  if (time.getTime() < time2.getTime()) {
+    console.log(completedTime + " is before " + currentTime);
+    status = "Completed";
+  }
 
   return (
     <Fragment>
@@ -70,7 +76,7 @@ const EventImage = () => {
             className="grid__image border__rounded--topRight border__rounded--bottomRight"
           />
         </div>
-        <div className="status scheduled">Scheduled</div>
+        <div className="status scheduled">{status}</div>
         <button className="btn__white" onClick={handleClick}>
           Show all
         </button>{" "}

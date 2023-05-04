@@ -7,6 +7,13 @@ import axios from "axios";
 
 const initialEventData = { loading: false, events: [], error: "" };
 const initialReviewData = { loading: false, reviews: [], error: "" };
+const initialScheduledEventData = { loading: false, schedules: [], error: "" };
+const initialOperationManageData = {
+  loading: false,
+  operations: [],
+  error: "",
+};
+const initialExperience = { experience: [] };
 
 export const getEventsData = createAsyncThunk("events/getEventsData", () => {
   return axios.get("http://localhost:8080/api/events/event-details");
@@ -15,6 +22,22 @@ export const getEventsData = createAsyncThunk("events/getEventsData", () => {
 export const getUserReviews = createAsyncThunk("reviews/getUserReviews", () => {
   return axios.get("http://localhost:8080/api/user-reviews/get-user-reviews");
 });
+
+export const getEventOperations = createAsyncThunk(
+  "operations/getEventOperations",
+  () => {
+    return axios.get("http://localhost:8080/api/operations/operated");
+  }
+);
+
+export const getScheduledEvents = createAsyncThunk(
+  "schedules/getScheduledEvents",
+  () => {
+    return axios.get(
+      "http://localhost:8080/api/scheduled/get-scheduled-events"
+    );
+  }
+);
 
 const eventsSlice = createSlice({
   name: "events",
@@ -56,8 +79,65 @@ const userReviewsSlice = createSlice({
   },
 });
 
-const store = configureStore({
-  reducer: { events: eventsSlice.reducer, reviews: userReviewsSlice.reducer },
+const scheduledEventsSlice = createSlice({
+  name: "schedules",
+  initialState: initialScheduledEventData,
+  extraReducers: (builder) => {
+    builder.addCase(getScheduledEvents.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getScheduledEvents.fulfilled, (state, action) => {
+      state.loading = false;
+      state.schedules = action.payload;
+      state.error = "";
+    });
+    builder.addCase(getScheduledEvents.rejected, (state, action) => {
+      state.loading = false;
+      state.schedules = [];
+      state.error = action.error.message;
+    });
+  },
 });
 
+const eventOperationsSlice = createSlice({
+  name: "operations",
+  initialState: initialOperationManageData,
+  extraReducers: (builder) => {
+    builder.addCase(getEventOperations.pending, (state) => {
+      state.loading = true;
+    });
+    builder.addCase(getEventOperations.fulfilled, (state, action) => {
+      state.loading = false;
+      state.operations = action.payload;
+      state.error = "";
+    });
+    builder.addCase(getEventOperations.rejected, (state, action) => {
+      state.loading = false;
+      state.operations = [];
+      state.error = action.error.message;
+    });
+  },
+});
+
+const experienceSlice = createSlice({
+  name: "experience",
+  initialState: initialExperience,
+  reducers: {
+    getExperience(state, action) {
+      state.experience = action.payload;
+    },
+  },
+});
+
+const store = configureStore({
+  reducer: {
+    events: eventsSlice.reducer,
+    reviews: userReviewsSlice.reducer,
+    schedules: scheduledEventsSlice.reducer,
+    operations: eventOperationsSlice.reducer,
+    experience: experienceSlice.reducer,
+  },
+});
+
+export const experienceActions = experienceSlice.actions;
 export default store;

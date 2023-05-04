@@ -1,8 +1,29 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 
 import pic from "../../assets/img/overwhelmed.svg";
+import { useSelector } from "react-redux";
 
 const EventDescription = ({ eventData }) => {
+  const { experience } = useSelector((state) => state.experience);
+  const appreciationValue = experience?.payload?.appreciation;
+  const joyValue = experience?.payload?.joy;
+  const boredomValue = experience?.payload?.boredom;
+  const disappointedValue = experience?.payload?.disappointed;
+  const angerValue = experience?.payload?.anger;
+
+  let feeling;
+  if (appreciationValue) {
+    feeling = "appreciation";
+  } else if (joyValue) {
+    feeling = "joy";
+  } else if (boredomValue) {
+    feeling = "boredom";
+  } else if (disappointedValue) {
+    feeling = "disappointed";
+  } else {
+    feeling = "anger";
+  }
+
   return (
     <Fragment>
       {" "}
@@ -31,13 +52,13 @@ const EventDescription = ({ eventData }) => {
           </li>
           <li className="event__description--list-item">
             <div className="icon">
-              <img src={pic} alt="" />
+              <img src={require(`../../assets/img/${feeling}.svg`)} alt="" />
             </div>
             <div className="description-details">
-              <h5>{eventData?.[0].aboutevent.experience} experience</h5>
+              <h5>{feeling} experience</h5>
               <p>
                 This event has a rating of {eventData?.[0].eventrating} that
-                make this event {eventData?.[0].aboutevent.experience}.
+                make this event {feeling}.
               </p>
             </div>
           </li>
