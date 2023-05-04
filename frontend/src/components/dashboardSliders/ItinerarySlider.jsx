@@ -14,7 +14,7 @@ const ItinerarySlider = () => {
     const eventsData = useSelector((state) => state.events);
 
     const itineraries=useSelector(state=>state.itinerary);
-    console.log(itineraries);
+    //console.log(itineraries);
 
     //const [cardData, setCardData] = useState([]);
     // const getData = async () => {

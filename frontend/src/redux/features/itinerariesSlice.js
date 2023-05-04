@@ -5,7 +5,7 @@ export const fetchItineraries = createAsyncThunk(
     "itineraries/fetchItineraries",
     () => {
         const user_id = localStorage.getItem("user");
-        console.log(user_id);
+        //console.log(user_id);
         return axios.get(process.env.REACT_APP_URL + "/users/itineraries/50");
     }
 );

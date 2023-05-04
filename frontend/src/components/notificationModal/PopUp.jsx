@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { cancelSheduled } from "../../redux/features/recommendationSlice";
+
 import handWave from "../../assets/img/hand.svg";
 
 const PopUp = () => {
     const navigate = useNavigate();
+    const dispatch=useDispatch();
 
     const [onCross, setOnCross] = useState(true);
 
     const handleCancel=()=>{
         setOnCross(false);
+        dispatch(cancelSheduled());
         navigate("/recommendations");
     }
     
