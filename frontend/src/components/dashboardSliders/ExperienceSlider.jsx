@@ -3,11 +3,31 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import "swiper/css/bundle";
+
+import expressionImg from "../../assets/img/disappointed.svg";
 import ExperienceCard from "./ExperienceCard";
+import cardImg from "../../assets/img/Event-Banner.png"
 
 import {experienceData} from "../../constant";
 
 function ExperienceSlider() {
+
+    // const [cardData, setCardData] = useState([]);
+
+    // const getData = async () => {
+    //     try {
+    //         const result = await axios.get(process.env.REACT_APP_URL+"/events");
+    //         setCardData(result?.data);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+
+    // console.log(cardData)
+
+    // useEffect(() => {
+    //     getData();
+    // }, []);
 
     return (
         <div className="recSlider recSlider--cardView recSlider--cardView-fullWidth">
@@ -29,8 +49,8 @@ function ExperienceSlider() {
                         return (
                             <SwiperSlide className="swiper-slide" key={i}>
                                 <ExperienceCard
-                                    expressionImg={item.expressionImg}
-                                    coverImg={item.coverImg}
+                                    expressionImg={expressionImg}
+                                    coverImg={cardImg}
                                     title={item.title}
                                     dated={item.dated}
                                     details={item.details}

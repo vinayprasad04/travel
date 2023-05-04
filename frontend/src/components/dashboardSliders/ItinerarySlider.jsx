@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 import ItineraryCard from "./ItineraryCard";
 
@@ -10,23 +11,25 @@ import { Navigation } from "swiper";
 import "swiper/css/bundle";
 
 const ItinerarySlider = () => {
-    
-    const [cardData, setCardData] = useState([]);
+    const eventsData = useSelector((state) => state.events);
 
-    const getData = async () => {
-        try {
-            console.log("url", process.env.REACT_APP_URL)
-            const result = await axios.get(process.env.REACT_APP_URL+"/events");
-            setCardData(result?.data);
-            console.log(cardData);
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    const itineraries=useSelector(state=>state.itinerary);
+    console.log(itineraries);
 
-    useEffect(() => {
-        getData();
-    }, []);
+    //const [cardData, setCardData] = useState([]);
+    // const getData = async () => {
+    //     try {
+    //         const result = await axios.get(process.env.REACT_APP_URL+"/events");
+    //         setCardData(result?.data);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+    // console.log(cardData)
+
+    // useEffect(() => {
+    //     getData();
+    // }, []);
 
     return (
         <div className="recSlider recSlider--cardView">
@@ -50,7 +53,7 @@ const ItinerarySlider = () => {
                 }}
             >
                 <div className="swiper-wrapper">
-                    {cardData.map((item, i) => {
+                    {eventsData?.events?.data?.map((item, i) => {
                         return (
                             <SwiperSlide className="swiper-slide" key={i}>
                                 <ItineraryCard

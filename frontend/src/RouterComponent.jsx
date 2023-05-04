@@ -9,6 +9,7 @@ import Profile from "./pages/Profile";
 import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
+import Recommendations from "./pages/Recommendations";
 //import EventDetails from "./pages/EventDetails";
 
 const RouterComponent = () => {
@@ -25,6 +26,7 @@ const RouterComponent = () => {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/recommendations" element={<Recommendations />} />
         {/* <Route path="/event-details/:id" element={<EventDetails />} /> */}
       </Routes>
       <Footer />

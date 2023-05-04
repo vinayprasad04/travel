@@ -1,21 +1,25 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import handWave from "../../assets/img/hand.svg"
+import handWave from "../../assets/img/hand.svg";
 
 const PopUp = () => {
-    const navigate=useNavigate();
+    const navigate = useNavigate();
 
-    const [popupclass, setPopupclass]=useState("block");
+    const [onCross, setOnCross] = useState(true);
 
-    const remindlaterHandler=()=>{
-        setPopupclass("none");
-        setTimeout(()=>{
-            setPopupclass("block");
-        },6000)
+    const handleCancel=()=>{
+        setOnCross(false);
+        navigate("/recommendations");
+    }
+    
+    const handleReshedule=()=>{
+        setOnCross(false);
+        navigate("/recommendations");
+        
     }
 
-    return (
-        <div className="popup" style={{display:popupclass}}>
+    return onCross ? (
+        <div className="popup">
             <h4 className="popup__title">
                 Hey Charlie
                 <span className="popup__icon">
@@ -33,14 +37,14 @@ const PopUp = () => {
             <div className="popup__actions">
                 <button
                     className="popup__btn"
-                    onClick={() => navigate("/notifications")}
+                    onClick={handleReshedule}
                 >
                     Reshedule
                 </button>
-                <Link className="popup__link"  onClick={()=>{remindlaterHandler()}}>Cancel</Link>
+                <Link to={"/recommendations"} className="popup__link" onClick={handleCancel}>Cancel</Link>
             </div>
             <div className="popup__pointer"></div>
-            <div className="popup__close"  onClick={()=>{setPopupclass("none")}} >
+            <div className="popup__close" onClick={()=>{setOnCross(false)}}>
                 <svg
                     version="1.1"
                     id="Layer_1"
@@ -60,6 +64,8 @@ const PopUp = () => {
                 </svg>
             </div>
         </div>
+    ) : (
+        ""
     );
 };
 
