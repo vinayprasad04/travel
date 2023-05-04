@@ -2,18 +2,21 @@ import React from "react";
 
 import logo from "../assets/img/logo-black.svg";
 import surf from "../assets/img/holiday_0.png";
-
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
 
 import { login } from "../redux/features/LoginSlice";
+import LoginSuccess from "../components/Alerts/LoginSuccess";
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const loginHandler = () => {
     dispatch(login());
-    navigate("/");
+    navigate("/home");
+    LoginSuccess();
   };
 
   return (
@@ -22,12 +25,14 @@ const Login = () => {
         <div className="left-elements">
           <img src={logo} alt="logo" style={{ margin: "0px" }} />
           <h1>Login</h1>
-          <input type="email" placeholder="Enter your Username..." required />
+          <input type="email" placeholder="Enter your Username..." />
           <input type="password" placeholder="Enter your Password..." />
 
           <div className="login-btn-container">
-            <button onClick={() => loginHandler()}>Login</button>
-            <h6>Don't have an account?</h6>
+            <button onClick={loginHandler}>Login</button>
+            <Link to="/user-registration">
+              <h6>Don't have an account?</h6>
+            </Link>
           </div>
         </div>
         <div className="right-elements">

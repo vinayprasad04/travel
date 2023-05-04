@@ -5,7 +5,8 @@
 }
 
 .register-container {
-  padding: 0.7rem;
+  margin-top: 6.4rem;
+  padding: 0.2rem;
   background: radial-gradient(
     circle at 10% 20%,
     rgb(254, 255, 165) 0%,
@@ -16,7 +17,7 @@
 
   .register-card {
     animation: FadeIn 1.5s ease-in-out;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     display: flex;
     background-color: transparent;
     border: 2px solid black;

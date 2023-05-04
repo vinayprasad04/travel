@@ -1,10 +1,11 @@
 import React from "react";
 import logo from "../assets/img/logo-black.svg";
-import Link from "antd/es/typography/Link";
+import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import "react-datepicker/dist/react-datepicker.css";
 import Input from "../components/Input";
 import { UserRegistrationSchema } from "../schemas/UserRegistrationSchema";
+import LoginSuccess from "../components/Alerts/LoginSuccess";
 
 const UserRegistration = () => {
   const formik = useFormik({
@@ -16,7 +17,8 @@ const UserRegistration = () => {
     },
     validationSchema: UserRegistrationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      console.log("registration", values);
+      LoginSuccess();
     },
   });
 
@@ -70,7 +72,7 @@ const UserRegistration = () => {
             />
             <div className="register-btn-container">
               <button type="submit">Register</button>
-              <Link>
+              <Link to="/">
                 <h6 className="link_to_login">Already have an account?</h6>
               </Link>
             </div>

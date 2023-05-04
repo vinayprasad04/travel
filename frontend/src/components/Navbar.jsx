@@ -1,16 +1,24 @@
 import React from "react";
 import logo from "../assets/img/logo-black.svg";
 import { Link, useNavigate, NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/features/LoginSlice";
 
 const Navbar = () => {
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+    console.log("hello");
+  };
 
   return (
     <>
       <header className="header">
         <div className="container">
           <div className="header__branding">
-            <Link to="/" className="header__branding__logo">
+            <Link to="/home" className="header__branding__logo">
               <img src={logo} alt="Logo" />
             </Link>
           </div>
@@ -18,7 +26,7 @@ const Navbar = () => {
             <ul className="header__nav">
               <li className="header__nav__item header__nav__item-active header__nav__item--mobile">
                 <NavLink
-                  to="/"
+                  to="/home"
                   className={({ isActive, isPending }) =>
                     isPending
                       ? "pending"
@@ -82,7 +90,7 @@ const Navbar = () => {
                   <div className="popup__actions">
                     <button
                       className="popup__btn"
-                      onClick={() => Navigate("/notifications")}
+                      onClick={() => navigate("/notifications")}
                     >
                       I want to see
                     </button>
@@ -154,7 +162,11 @@ const Navbar = () => {
                       </Link>
                     </li>
                     <li className="nav__item">
-                      <Link to="/login" className="nav__link">
+                      <Link
+                        to="/"
+                        onClick={logoutHandler}
+                        className="nav__link"
+                      >
                         Logout
                       </Link>
                     </li>

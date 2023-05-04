@@ -5,6 +5,7 @@
 }
 
 .login-container {
+  margin-top: 6rem;
   background: radial-gradient(
     circle at 10% 20%,
     rgb(254, 255, 165) 0%,
@@ -61,6 +62,14 @@
   flex-direction: column;
   gap: 12px;
 
+  a {
+    color: black;
+    font-weight: 900 !important;
+  }
+  a:hover {
+    color: rgb(248, 192, 9);
+    border-bottom: 1px solid rgb(248, 192, 9);
+  }
   button {
     width: 20vw;
     border-radius: 1.5pc;

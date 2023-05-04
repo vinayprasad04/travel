@@ -9,7 +9,6 @@ const ModalHeader = () => {
 
   const cancelHandler = () => {
     dispatch(displayModal());
-    navigate(-1);
   };
   return (
     <div className="modal-header">

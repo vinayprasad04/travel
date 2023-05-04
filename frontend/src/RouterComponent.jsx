@@ -23,10 +23,6 @@ const RouterComponent = () => {
       <>
         <Navbar />
         <Routes>
-          <Route path="/">
-            <Route path="/login" element={<Login />} />
-            <Route path="/user-registration" element={<UserRegistration />} />
-          </Route>
           {IsLogin ? (
             <>
               <Route path="/home" element={<Home />} />
@@ -39,7 +35,12 @@ const RouterComponent = () => {
               <Route path="/edit-profile" element={<EditProfile />} />
               <Route path="/addreview" element={<ModalForm />} />
             </>
-          ) : null}
+          ) : (
+            <>
+              <Route path="/" element={<Login />} />
+              <Route path="/user-registration" element={<UserRegistration />} />
+            </>
+          )}
         </Routes>
         <Footer />
       </>
