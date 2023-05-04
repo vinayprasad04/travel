@@ -24,7 +24,7 @@ export default function SignUp() {
     console.log(userFinalData);
 
     axios
-      .post("http://localhost:5000/users/register", userFinalData)
+      .post(process.env.REACT_APP_SERVER_URL + "/users/register", userFinalData)
       .then((res) => {
         console.log(res);
         console.log(res.request.status);

@@ -18,9 +18,9 @@ const FavItenarieCard = () => {
 
   const getFav = () => {
     axios
-      .get("http://localhost:5000/favourite/get")
+      .get(process.env.REACT_APP_SERVER_URL + "/favourite/get")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setFavList(res.data);
       })
       .catch((err) => {
@@ -31,7 +31,7 @@ const FavItenarieCard = () => {
   const handleRemove = (id) => {
     console.log(id);
     axios
-      .delete(`http://localhost:5000/favourite/delete/${id}`)
+      .delete(process.env.REACT_APP_SERVER_URL + `/favourite/delete/${id}`)
       .then((res) => {
         if (res.status === 200) {
           Swal.fire({

@@ -14,7 +14,7 @@ export default function EmailID() {
   const formSubmit = (values) => {
     setIsloading(true);
     axios
-      .post("http://localhost:5000/users/login", values)
+      .post(process.env.REACT_APP_SERVER_URL + "/users/login", values)
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {
@@ -25,14 +25,14 @@ export default function EmailID() {
           });
           const data = res;
           localStorage.setItem("user", JSON.stringify(data));
-          setIsloading(false)
+          setIsloading(false);
           navigate("/");
         } else if (res.status === 401) {
           Swal.fire({
             icon: "info",
             title: "Invalid Email or Password !",
           });
-          setIsloading(false)
+          setIsloading(false);
         }
       })
       .catch((err) => {
@@ -43,14 +43,14 @@ export default function EmailID() {
             title: "Invalid Email or Password !",
             text: "Please enter correct credentials..",
           });
-          setIsloading(false)
+          setIsloading(false);
         } else {
           Swal.fire({
             icon: "error",
             title: "Something went wrong !",
             text: err,
           });
-          setIsloading(false)
+          setIsloading(false);
         }
       });
   };

@@ -82,7 +82,7 @@ const EditProfile = () => {
   const thumbHandlerOnImg = (index) => {
     const updatedImages = [...images];
     const selectedText = updatedImages[index].text;
-    updatedImages[index].isLiked = !updatedImages[index].isLiked; 
+    updatedImages[index].isLiked = !updatedImages[index].isLiked;
     //Switching the thumbs on images
 
     if (updatedImages[index].isLiked) {
@@ -126,7 +126,10 @@ const EditProfile = () => {
     console.log(user);
 
     axios
-      .patch(`http://localhost:5000/users/update/${data.email}`, user)
+      .patch(
+        process.env.REACT_APP_SERVER_URL + `/users/update/${data.email}`,
+        user
+      )
       .then((res) => {
         if (res.status === 200) {
           Swal.fire({
