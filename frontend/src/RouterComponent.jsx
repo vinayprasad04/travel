@@ -19,6 +19,7 @@ const RouterComponent = () =>{
     <>
       <Navbar/>
       <Routes>
+        <Route path="/login" element={<LoginPg />} />
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/upcoming-events" element={<UpcomingEvent/>} />
@@ -27,7 +28,7 @@ const RouterComponent = () =>{
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
       </Routes>
-      <Footer />
+      
     </>
   );
 };

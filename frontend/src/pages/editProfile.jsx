@@ -1,13 +1,33 @@
 import React, { useState } from "react";
+import { json, useNavigate } from "react-router-dom";
 import ProfileImg from "../assets/img/music.png";
-import  { useFormik } from "formik";
+import { useFormik } from "formik";
 import { validation } from "../components/profileValidation";
 import axios from "axios";
+import { DatePicker } from "antd";
 
 const EditProfile = () => {
+  const navigate = useNavigate();
+
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+
+  const userId = currentUser?.data?.user?.id;
+  // console.log("id", userId);
+  const [pic, setPic] = useState();
+  const [date, setDate] = useState();
   const [images, setImages] = useState([
-    { src: require("../assets/img/golf.png"), isLiked: false, text: "Golfs" },
-    { src: require("../assets/img/music.png"), isLiked: false, text: "Music" },
+    {
+      src: require("../assets/img/golf.png"),
+      isLiked: false,
+      text: "Golfs",
+    },
+    {
+      src: require("../assets/img/music.png"),
+      isLiked: false,
+      text: "Music",
+    },
     {
       src: require("../assets/img/exploring.png"),
       isLiked: false,
@@ -77,32 +97,28 @@ const EditProfile = () => {
     setImages(updatedImages);
   };
 
-  const formSubmit = () => {
-    let formData = new FormData();
-    formData.append("name", values.name);
-    formData.append("email", values.email);
-    formData.append("phone", values.phone);
-    formData.append("DOB", values.DOB);
-    formData.append("interests", selectedImageText);
-    formData.append("file", image);
-
-    const data = axios.post("http://localhost:5000/api/v1", formData);
-  };
-
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
         name: "",
-        email: "Charlie.mathwe@gmail.com",
-        phone: "",
-        DOB: "",
-        interests: [],
+        // date: date,
+        email: currentUser?.data?.user?.email,
+        phone: currentUser?.data?.user?.phone,
+        // interests: selectedImageText,
       },
       validationSchema: validation,
       onSubmit: () => {
-        formSubmit();
+        formSubmit(values, pic, date, selectedImageText);
       },
     });
+
+  const formSubmit = (data, pic, date, selectedImageText) => {
+    console.log("data", data);
+    console.log("interests",selectedImageText);
+    console.log("pic",pic);
+    console.log("date",date)
+  };
+
   return (
     <div>
       <form autoComplete="off" onSubmit={handleSubmit}>
@@ -124,8 +140,8 @@ const EditProfile = () => {
                             <input
                               className="profile-uploads-input"
                               type="file"
-                              accept="image/jpeg, image/png"
-                              onChange={(e) => setImage(e.target.files[0])}
+                              accept="image/*"
+                              onChange={(e) => setPic(e.target.files[0])}
                               name="file"
                             />
                           </div>
@@ -204,7 +220,8 @@ const EditProfile = () => {
                         name="email"
                         type="email"
                         placeholder=""
-                       onChange={handleChange}
+                        onChange={handleChange}
+                        disabled
                       />
                     </div>
                     <div className="form__group">
@@ -224,6 +241,7 @@ const EditProfile = () => {
                         value={values.phone}
                         type="number"
                         placeholder=""
+                        disabled
                       />
                       {errors.phone && touched.phone && (
                         <p className="error-text">{errors.phone}</p>
@@ -233,23 +251,12 @@ const EditProfile = () => {
                       <label className="form__label">
                         When can we wish a happy birthday?
                       </label>
-                      <input
-                        className={
-                          errors.DOB && touched.DOB
-                            ? "form__input error"
-                            : "form__input"
-                        }
-                        type="date"
+
+                      <DatePicker
+                        className="form__input"
                         placeholder=""
-                        value={values.DOB}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                        id="DOB"
-                        name="DOB"
+                        onChange={(date, dateString) => setDate(dateString)}
                       />
-                      {errors.DOB && touched.DOB && (
-                        <p className="error-text">{errors.DOB}</p>
-                      )}
                     </div>
                     <ul className="activity__list">
                       {images?.map((image, index) => {

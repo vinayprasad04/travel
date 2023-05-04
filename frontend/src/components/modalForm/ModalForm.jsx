@@ -1,18 +1,38 @@
 import React, { useState } from "react";
 import trending1 from "../../assets/img/trending1.jpg";
-import VibeOmeter from "../../assets/img/vibe-o-meter.svg";
 import stars1 from "../../assets/img/star1.svg";
 import InputStarRating from "./InputStarRating";
-
+import boredom from "../../assets/img/anger.svg";
+import anger from "../../assets/img/anger.svg";
+import disappointed from "../../assets/img/disappointed.svg";
+import appreciation from "../../assets/img/appreciation.svg";
+import joy from "../../assets/img/joy.svg";
+import overwhelemed from "../../assets/img/overwhelmed.svg";
 import ModalHeader from "./ModalHeader";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { addComment } from "../../redux/features/ModalSlice";
+import GaugeMeter from "./GaugeMeter";
+import { useNavigate } from "react-router-dom";
+
 const ModalForm = () => {
   const [NextPage, setNextPage] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const n = 5;
+  const globalState = useSelector((state) => state);
 
-  const stars = 5;
-  const reviewDetails = useSelector((state) => state.modal);
-  console.log("Review", reviewDetails);
+  const SubmitHandler = () => {
+    if (NextPage) {
+      navigate("/");
+    } else {
+      setNextPage(true);
+    }
+  };
+
+  const reviewDetails = globalState.modal;
+  const ShowModal = globalState.showModal;
+  console.log("Global state :", globalState);
   return (
     <div id="modal" className="modal">
       {/* <!-- Modal content --> */}
@@ -26,15 +46,16 @@ const ModalForm = () => {
           </p>
 
           {NextPage ? (
-            <div className="modal-image">
-              <img src={VibeOmeter} alt="vibe" />
+            // Vibe-O-meter
+            <div className="vibe-meter modal-image">
+              <GaugeMeter />
             </div>
           ) : (
             <>
               <div className="card">
                 <div className="card__info">
                   <div className="card__info--image">
-                    <img src={trending1} alt="" />
+                    <img src={trending1} alt="trending1" />
                   </div>
                   <div className="card__info--details">
                     <h4>Surfing at leasure</h4>
@@ -43,7 +64,7 @@ const ModalForm = () => {
                 </div>
                 <div className="card__review">
                   <div style={{ marginTop: "3px" }}>
-                    {[...Array(stars)].map((el, index) => {
+                    {[...Array(n)].map((el, index) => {
                       return (
                         <img
                           key={index}
@@ -80,15 +101,14 @@ const ModalForm = () => {
         <div className="modal-footer">
           <div className="form__group">
             <textarea
-              name=""
-              id=""
+              name="comment"
               rows="5"
-              onChange={(e) => dispatch(e.target.value)}
+              onChange={(e) => dispatch(addComment(e.target.value))}
               placeholder="Share your feedback and suggestions about this event..."
             ></textarea>
           </div>
           <button
-            onClick={() => setNextPage(true)}
+            onClick={() => SubmitHandler()}
             className="btn btn__black"
             id="submitBtn"
           >
