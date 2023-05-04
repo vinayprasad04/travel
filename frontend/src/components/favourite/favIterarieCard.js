@@ -8,6 +8,13 @@ import Swal from "sweetalert2";
 
 const FavItenarieCard = () => {
   const [favList, setFavList] = useState([]);
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem("user"))
+  );
+
+  const name = currentUser?.data?.user?.name
+    ? currentUser?.data?.user?.name
+    : "Charlie";
 
   const getFav = () => {
     axios
@@ -51,7 +58,7 @@ const FavItenarieCard = () => {
     <div>
       <div className="recommendations">
         <div className="container">
-          <h2 className="recSlider__title">Good morning Charlie!</h2>
+          <h2 className="recSlider__title">Good morning {name}!</h2>
           <div className="recSlider__subtitle">
             You have short listed {favList.length} events to join later.
           </div>

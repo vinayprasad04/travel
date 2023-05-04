@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import Swal from "sweetalert2";
+import Loader from "./Loader";
 
 export default function EmailID() {
   const navigate = useNavigate();
@@ -123,7 +124,7 @@ export default function EmailID() {
         </div>
         <div>
           <button type="submit" className="button">
-            {isloading ? "Loading.." : "LOGIN"}
+            {isloading ? <Loader /> : "LOGIN"}
           </button>
         </div>
       </form>
