@@ -23,6 +23,7 @@ import AdminRoute from "./components/utils/AdminRoute";
 import Recomandations from "./pages/Recomandations";
 import CreateNotification from "./pages/admin/CreateNotification";
 import DisplayAllNotifications from "./pages/admin/DisplayAllNotifications";
+import DisplayIterniary from "./pages/admin/DisplayIterniary";
 
 const RouterComponent = () => {
   return (
@@ -60,6 +61,7 @@ const RouterComponent = () => {
           <Route path="itenearies" element={<Iternearies />} />
           <Route path="event" element={<CreateEvent />} />
           <Route path="create/notification" element={<CreateNotification />} />
+          <Route path="display/iterniary" element={<DisplayIterniary />} />
           <Route
             path="get/notification"
             element={<DisplayAllNotifications />}

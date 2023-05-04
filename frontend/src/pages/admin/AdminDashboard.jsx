@@ -29,6 +29,11 @@ const AdminDashboard = () => {
               <i className="bx bx-list-ol"></i>
             </Link>
           </Tooltip>
+          <Tooltip title=" Display All Iterneariees" placement="left">
+            <Link to="/admin/dashboard/display/iterniary" className="link">
+              <i className="bx bx-list-ol"></i>
+            </Link>
+          </Tooltip>
           <Tooltip title=" Create Events" placement="left">
             <Link to="/admin/dashboard/event" className="link">
               <i className="bx bx-calendar-event"></i>

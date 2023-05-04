@@ -3,10 +3,14 @@ import overwhel from "../../assets/img/overwhelmed.svg";
 import { Link } from "react-router-dom";
 
 const IternearyCard = ({ item }) => {
+  console.log(item);
   return (
     <Link to="/exp" className="recSlider__link">
       <div className="slider__image--wrapper">
-        <img src={item.coverImg} alt="event title" />
+        <img
+          src={`https://cdn.firsttry.live/${item?.event[0].images[0].url}`}
+          alt="event title"
+        />
 
         <div className="weather">
           <svg
@@ -144,7 +148,11 @@ const IternearyCard = ({ item }) => {
       </div>
 
       <div className="recSlider__info">
-        <h3 className="recSlider__info__title">{item.title}</h3>
+        <h3 className="recSlider__info__title">
+          {item?.event[0].title.length > 20
+            ? item?.event[0].title.substring(20, 0) + "..."
+            : item?.event[0].title}
+        </h3>
         <div className="recSlider__info__rating">
           <div className="rating"></div>
           <div className="review">
@@ -153,25 +161,27 @@ const IternearyCard = ({ item }) => {
         </div>
         <div className="recSlider__info__row">
           <div className="recSlider__info__items recSlider__info__description">
-            {item.eventDetails}
+            {item?.event[0]?.discription.substring(150, 0)}
           </div>
         </div>
         <div className="recSlider__info__row">
           <div className="recSlider__info__items">
             <span className="icon icon-calendar"></span>
-            {item.duration}
+            {new Date(item?.iternaries.startdate).toDateString() +
+              " " +
+              new Date(item?.iternaries.startdate).toLocaleTimeString()}
           </div>
         </div>
         <div className="recSlider__info__row">
           <div className="recSlider__info__items">
             <span className="icon icon-location"></span>
-            {item.location}
+            {item?.event[0].location}
           </div>
         </div>
         <div className="recSlider__info__row">
           <div className="recSlider__info__items">
             <span className="icon icon-category"></span>
-            {item.category}
+            {item?.event[0].category[0].category}
           </div>
         </div>
         <div className="recSlider__info__row recSlider__footer">

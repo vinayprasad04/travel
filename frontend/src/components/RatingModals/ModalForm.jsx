@@ -1,16 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import trending1 from "../../assets/img/trending1.jpg";
 import stars1 from "../../assets/img/star1.svg";
 import InputStarRating from "./InputStarRating";
-import Box from "@mui/joy/Box";
-import Slider from "@mui/joy/Slider";
-import marks from "./vibeMeterData";
+import boredom from "../../assets/img/anger.svg";
+import anger from "../../assets/img/anger.svg";
+import disappointed from "../../assets/img/disappointed.svg";
+import appreciation from "../../assets/img/appreciation.svg";
+import joy from "../../assets/img/joy.svg";
+import overwhelemed from "../../assets/img/overwhelmed.svg";
 import ModalHeader from "./ModalHeader";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import GaugeMeter from "./GaugeMeter";
+import { useNavigate } from "react-router-dom";
 
 const ModalForm = () => {
   const [NextPage, setNextPage] = useState(false);
+  const [comment, setComment] = useState("");
+  const [ratingData, setRatingData] = useState([]);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const n = 5;
+  const { comments, ratings } = useSelector((state) => state.modal);
+
+  const ratingChangeHandler = (data) => {
+    const copy = [...ratingData, data];
+    setRatingData(copy);
+  };
+
+  const SubmitHandler = () => {
+    if (NextPage) {
+      navigate("/");
+
+      dispatch({ type: "addComment", payload: comment });
+      dispatch({ type: "addRating", payload: ratingData });
+    } else {
+      setNextPage(!NextPage);
+    }
+  };
 
   return (
     <div id="modal" className="modal">
@@ -27,17 +54,7 @@ const ModalForm = () => {
           {NextPage ? (
             // Vibe-O-meter
             <div className="vibe-meter modal-image">
-              <Box sx={{ width: 500 }}>
-                <Slider
-                  aria-label="Custom marks"
-                  defaultValue={0}
-                  getAriaValueText={valuetext}
-                  step={20}
-                  max={100}
-                  valueLabelDisplay="auto"
-                  marks={marks}
-                />
-              </Box>
+              <GaugeMeter ratings={ratingData} />
             </div>
           ) : (
             <>
@@ -53,7 +70,7 @@ const ModalForm = () => {
                 </div>
                 <div className="card__review">
                   <div style={{ marginTop: "3px" }}>
-                    {[...Array(5)].map((el, index) => {
+                    {[...Array(n)].map((el, index) => {
                       return (
                         <img
                           key={index}
@@ -73,11 +90,15 @@ const ModalForm = () => {
               </div>
 
               <div className="ratings__row">
-                {reviewDetails.ratings.map((item) => {
+                {ratings?.map((item) => {
                   return (
                     <div key={item.id} className="ratings__row--item">
                       <div className="ratings--title">{item.name}</div>
-                      <InputStarRating id={item.id} />
+                      <InputStarRating
+                        id={item.id}
+                        name={item.name}
+                        valueChange={(data) => ratingChangeHandler(data)}
+                      />
                     </div>
                   );
                 })}
@@ -92,12 +113,12 @@ const ModalForm = () => {
             <textarea
               name="comment"
               rows="5"
-              onChange={(e) => dispatch(addComment(e.target.value))}
+              onChange={(e) => setComment(e.target.value)}
               placeholder="Share your feedback and suggestions about this event..."
             ></textarea>
           </div>
           <button
-            onClick={() => setNextPage(true)}
+            onClick={() => SubmitHandler()}
             className="btn btn__black"
             id="submitBtn"
           >

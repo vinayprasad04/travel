@@ -440,3 +440,76 @@ export const getFav = async (req, res) => {
     res.status(400).json({ msg: error });
   }
 };
+
+export const createIterniary = async (req, res) => {
+  try {
+    const { email, eventId, startDate, endDate, person, status } =
+      req.body.data;
+    console.log(startDate);
+    const data = await pool.query(
+      "SELECT * FROM iternary WHERE email=$1 AND events=$2",
+      [email, eventId]
+    );
+    if (data.rows.length > 0) {
+      return res.status(400).json({ msg: "Iterniary Already Assign" });
+    }
+    const data2 = await pool.query(
+      "INSERT INTO iternary (email,startDate,endDate,people,events,status) VALUES ($1,$2,$3,$4,$5,$6)",
+      [email, startDate, endDate, person, eventId, status]
+    );
+    res.status(201).json({ msg: "Iterniary Assign Successfulyy", data: data2 });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: error });
+  }
+};
+
+export const DisplayIterniary = async (req, res) => {
+  try {
+    const { page, limit } = req.params;
+    ///calculate offset means skiplist value
+    const offset = (page - 1) * limit;
+    console.log(offset, "offset");
+
+    const data = await pool.query(
+      `SELECT * FROM iternary LIMIT ${limit} OFFSET ${offset}`
+    );
+    console.log(data.rows);
+    const { rows: count } = await pool.query(`SELECT count(*) FROM iternary`);
+    const rows = data.rows;
+    res.send({ rows, count: parseInt(count[0].count) });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: error });
+  }
+};
+
+export const DisplayIdIterniarys = async (req, res) => {
+  try {
+    const data = await pool.query("SELECT * FROM iternary WHERE email=$1", [
+      req.email,
+    ]);
+    console.log(data.rows.length);
+    const Iterniaries = [];
+    let data1 = [];
+    for (var i = 0; i < data.rows.length; i++) {
+      const d = await pool.query("SELECT * FROM events WHERE id=$1", [
+        data?.rows[i].events,
+      ]);
+      data1.push(d.rows);
+    }
+    for (var i = 0; i < data.rows.length; i++) {
+      const data2 = {
+        event: data1[i],
+        iternaries: data.rows[i],
+      };
+      Iterniaries.push(data2);
+    }
+    res
+      .status(200)
+      .json({ msg: "Iterniary Fetch Successfully", data: Iterniaries });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ msg: error });
+  }
+};

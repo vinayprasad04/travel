@@ -1,9 +1,12 @@
 import express from "express";
 import {
+  DisplayIdIterniarys,
+  DisplayIterniary,
   Register,
   addToFav,
   createCategory,
   createEvent,
+  createIterniary,
   createNotification,
   deleteCategory,
   displayAllNotifications,
@@ -39,5 +42,7 @@ router.get("/get/users", listUsers);
 router.post("/add/fav", isAuthenticated, addToFav);
 router.post("/delete/fav", isAuthenticated, removeFav);
 router.post("/get/fav", isAuthenticated, getFav);
-
+router.post("/add/iterniary", isAuthenticated, createIterniary);
+router.post("/get/iterniary/:page/:limit", isAuthenticated, DisplayIterniary);
+router.get("/get/iterniary/", isAuthenticated, DisplayIdIterniarys);
 export default router;

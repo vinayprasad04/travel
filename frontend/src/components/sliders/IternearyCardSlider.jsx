@@ -3,9 +3,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import IternearyCard from "../cards/IternearyCard";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { DisplayIdIterniarys } from "../../redux/actions/iterniaryAction";
 
 const Slider = () => {
   const { user } = useSelector((state) => state.users);
+  const [iterniary, setIterniary] = useState();
 
   let dummy = [
     {
@@ -63,6 +66,21 @@ const Slider = () => {
       category: "Golf",
     },
   ];
+  const getIternary = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const data = await DisplayIdIterniarys(token);
+      if (data?.data.data) {
+        setIterniary(data?.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getIternary();
+  }, []);
 
   return (
     <>
@@ -87,7 +105,7 @@ const Slider = () => {
           }}
         >
           <div className="swiper-wrapper">
-            {dummy.map((item, i) => {
+            {iterniary?.map((item, i) => {
               return (
                 <SwiperSlide className="swiper-slide" key={i}>
                   <IternearyCard item={item} />

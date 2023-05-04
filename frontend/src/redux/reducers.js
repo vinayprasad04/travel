@@ -45,3 +45,32 @@ export const userReducer = createReducer(
       });
   }
 );
+
+export const modalReducer = createReducer(
+  {
+    ratings: [
+      { id: 0, name: "Quality of Event", value: 0 },
+      { id: 1, name: "Services at Event", value: 0 },
+      { id: 2, name: "Facilities of Event", value: 0 },
+      { id: 3, name: "Operator of Event", value: 0 },
+      { id: 4, name: "Staff Politeness", value: 0 },
+    ],
+    comments: "",
+    display: false,
+  },
+  (builder) => {
+    builder
+      .addCase("addRating", (state, action) => {
+        for (let i = 0; i < action.payload.length; i++) {
+          state.ratings[i].value = action.payload[i].value;
+          state.ratings[i].name = action.payload[i].name;
+        }
+      })
+      .addCase("addComment", (state, action) => {
+        state.comments = action.payload;
+      })
+      .addCase("displayModal", (state, action) => {
+        state.display = !state.display;
+      });
+  }
+);
