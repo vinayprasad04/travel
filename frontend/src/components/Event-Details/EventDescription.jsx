@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const EventDescription = ({ eventData }) => {
   const { experience } = useSelector((state) => state.experience);
+  const overwhelmedValue = experience?.payload?.overwhelmed;
   const appreciationValue = experience?.payload?.appreciation;
   const joyValue = experience?.payload?.joy;
   const boredomValue = experience?.payload?.boredom;
@@ -12,7 +13,9 @@ const EventDescription = ({ eventData }) => {
   const angerValue = experience?.payload?.anger;
 
   let feeling;
-  if (appreciationValue) {
+  if (overwhelmedValue) {
+    feeling = "overwhelmed";
+  } else if (appreciationValue) {
     feeling = "appreciation";
   } else if (joyValue) {
     feeling = "joy";

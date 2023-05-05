@@ -1,8 +1,9 @@
+import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 
-const EventTitle = ({ eventData, reviewData }) => {
+const EventTitle = ({ eventData, id, reviewData }) => {
   let content = "review";
   const reviewLength = reviewData?.[0]?.reviews.length;
 
@@ -11,14 +12,26 @@ const EventTitle = ({ eventData, reviewData }) => {
   }
 
   let sum = 0;
+  let avgRating;
 
   const avgRatingData = reviewData?.[0]?.reviews.map((item) => {
     sum += item.rating;
     return sum;
   });
 
-  const avgRating = avgRatingData?.slice(-1)[0] / reviewLength;
+  if (avgRatingData) {
+    avgRating = avgRatingData?.slice(-1)[0] / reviewLength;
+  }
 
+  useEffect(() => {
+    if (avgRatingData) {
+      const url = `http://localhost:8080/api/event-update/update/${id}`;
+
+      const data = axios.put(url, {
+        eventrating: Math.floor(avgRating),
+      });
+    }
+  }, [avgRating, id]);
   return (
     <Fragment>
       {" "}

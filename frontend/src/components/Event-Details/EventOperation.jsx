@@ -7,24 +7,25 @@ const EventOperation = ({ eventOperationData }) => {
       {" "}
       <div className="event__review">
         <h4 className="event__reserve--title">
-          Operated By {eventOperationData?.[0]?.eventoperation?.operatedby}
+          {/* Operated By {eventOperationData?.[0]?.eventoperation?.operatedby} */}
         </h4>
         <div className="event__review--row">
           <div className="rating">
             <Rating
               initialValue={
-                eventOperationData?.[0]?.eventoperation.operationsrating
+                5
+                // eventOperationData?.[0]?.eventoperation.operationsrating
               }
               size={20}
               readonly={true}
             />
           </div>
           <div className="review">
-            {eventOperationData?.[0]?.eventoperation.operationsrating}
+            {/* {eventOperationData?.[0]?.eventoperation.operationsrating} */}
           </div>
         </div>
         <div className="event__description--content">
-          <p>{eventOperationData?.[0]?.eventoperation.operationdescription}</p>
+          {/* <p>{eventOperationData?.[0]?.eventoperation.operationdescription}</p> */}
         </div>
       </div>
     </Fragment>

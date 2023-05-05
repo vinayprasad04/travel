@@ -13,9 +13,11 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
   const dispatch = useDispatch();
 
   const category = eventData?.[0]?.aboutevent?.category;
+
   const reviewLength = reviewData?.[0]?.reviews.length;
 
   let sum = 0;
+  let srcemoji;
 
   const avgRatingData = reviewData?.[0]?.reviews.map((item) => {
     sum += item.rating;
@@ -27,43 +29,55 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
 
   let viboMeterData;
 
-  if (floorAvgRating === 5) {
-    viboMeterData = {
-      overwhelmed: 1,
-    };
+  if (floorAvgRating) {
+    if (floorAvgRating === 5) {
+      viboMeterData = {
+        overwhelmed: 1,
+      };
+      srcemoji = "overwhelmed";
+    }
+    if (floorAvgRating === 4) {
+      viboMeterData = {
+        joy: 1,
+      };
+      srcemoji = "joy";
+    }
+    if (floorAvgRating === 3) {
+      viboMeterData = {
+        appreciation: 1,
+      };
+      srcemoji = "appreciation";
+    }
+
+    if (floorAvgRating === 2) {
+      viboMeterData = {
+        boredom: 1,
+      };
+      srcemoji = "boredom";
+    }
+    if (floorAvgRating === 1) {
+      viboMeterData = {
+        disappointed: 1,
+      };
+      srcemoji = "disappointed";
+    }
   }
 
-  if (floorAvgRating >= 4 && floorAvgRating < 5) {
-    viboMeterData = {
-      joy: 1,
-    };
-  } else if (floorAvgRating >= 3 && floorAvgRating < 4) {
-    viboMeterData = {
-      appreciation: 1,
-    };
-  } else if (floorAvgRating >= 2 && floorAvgRating < 3) {
-    viboMeterData = {
-      boredom: true,
-    };
-  } else if (floorAvgRating >= 1 && floorAvgRating < 2) {
-    viboMeterData = {
-      disappointed: 1,
-    };
-  } else {
-    viboMeterData = {
-      anger: 1,
-    };
-  }
+  console.log("let", viboMeterData);
 
   useEffect(() => {
-    const url = `http://localhost:8080/api/event-update/update/${id}`;
-    const d = axios.put(url, {
-      aboutevent: {
-        category: category,
-        experience: viboMeterData,
-      },
-    });
-  }, []);
+    if (viboMeterData) {
+      const url = `http://localhost:8080/api/event-update/update/${id}`;
+
+      const data = axios.put(url, {
+        aboutevent: {
+          category: category,
+          experience: viboMeterData,
+          srcemoji: srcemoji,
+        },
+      });
+    }
+  }, [viboMeterData, srcemoji, id]);
 
   useEffect(() => {
     console.log(
@@ -90,7 +104,7 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
         <ul className="emotions__list">
           <li
             className={
-              viboMeterData.overwhelmed
+              viboMeterData?.overwhelmed
                 ? `emotions__list--item ${styleViboMeter}`
                 : `emotions__list--item`
             }
@@ -100,7 +114,7 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
           </li>
           <li
             className={
-              viboMeterData.joy
+              viboMeterData?.joy
                 ? `emotions__list--item ${styleViboMeter}`
                 : `emotions__list--item`
             }
@@ -110,7 +124,7 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
           </li>
           <li
             className={
-              viboMeterData.appreciation
+              viboMeterData?.appreciation
                 ? `emotions__list--item ${styleViboMeter}`
                 : `emotions__list--item`
             }
@@ -120,7 +134,7 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
           </li>
           <li
             className={
-              viboMeterData.boredom
+              viboMeterData?.boredom
                 ? `emotions__list--item ${styleViboMeter}`
                 : `emotions__list--item`
             }
@@ -130,7 +144,7 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
           </li>
           <li
             className={
-              viboMeterData.disappointed
+              viboMeterData?.disappointed
                 ? `emotions__list--item ${styleViboMeter}`
                 : `emotions__list--item`
             }
@@ -140,7 +154,7 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
           </li>
           <li
             className={
-              viboMeterData.anger
+              viboMeterData?.anger
                 ? `emotions__list--item ${styleViboMeter}`
                 : `emotions__list--item`
             }

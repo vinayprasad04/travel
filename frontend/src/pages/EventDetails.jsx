@@ -56,6 +56,18 @@ const EventDetails = () => {
     (item) => id === item.eventid.toString()
   );
 
+  const eventRecommendation = event.events.data?.filter(
+    (item) => id !== item.eventid.toString()
+  );
+
+  const eventRecommendationReviews = review.reviews.data?.filter(
+    (item) => id !== item.eventid.toString()
+  );
+
+  const scheduledDataRecommendation = scheduled.schedules.data?.filter(
+    (item) => id !== item.eventid.toString()
+  );
+
   // console.log("sd,kjkjjj", eventData);
 
   return (
@@ -63,7 +75,7 @@ const EventDetails = () => {
       <main className="content event">
         <div className="eventDetails">
           <div className="container">
-            <EventTitle eventData={eventData} reviewData={reviewData} />
+            <EventTitle eventData={eventData} id={id} reviewData={reviewData} />
             <EventImage scheduledData={scheduledData} />
           </div>
         </div>
@@ -109,7 +121,11 @@ const EventDetails = () => {
               Some more recommendations for you, Charlie!
             </h2>
             <div className="card__grid">
-              <EventRecommendation />
+              <EventRecommendation
+                eventRecommendation={eventRecommendation}
+                eventRecommendationReviews={eventRecommendationReviews}
+                scheduledDataRecommendation={scheduledDataRecommendation}
+              />
             </div>
           </div>
         </div>
