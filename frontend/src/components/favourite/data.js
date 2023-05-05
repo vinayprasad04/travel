@@ -6,6 +6,7 @@ export const eventData = [
     rating: "Overwhelmed",
     img: "https://images.unsplash.com/photo-1561912774-79769a0a0a7a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
     count: require("../../assets/img/one.svg"),
+    liked: false,
   },
   {
     title: "Swimming game for below 18 ",
@@ -14,6 +15,7 @@ export const eventData = [
     rating: "Overwhelmed",
     img: "https://images.unsplash.com/photo-1643759543584-fb6f448d42d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80",
     count: require("../../assets/img/two.svg"),
+    liked: false,
   },
   {
     title: "Comedy ",
@@ -22,6 +24,7 @@ export const eventData = [
     rating: "Funny",
     img: "https://images.unsplash.com/photo-1556125574-d7f27ec36a06?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     count: require("../../assets/img/three.svg"),
+    liked: false,
   },
   {
     title: "Disco",
@@ -30,6 +33,7 @@ export const eventData = [
     rating: "Chill",
     img: "https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     count: require("../../assets/img/four.svg"),
+    liked: false,
   },
   {
     title: "Water Park",
@@ -38,6 +42,7 @@ export const eventData = [
     rating: "Cool",
     img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
     count: require("../../assets/img/five.svg"),
+    liked: false,
   },
   {
     title: "Explore Monuments",
@@ -46,6 +51,7 @@ export const eventData = [
     rating: "Good",
     img: "https://images.unsplash.com/photo-1566731372839-859e7cead0ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
     count: require("../../assets/img/five.svg"),
+    liked: false,
   },
   {
     title: "Fire Dance",
@@ -54,6 +60,7 @@ export const eventData = [
     rating: "Good",
     img: "https://images.unsplash.com/photo-1544926323-8463f67ecb5d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80",
     count: require("../../assets/img/five.svg"),
+    liked: false,
   },
   {
     title: "Drummer",
@@ -62,5 +69,6 @@ export const eventData = [
     rating: "Good",
     img: "https://images.unsplash.com/photo-1569634311433-afb9edb8a3f4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=811&q=80",
     count: require("../../assets/img/five.svg"),
+    liked: false,
   },
 ];

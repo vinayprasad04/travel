@@ -1,9 +1,19 @@
 import React from "react";
 import logo from "../assets/img/logo-black.svg";
 import { Link, useNavigate, NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const Navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    Swal.fire({
+      icon: "success",
+      title: "Logout Success",
+    });
+    Navigate("/login");
+  };
 
   return (
     <>
@@ -82,11 +92,11 @@ const Navbar = () => {
                   <div className="popup__actions">
                     <button
                       className="popup__btn"
-                      onClick={() => Navigate("/notifications")}
+                      onClick={() => Navigate("/recommendation")}
                     >
-                      I want to see
+                      Reschedule
                     </button>
-                    <a className="popup__link">Remind me later</a>
+                    <a className="popup__link">Cancel</a>
                   </div>
                   <div className="popup__pointer"></div>
                   <div className="popup__close">
@@ -152,6 +162,13 @@ const Navbar = () => {
                       <Link to="/setting" className="nav__link">
                         Settings
                       </Link>
+                    </li>
+                    <li
+                      className="nav__item nav__link"
+                      style={{ cursor: "pointer" }}
+                      onClick={handleLogout}
+                    >
+                      <center>Logout</center>
                     </li>
                   </ul>
                 </div>

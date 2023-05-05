@@ -11,6 +11,7 @@ import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
 import LoginPg from './components/LoginPg';
 import SignUp from  './components/SignUp/SignUp';
+import Recommendation from "./pages/Recommendation";
 
 
 const RouterComponent = () => {
@@ -30,6 +31,7 @@ const RouterComponent = () => {
         <Route path="/setting" element={<Setting />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/SignUp" element={<SignUp />} />
+        <Route path="/recommendation" element={<Recommendation />} />
         
       </Routes>
       
