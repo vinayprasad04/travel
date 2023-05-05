@@ -10,6 +10,7 @@ const Navbar = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    localStorage.removeItem("Token");
     console.log("hello");
   };
 

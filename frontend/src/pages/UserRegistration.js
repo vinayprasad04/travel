@@ -1,13 +1,37 @@
 import React from "react";
-import logo from "../assets/img/logo-black.svg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import axios from "axios";
+import { useDispatch } from "react-redux";
 import "react-datepicker/dist/react-datepicker.css";
+
+import logo from "../assets/img/logo-black.svg";
+
 import Input from "../components/Input";
 import { UserRegistrationSchema } from "../schemas/UserRegistrationSchema";
 import LoginSuccess from "../components/Alerts/LoginSuccess";
+import { login } from "../redux/features/LoginSlice";
 
 const UserRegistration = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const registerHandler = (values) => {
+    console.log("values", values);
+    const { userName, email, password } = values;
+
+    axios
+      .post("http://localhost:4000/signup", { userName, email, password })
+      .then((res) => {
+        localStorage.setItem("Token", res.data.token);
+        dispatch(login());
+        navigate("/home");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const formik = useFormik({
     initialValues: {
       userName: "",
@@ -17,7 +41,8 @@ const UserRegistration = () => {
     },
     validationSchema: UserRegistrationSchema,
     onSubmit: (values) => {
-      console.log("registration", values);
+      console.log(values);
+      registerHandler(values);
       LoginSuccess();
     },
   });

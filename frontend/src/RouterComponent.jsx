@@ -18,12 +18,14 @@ const RouterComponent = () => {
   const IsLogin = useSelector((state) => state.userLogin.isLoggedIn);
   console.log(IsLogin);
 
+  const token = localStorage.getItem("Token");
+
   return (
     <>
       <>
         <Navbar />
         <Routes>
-          {IsLogin ? (
+          {token ? (
             <>
               <Route path="/home" element={<Home />} />
               <Route path="/favorites" element={<Favorites />} />
