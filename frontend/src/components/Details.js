@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Details.css";
+
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -13,7 +13,7 @@ export default function EmailID() {
   const formSubmit = (values) => {
     setIsloading(true);
     axios
-      .post("http://localhost:5000/users/login", values)
+      .post("http://localhost:7000/users/login", values)
       .then((res) => {
         console.log(res.status);
         if (res.status === 200) {

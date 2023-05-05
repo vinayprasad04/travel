@@ -1,6 +1,6 @@
 import React from "react";
 // import 'D:/travel/frontend/src/assets/styles/Area.css'
-import "./Area.css";
+
 import Details from "./Details";
 import logoBlack from "../assets/img/logoBlack.svg";
 

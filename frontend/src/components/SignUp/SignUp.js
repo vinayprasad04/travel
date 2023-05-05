@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignUp.css";
+
 import logoBlack from "../../assets/img/logoBlack.svg";
 import { useFormik } from "formik";
 import { RegisterValidation } from "../registerValidation";
@@ -24,7 +24,7 @@ export default function SignUp() {
     console.log(userFinalData);
 
     axios
-      .post("http://localhost:5000/users/register", userFinalData)
+      .post("http://localhost:7000/api/v1/signup", userFinalData)
       .then((res) => {
         console.log(res);
         console.log(res.request.status);
@@ -34,6 +34,7 @@ export default function SignUp() {
             title: "Success",
             text: "User Registered Successfull !",
           });
+          
           navigate("/login");
           setIsloading(false);
         }

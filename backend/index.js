@@ -1,14 +1,16 @@
-const express =require("express");
-const set=require("./routes/rout");
+const cors = require("cors");
+const express = require("express");
+const rout = require("./routes/rout.js");
+const app = express();
+//middleware
+app.use(cors());
+app.use(express.json());//req.body
 
- const app=express();
+//Routs
+app.use("/api/v1", rout);
+
+app.listen(7000, () => {
+  console.log("server running 7000");
+});
 
 
- app.use(express.json());
- app.use("/api/v1",set);
-
-
- app.listen(7000,()=>{
-    console.log(" server run succesfully");
- });
- 

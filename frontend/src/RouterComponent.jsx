@@ -12,6 +12,8 @@ import UpcomingEvent from "./pages/UpcomingEvent";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SignUp from "./components/SignUp/SignUp";
+import LoginPg from "../src/components/LoginPg";
 
 
 const RouterComponent = () =>{
@@ -19,7 +21,8 @@ const RouterComponent = () =>{
     <>
       <Navbar/>
       <Routes>
-        <Route path="/login" element={<LoginPg />} />
+      <Route path="/signUp" element={<SignUp />} /> 
+         <Route path="/login" element={<LoginPg />} /> 
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/upcoming-events" element={<UpcomingEvent/>} />
