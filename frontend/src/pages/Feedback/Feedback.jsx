@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "./Cards";
-import overwhelmed from "../../assets/img/overwhelmed.svg";
 import VibeOMeter from "./VibeMeter";
-
 function Feedback() {
   const [user, setUser] = useState([]);
   const [rating, setRating] = useState();
+  const [ratingArray, setRatingArray] = useState([]);
+  const [data, setData] = useState([]);
+
 
   // Users
   const users = async () => {
@@ -20,46 +21,108 @@ function Feedback() {
       });
   };
 
-   // Emotions
-   const review =async () => {
-   await axios
-      .get("http://localhost:5000/eventRating")
-      .then((res) => {
-        // Event Rating
-        console.log("Rating from Card:  ", res.data);
 
-        let sum = 0;
-        for (let i = 0; i < res.data.length; i++) {
-          sum = sum + parseFloat(res.data[i].eventrating);
-        }
-        console.log("Resultant Rating : ", Math.floor(sum / res.data.length));
-        setRating(Math.floor(sum/4));
+  // Add Data
+  const addData = () => {
+    axios
+      .get("http://localhost:5000/addData")
+      .then((res) => {
+        console.log("addData", res);
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
-     
-  const emojiImages = [
-    require('../../assets/img/overwhelmed.svg') ,
-    require('../../assets/img/joy.svg'),
-    require('../../assets/img/appreciation.svg'),
-    require('../../assets/img/anger.svg'),
-    require('../../assets/img/disappointed.svg'),
-    require('../../assets/img/boredom.svg')
-];
 
-function Callback(childData){
+  // Remove Data
+  const removeData = () => {
+    axios
+      .get("http://localhost:5000/removeData")
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
 
-}
+    // Get all Data 
+    const getData = () => {
+      axios
+        .get("http://localhost:5000/getData")
+        .then((res) => {
+          setData(res.data.feedbackData);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
   
+
+
+
+  // Emotions
+
+  const review = async () => {
+    await axios
+      .get("http://localhost:5000/eventRating")
+      .then((res) => {
+        // Event Rating
+        setRatingArray(res.data);
+
+        console.log("Card Data->:  ", res.data);
+        let sum = 0;
+
+        for (let i = 0; i < res.data.length; i++) {
+          sum = sum + parseFloat(res.data[i].eventrating);
+        }
+
+        console.log("Resultant Rating : ", Math.floor(sum / res.data.length));
+
+        const ratingResult = Math.floor(sum / res.data.length);
+
+        setRating(ratingResult + 1);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
+
+  let feeling;
+
+  if (rating >= 4 && rating < 5) {
+    feeling = "joy";
+  } else if (rating >= 3 && rating < 4) {
+    feeling = "appreciation";
+  } else if (rating >= 2 && rating < 3) {
+    feeling = "boredom";
+  } else if (rating >= 1 && rating < 2) {
+    feeling = "dissapointed";
+  } else {
+    feeling = "anger";
+  }
+
+  if (rating === 5) {
+    feeling = "overwhelmed";
+  }
+
+  console.log("feeling---> ", feeling);
+  console.log("Calculated Rating---> ", rating);
+
   useEffect(() => {
-    users();
-    review();
-    // review();
+    getData()
   }, []);
+
+  useEffect(() => {
+    review();
+    users();
+  }, []);
+
+
+
+  console.log("USER DATA : ", user.data);
 
   return (
     <>
@@ -71,11 +134,14 @@ function Callback(childData){
                 <div className="col_sm_12 col_md_12 col_lg_6">
                   <div className="feedback__banner--info">
                     <div className="feedback__banner--icon">
-                      <img src={overwhelmed} alt="Overwhelmed" />
-                      <p>{rating}</p>
+                      <img
+                        src={require(`../../assets/img/${feeling}.svg`)}
+                        alt="Emoji"
+                      />
+                      {/* <p>Rating{rating}</p> */}
                     </div>
                     <h2 className="feedback__banner--title">
-                      Overwhelmed experience
+                      {feeling} experience
                     </h2>
                     <h3 className="feedback__banner--subtitle">
                       Your Vibe-O-Meter reading exits us too
@@ -104,15 +170,21 @@ function Callback(childData){
           <div className="container">
             <h2 className="feedback__title">
               Hi &nbsp;
-              {user?.data?.[0]?.name}
+              {user?.data?.[1]?.name}
               <br />
               here are the glimpse of your feedback shared with us.
             </h2>
             <ul className="feedback__list">
-              <Cards  handleCallback={Callback} />
+              {
+              data.map((item, index) => {
+                return <Cards  key={index} item={item}  userData = {user.data} />
+              })
+              
+              }
             </ul>
           </div>
         </div>
+        
       </main>
     </>
   );

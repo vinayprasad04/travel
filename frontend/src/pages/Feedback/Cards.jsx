@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React,{useState} from "react";
 import EventBanner from "../../assets/img/Event-Banner.png";
 import overwhelmed from "../../assets/img/overwhelmed.svg";
 import appreciation from "../../assets/img/appreciation.svg";
@@ -7,73 +7,32 @@ import dissappointed from "../../assets/img/disappointed.svg";
 import anger from "../../assets/img/anger.svg";
 import joy from "../../assets/img/joy.svg";
 
-import axios from "axios";
+ import {createSlice} from '@reduxjs/toolkit';
+ 
+ const initialState  = { 
+    isOpen : false,
 
-function Cards(props) {
-
-  const [data, setData] = useState([]);
-
-  const emotion = [
-    overwhelmed,
-    joy,
-    appreciation,
-    anger,
-    dissappointed,
-    boredom,
-  ];
-
-
-  // Get all Data
-  const getData = () => {
-    axios
-      .get("http://localhost:5000/getData")
-      .then((res) => {
-        // console.log(res.data.feedbackData);
-        setData(res.data.feedbackData);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+ }
+ const modalSlice = createSlice({
+     name: 'modal',
+     initialState,
+     reducer : {
+      openModal : (state, action) =>{
+        state.isOpen = true;
+      },
+      closeModal : (state, action)=>{
+        state.isOpen = false;
+      }
+     }
+ })
 
 
+function Cards({item}) {
 
-  // Remove Data
-  const removeData = () => {
-    axios
-      .get("http://localhost:5000/removeData")
-      .then((res) => {})
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-
-  // Add Data
-  const addData = () => {
-    axios
-      .get("http://localhost:5000/addData")
-      .then((res) => {
-        console.log("addData", res);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
-//console.log("Main Data: ", data);
-
-  useEffect(() => {
-    getData();
-    // removeData();
-    // addData();
-  }, []);
-
+  const [modal, setModal] = useState(false);
+  
   return (
     <>
-      {
-      data.map((val, item) => {
-        return (
           <li className="feedback__list--item" key={item}>
             <div className="feedback__list--image">
               <div className="card--image">
@@ -81,27 +40,27 @@ function Cards(props) {
               </div>
 
               <div className="card--text">
-                <h4>{val.eventname}</h4>
-                <p>{val.eventdate}</p>
+                <h4>{item.eventname}</h4>
+                <p>{item.eventdate}</p>
 
                 <div className="card--review">
-                  <a>{val.eventreview} reviews</a>
+                  <a>{item.eventreview} reviews</a>
                   <div className="icon">
                     <span className="icon-star"></span>
-                    {props.handleCallback(val.eventrating)}
+                    {item.eventrating}
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="feedback__list--content">
-              <div className="card--date"> {val.eventdate} </div>
-
-              {val.emotions ? (
+              <div className="card--date"> {item.eventdate} </div>
+              {
+              item.emotions ? (
                 <>
-                  <h3 className="card--title">{val.eventtitle}</h3>
+                  <h3 className="card--title">{item.eventtitle}</h3>
                   <div className="card--description">
-                    {val.eventdescription}
+                    {item.eventdescription}
                   </div>
                 </>
               ) : (
@@ -111,32 +70,73 @@ function Cards(props) {
                     share your experience with us to serve you better next time.
                   </h3>
                 </>
-              )}
+              )
+              }
               <ul className="emotion__list">
-                {val.emotions ? (
-                  emotion.map((vl, index) => {
-                    return (
-
-                      <li className="emotion__list--item" key={index}>
-                        <img src={vl} alt="" />
-                      </li>
-                    );
-                  })
+                {          
+                item.emotions ? (
+                  <>
+                    <li className={item.eventrating === 5 ? "emotion__list--item active" : "emotion__list--item" } >
+                      <img src={overwhelmed} alt="" />
+                    </li>
+                    <li  className={item.eventrating === 4 ? "emotion__list--item active" : "emotion__list--item" }>
+                      <img src={joy} alt="" />
+                    </li>
+                    <li  className={item.eventrating === 3 ? "emotion__list--item active" : "emotion__list--item" }>
+                      <img src={appreciation} alt="" />
+                    </li>
+                    <li  className={item.eventrating === 2 ? "emotion__list--item active" : "emotion__list--item" }>
+                      <img src={boredom} alt="" />
+                    </li>
+                    <li className={item.eventrating === 1 ? "emotion__list--item active" : "emotion__list--item" }>
+                      <img src={dissappointed} alt="" />
+                    </li>
+                    <li  className={item.eventrating === 0   ? "emotion__list--item active" : "emotion__list--item" }>
+                      <img src={anger} alt="" />
+                    </li>
+                  </>
                 ) : (
-                  <button className="btn btn__black">
-                    Add a review
-                  </button>
+                  <button className="btn btn__black" >
+                    Add a review</button>
                 )}
               </ul>
             </div>
           </li>
-        );
-      })}
+       
+    
     </>
   );
 }
 
 export default Cards;
+
+/* <li className="emotion__list--item" key={index}>
+<img
+  src={vl}
+  alt=""
+/>
+</li> */
+
+// emotions
+// emotion.map((vl, index) => {
+//   console.log("vl" , vl);
+
+//   console.log("Val.emotions", item.emotions); // true
+
+//   const styleVibeOMeter = item.emotions ? "active" : " ";
+
+//   return (
+//     <>
+//       <li className= {`emotion__list--item active ${styleVibeOMeter}` } key={index}>
+//         <img
+//           src={vl}
+//           alt="emojis"
+//         />
+//       </li>
+//     </>
+//   );
+// })
+// )
 
 // Dummy Data :
 
@@ -150,7 +150,7 @@ export default Cards;
 //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
 //     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
 //     reviews: 123,
-//     rating: 5.0,
+//     item.eventrating: 5.0,
 //   },
 
 //   {
@@ -161,7 +161,7 @@ export default Cards;
 //     description: false,
 //     emotion: false,
 //     reviews: 123,
-//     rating: 5.0,
+//     item.eventrating: 5.0,
 //   },
 
 //   {
@@ -173,7 +173,7 @@ export default Cards;
 //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
 //     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
 //     reviews: 123,
-//     rating: 5.0,
+//     item.eventrating: 5.0,
 //   },
 
 //   {
@@ -185,7 +185,7 @@ export default Cards;
 //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
 //     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
 //     reviews: 123,
-//     rating: 5.0,
+//     item.eventrating: 5.0,
 //   },
 //   {
 //     date: "Nov 10-29,2022",
@@ -196,7 +196,7 @@ export default Cards;
 //       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
 //     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
 //     reviews: 123,
-//     rating: 5.0,
+//     item.eventrating: 5.0,
 //   },
 // ];
 

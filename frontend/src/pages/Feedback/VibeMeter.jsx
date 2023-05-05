@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-// import vibeometer from "../../assets/img/vibe-o-meter.svg";
+import React from "react";
 import GaugeChart from "react-gauge-chart";
 
 // EMOJIS
@@ -13,17 +12,31 @@ import joy from "../../assets/img/joy.svg";
 import "./arc.css";
 
 function VibeMeter(props) {
-  const [emotions, setEmotions] = useState(0);
+  // const [emotions, setEmotions] = useState(0);
 
   const emoji = [overwhelmed, joy, appreciation, anger, dissappointed, boredom];
 
-  console.log(props.currentEmotion);
+  console.log("Current Emotions of User ", props.currentEmotion);
+
+  let value;
+
+  if(props.currentEmotion === 0){
+    value=100;
+  }else if(props.currentEmotion === 1){
+    value=85;
+  }else if(props.currentEmotion === 2){
+    value=65;
+  }else if(props.currentEmotion === 3){
+    value=40;
+  }else if(props.currentEmotion === 4){
+    value=25;
+  }else{
+    value = 5;
+  }
 
 
+console.log("Current Value of value : ", value);
 
-  // const [emotions , setEmotions] = useState("");
-
-  let val = 70;
 
   return (
     <>
@@ -53,7 +66,7 @@ function VibeMeter(props) {
           arcWidth={0.2}
           cornerRadius={0}
           arcPadding={0.007}
-          percent={val / 100}
+          percent={value / 100}
           hideText={true}
           needleBaseColor="black"
           needleColor="black"
@@ -77,7 +90,7 @@ colors={[
   "#ffb03a",
   "#ff385c",
 ]}
-arcWidth={0.2}
+arcWidth={0.2} 
 cornerRadius={0}
 percent={0.001}
 arcPadding={0.007}
