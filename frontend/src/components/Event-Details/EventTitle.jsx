@@ -1,26 +1,21 @@
 import axios from "axios";
 import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 import { Rating } from "react-simple-star-rating";
 
 const EventTitle = ({ eventData, id, reviewData }) => {
+  const avgRatingData = useFetch(
+    `http://localhost:8080/api/user-reviews/average/${id}`
+  );
+
+  const avgRating = avgRatingData?.[0]?.data;
+
   let content = "review";
   const reviewLength = reviewData?.[0]?.reviews.length;
 
   if (reviewLength > 1) {
     content = "reviews";
-  }
-
-  let sum = 0;
-  let avgRating;
-
-  const avgRatingData = reviewData?.[0]?.reviews.map((item) => {
-    sum += item.rating;
-    return sum;
-  });
-
-  if (avgRatingData) {
-    avgRating = avgRatingData?.slice(-1)[0] / reviewLength;
   }
 
   useEffect(() => {
@@ -32,6 +27,7 @@ const EventTitle = ({ eventData, id, reviewData }) => {
       });
     }
   }, [avgRating, id]);
+
   return (
     <Fragment>
       {" "}

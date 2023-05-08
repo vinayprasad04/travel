@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect } from "react";
+import useFetch from "../../hooks/useFetch";
 import overwhelmed from "../../assets/img/overwhelmed.svg";
 import joy from "../../assets/img/joy.svg";
 import appreciation from "../../assets/img/appreciation.svg";
@@ -14,17 +15,14 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
 
   const category = eventData?.[0]?.aboutevent?.category;
 
-  const reviewLength = reviewData?.[0]?.reviews.length;
-
-  let sum = 0;
   let srcemoji;
 
-  const avgRatingData = reviewData?.[0]?.reviews.map((item) => {
-    sum += item.rating;
-    return sum;
-  });
+  const avgRatingData = useFetch(
+    `http://localhost:8080/api/user-reviews/average/${id}`
+  );
 
-  const avgRating = avgRatingData?.slice(-1)[0] / reviewLength;
+  const avgRating = avgRatingData?.[0]?.data;
+
   const floorAvgRating = Math.floor(avgRating);
 
   let viboMeterData;
@@ -77,7 +75,7 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
         },
       });
     }
-  }, [viboMeterData, srcemoji, id]);
+  }, [viboMeterData, srcemoji]);
 
   useEffect(() => {
     console.log(

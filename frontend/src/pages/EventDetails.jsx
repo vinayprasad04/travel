@@ -122,6 +122,7 @@ const EventDetails = () => {
             </h2>
             <div className="card__grid">
               <EventRecommendation
+                id={id}
                 eventRecommendation={eventRecommendation}
                 eventRecommendationReviews={eventRecommendationReviews}
                 scheduledDataRecommendation={scheduledDataRecommendation}

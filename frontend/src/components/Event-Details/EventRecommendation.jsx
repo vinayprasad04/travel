@@ -1,45 +1,38 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
+import useFetch from "../../hooks/useFetch";
 import imgCard from "../../assets/img/Image119.jpg";
 import emoji from "../../assets/img/overwhelmed.svg";
 
-const EventRecommendation = ({
-  eventRecommendationReviews,
-  scheduledDataRecommendation,
-}) => {
-  let eventRecommendedReviewsData = [];
+const EventRecommendation = ({ id }) => {
+  const recommendations = useFetch(
+    `http://localhost:8080/api/user-reviews/recommendation/${id}`
+  );
 
-  eventRecommendationReviews?.map((item) => {
-    let sum = 0;
-    const reviewLength = item?.reviews.length;
-    item.reviews.map((e) => {
-      sum += e.rating;
-    });
+  const [favourites, setFavourites] = useState([]);
+  const [toggleFavourite, setToggleFavourite] = useState(false);
 
-    if (
-      Math.floor(sum / reviewLength) === 5 ||
-      Math.floor(sum / reviewLength) === 4
-    ) {
-      eventRecommendedReviewsData.push(sum / reviewLength);
+  const recommended = recommendations?.[0]?.data;
+
+  const handeFavourite = (e, index) => {
+    e.preventDefault();
+
+    setToggleFavourite(!toggleFavourite);
+    console.log(toggleFavourite, "aaaa");
+
+    if (!toggleFavourite && favourites.length > 0) {
+      console.log("kl");
+      setFavourites((prev) => {
+        return [favourites.pop()];
+      });
+    } else {
+      setFavourites((prev) => {
+        console.log("pri");
+        return [...prev, recommended[index]];
+      });
     }
-  });
+  };
 
-  const sortedArray = eventRecommendedReviewsData.sort().reverse();
-
-  let eventsArray = [];
-
-  eventRecommendationReviews?.map((item, i) => {
-    scheduledDataRecommendation?.map((element) => {
-      for (let i = 0; i < sortedArray.length; i++) {
-        if (parseInt(sortedArray[i]) === element.eventrating) {
-          eventsArray.push(element);
-          break;
-        }
-      }
-    });
-  });
-
-  const uniq = [...new Set(eventsArray)];
-
+  console.log("fav", favourites);
   // const cardData = [
   //   // dummy data
   //   {
@@ -127,13 +120,19 @@ const EventRecommendation = ({
   return (
     <Fragment>
       {" "}
-      {uniq &&
-        uniq.map((item) => {
+      {recommended &&
+        recommended.map((item, index) => {
           return (
             <div className="card__item">
               <a href="#" className="card__link">
                 <div className="card__thumb">
-                  <button className="card__fav">
+                  <button
+                    key={index}
+                    className="card__fav"
+                    onClick={(e) => {
+                      handeFavourite(e, index);
+                    }}
+                  >
                     <span className="icon-heart"></span>
                   </button>
                   <img src={imgCard} alt="event name" className="card__img" />
