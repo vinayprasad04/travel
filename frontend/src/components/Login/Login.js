@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 // import 'D:/travel/frontend/src/assets/styles/Area.css'
-
+import "./Login.css";
 import logoBlack from "D:/travel/frontend/src/assets/img/logoBlack.svg";
 import {Link} from 'react-router-dom';
-import './signUp.css'
+
 import axios from "axios";
 import { useFormik } from "formik";
 import { signUpSchenam } from "../schemas";
@@ -18,7 +18,7 @@ const initialValues = {
   confirmpassword: "",
 }
 
-export default function SignUp() {
+export default function Login() {
   //  const [formValue,setFormValue] = useState({email:'',phone:'',password:''});
   const [message, setMessage] = useState("");
 
@@ -46,14 +46,8 @@ export default function SignUp() {
         showConfirmButton: false,
         timer: 1500
     })
-     const res = axios.post("http://localhost:4000/adduser",values)
+     const res = axios.post("http://localhost:4000/loginUser",values)
     .then(response=>{setMessage(response.values)});
-    //--------------------------------------------------------------------//
-    // if(errors.email==="" && errors.phone==="" && errors.password===""){
-    //   axios.post('http://localhost:8081/signup',values)
-    //   .then(res => console.log(res))
-    //   .catch(err => console.lof(err));
-    // }
 
    
        
@@ -129,23 +123,23 @@ export default function SignUp() {
     
     <img className="bg-image" src={Neom}></img>
     
-    <div className="ar" >
+    <div className="area" >
       <div className="imager">
-        <img className="logo" src={logoBlack} alt="dfg" />
+        <img className="m-logo" src={logoBlack} alt="dfg" />
       </div>
 
       <div
-        className="parghr"
+        className="pargh"
         style={{ display: "flex", justifyContent: "center" }}
       >
-        <p> Create your Account </p>
+        <p> Enter your Login name and Password </p>
       </div>
       <form onSubmit={handleSubmit}>
         <div>
           <input
             // onChange={handleInput}
             placeholder="Email"
-            className="N-Email"
+            className="Nm-Email"
             name="email"
             type="text"
             // {...register("username",{required:true})}
@@ -156,7 +150,7 @@ export default function SignUp() {
         </div>
         {errors.email && touched.email ? (
         <p className="error-para" >{errors.email}</p>) : null }
-        <div>
+        {/* <div>
           <input
             placeholder="Phone Number"
             // value={formValue.phone}
@@ -169,15 +163,15 @@ export default function SignUp() {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-        </div>
-        {errors.phone && touched.phone ? (
-        <p className="error-para">{errors.phone}</p>) : null }
+        </div> */}
+        {/* {errors.phone && touched.phone ? (
+        <p className="error-para">{errors.phone}</p>) : null } */}
         <div>
           <input
             placeholder="Password"
             // value={formValue.password}
             // onChange={handleInput}
-            className="N-Password"
+            className="Nm-Password"
             name="password"
             type="password"
             // {...register("phonenumber",{required:true})}
@@ -188,7 +182,7 @@ export default function SignUp() {
         </div>
         {errors.password && touched.password ? (
         <p className="error-para">{errors.password}</p>) : null }
-        <div>
+        {/* <div>
           <input
             placeholder="Confirm Password"
             // value={formValue.password}
@@ -201,21 +195,21 @@ export default function SignUp() {
             onChange={handleChange}
             onBlur={handleBlur}
           />
-        </div>
-        {errors.confirmpassword && touched.confirmpassword ? (
-        <p className="error-para">{errors.confirmpassword}</p>) : null }
+        </div> */}
+        {/* {errors.confirmpassword && touched.confirmpassword ? (
+        <p className="error-para">{errors.confirmpassword}</p>) : null } */}
         <div className="link">
           <Link
             style={{ fontFamily: "BrownLight", fontSize: "1rem" }}
-            to="/login"
+            to="/SignUp"
             
           >
-            LogIn
+            Create a New Account
           </Link>
         </div>
 
         <div>
-          <button type="submit" className="bnt">
+          <button type="submit" className="bnton">
             CREATE
           </button>
         </div>

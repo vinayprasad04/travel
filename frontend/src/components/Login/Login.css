@@ -1,14 +1,14 @@
-.ar{
+.area{
     width: 28rem;
-    height: 35rem;
+    height: 27rem;
     background-color: rgb(216, 230, 225);
-    padding: 10px 50px;
+    padding: 30px 50px;
     margin-left: 480px;
     border: 2px solid rgb(214, 224, 214);
     border-radius: 7px;
     box-shadow: 5px 5px 70px 10px rgb(99, 100, 100);
     position: absolute;
-    bottom: 50px;
+    bottom: 100px;
     opacity: 1;
     margin-top: 5.5rem;
     
@@ -26,7 +26,7 @@
    
 }
 
-.parghr{
+.pargh{
     margin-top: 1rem;
     margin-bottom: 2.5rem;
     color: rgb(63, 56, 56);
@@ -38,11 +38,11 @@
     padding-bottom: 1rem;
 }    
 
-.logo{
+.m-logo{
     margin-left: 7.5rem;
     margin-top: -1rem;
 }
-.N-Email{
+.Nm-Email{
     margin-top: -2rem;
     width: 23rem;
     height: 2.5rem;
@@ -79,7 +79,7 @@
 .Phn:hover{
     border-color: rgb(231, 26, 26);
 }
-.N-Password{
+.Nm-Password{
     margin-top: 0rem;
     width: 23rem;
     height: 2.5rem;
@@ -115,7 +115,7 @@
 .C-Password:hover{
     border-color: rgb(231, 26, 26);
 }
-.bnt{
+.bnton{
     border-radius: 4px;
     background-color: #eb4462;
     border-color: #d15d5d;
@@ -137,7 +137,7 @@
     justify-content: center;
     
 }
-.bnt{
+.bnton{
     margin-top: 1rem;
     padding: 10px 29px;
     font-size: 16.5px;
@@ -149,10 +149,10 @@
     border: none;
     border-radius: 5px;
 }
-.bnt:hover{
+.bnton:hover{
     background-color: #da1e40
 }
-.bnt:active {
+.bnton:active {
     background-color: #e47589;
    
     
