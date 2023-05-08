@@ -1,6 +1,7 @@
 const sequelize = require("../config/db");
 const Event = require("../models/eventsModel");
 const Review = require("../models/reviewModel");
+const ScheduledEvent = require("../models/scheduledEvent");
 const User = require("../models/userModel");
 
 User.hasMany(Review, {
@@ -58,4 +59,76 @@ const reviewGet = async (req, res) => {
   }
 };
 
-module.exports = { reviewPost, reviewGet };
+const reviewAverage = async (req, res) => {
+  try {
+    let sum = 0,
+      avg;
+    const { id } = req.params;
+    const reviews = await Event.findAll({
+      include: [{ model: Review, attributes: ["rating"] }],
+      where: { eventid: id },
+    });
+
+    const ratings = reviews
+      .map((event) => event.reviews.map((review) => review.rating))
+      .flat();
+
+    for (let i = 0; i < ratings.length; i++) {
+      sum += ratings[i];
+    }
+    avg = sum / ratings.length;
+
+    res.status(200).json(avg);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const recommendation = async (req, res) => {
+  try {
+    let recommendedRating = [];
+    let eventData = [];
+    let uniq;
+    const { id } = req.params;
+    const reviews = await Event.findAll({
+      include: [{ model: Review }],
+    });
+
+    const filteredEvents = reviews.filter(
+      (event) => event.eventid !== Number(id)
+    );
+    const ratings = filteredEvents.map((event) => event.eventrating).flat();
+
+    for (let i = 0; i < ratings.length; i++) {
+      if (Number(ratings[i]) === 5 || Number(ratings[i]) === 4) {
+        recommendedRating.push(ratings[i]);
+      }
+    }
+    recommendedRating.sort().reverse();
+
+    const scheduledData = await Event.findAll({
+      include: ScheduledEvent,
+    });
+
+    const filteredScheduledData = scheduledData.filter(
+      (event) => event.eventid !== Number(id)
+    );
+
+    filteredScheduledData?.map((element) => {
+      for (let i = 0; i < recommendedRating.length; i++) {
+        if (parseInt(recommendedRating[i]) === parseInt(element.eventrating)) {
+          eventData.push(element);
+          break;
+        }
+      }
+    });
+
+    uniq = [...new Set(eventData)];
+
+    res.status(200).json(uniq);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { reviewPost, reviewGet, reviewAverage, recommendation };
