@@ -16,7 +16,7 @@ function VibeMeter(props) {
 
   const emoji = [overwhelmed, joy, appreciation, anger, dissappointed, boredom];
 
-  console.log("Current Emotions of User ", props.currentEmotion);
+//  console.log("PROPS: ", props);
 
   let value;
 
@@ -35,7 +35,7 @@ function VibeMeter(props) {
   }
 
 
-console.log("Current Value of value : ", value);
+
 
 
   return (

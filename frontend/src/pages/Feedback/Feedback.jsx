@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "./Cards";
 import VibeOMeter from "./VibeMeter";
+
 function Feedback() {
   const [user, setUser] = useState([]);
   const [rating, setRating] = useState();
   const [ratingArray, setRatingArray] = useState([]);
   const [data, setData] = useState([]);
-
 
   // Users
   const users = async () => {
@@ -21,7 +21,6 @@ function Feedback() {
       });
   };
 
-
   // Add Data
   const addData = () => {
     axios
@@ -34,7 +33,6 @@ function Feedback() {
       });
   };
 
-
   // Remove Data
   const removeData = () => {
     axios
@@ -45,21 +43,17 @@ function Feedback() {
       });
   };
 
-
-    // Get all Data 
-    const getData = () => {
-      axios
-        .get("http://localhost:5000/getData")
-        .then((res) => {
-          setData(res.data.feedbackData);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-  
-
-
+  // Get all Data
+  const getData = () => {
+    axios
+      .get("http://localhost:5000/getData")
+      .then((res) => {
+        setData(res.data.feedbackData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   // Emotions
 
@@ -69,10 +63,7 @@ function Feedback() {
       .then((res) => {
         // Event Rating
         setRatingArray(res.data);
-
-        console.log("Card Data->:  ", res.data);
         let sum = 0;
-
         for (let i = 0; i < res.data.length; i++) {
           sum = sum + parseFloat(res.data[i].eventrating);
         }
@@ -88,23 +79,37 @@ function Feedback() {
       });
   };
 
-
-
   let feeling;
 
-  if (rating >= 4 && rating < 5) {
-    feeling = "joy";
-  } else if (rating >= 3 && rating < 4) {
-    feeling = "appreciation";
-  } else if (rating >= 2 && rating < 3) {
-    feeling = "boredom";
-  } else if (rating >= 1 && rating < 2) {
-    feeling = "dissapointed";
-  } else {
-    feeling = "anger";
+  // if (rating >= 4 && rating < 5) {
+  //   feeling = "joy";
+  // } else if (rating >= 3 && rating < 4) {
+  //   feeling = "appreciation";
+  // } else if (rating >= 2 && rating < 3) {
+  //   feeling = "boredom";
+  // } else if (rating >= 1 && rating < 2) {
+  //   feeling = "dissapointed";
+  // } else {
+  //   feeling = "anger";
+  // }
+
+  // if (rating === 5) {
+  //   feeling = "overwhelmed";
+  // }
+
+  if (rating > 0 && rating < 1) {
+    feeling = "angry";
   }
 
-  if (rating === 5) {
+  if (rating >= 1 && rating < 2) {
+    feeling = "dissapointed";
+  } else if (rating >= 2 && rating < 3) {
+    feeling = "boredom";
+  } else if (rating >= 3 && rating < 4) {
+    feeling = "appreciation";
+  } else if (rating >= 4 && rating < 5) {
+    feeling = "joy";
+  } else {
     feeling = "overwhelmed";
   }
 
@@ -112,7 +117,7 @@ function Feedback() {
   console.log("Calculated Rating---> ", rating);
 
   useEffect(() => {
-    getData()
+    getData();
   }, []);
 
   useEffect(() => {
@@ -120,9 +125,7 @@ function Feedback() {
     users();
   }, []);
 
-
-
-  console.log("USER DATA : ", user.data);
+  console.log("Rating: ", rating);
 
   return (
     <>
@@ -138,7 +141,6 @@ function Feedback() {
                         src={require(`../../assets/img/${feeling}.svg`)}
                         alt="Emoji"
                       />
-                      {/* <p>Rating{rating}</p> */}
                     </div>
                     <h2 className="feedback__banner--title">
                       {feeling} experience
@@ -154,8 +156,6 @@ function Feedback() {
                 </div>
 
                 <div className="col_sm_12 col_md_12 col_lg_6">
-                  {/* Vibe-o-meter  */}
-                  {/* <VibeOMeter currentEmotion = {overwhelmed} /> */}
                   <VibeOMeter currentEmotion={rating} />
                 </div>
               </div>
@@ -170,21 +170,18 @@ function Feedback() {
           <div className="container">
             <h2 className="feedback__title">
               Hi &nbsp;
-              {user?.data?.[1]?.name}
+              {/* {user?.data?.[1]?.name} */}
+              Punit
               <br />
               here are the glimpse of your feedback shared with us.
             </h2>
             <ul className="feedback__list">
-              {
-              data.map((item, index) => {
-                return <Cards  key={index} item={item}  userData = {user.data} />
-              })
-              
-              }
+              {data.map((item, index) => {
+                return <Cards key={index} item={item} userData={user.data} />;
+              })}
             </ul>
           </div>
         </div>
-        
       </main>
     </>
   );
