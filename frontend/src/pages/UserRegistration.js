@@ -9,8 +9,9 @@ import logo from "../assets/img/logo-black.svg";
 
 import Input from "../components/Input";
 import { UserRegistrationSchema } from "../schemas/UserRegistrationSchema";
-import LoginSuccess from "../components/Alerts/LoginSuccess";
+import Success from "../components/Alerts/Success";
 import { login } from "../redux/features/LoginSlice";
+import Failure from "../components/Alerts/Failure";
 
 const UserRegistration = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const UserRegistration = () => {
       })
       .catch((err) => {
         console.log(err);
+        Failure();
       });
   };
 
@@ -43,7 +45,7 @@ const UserRegistration = () => {
     onSubmit: (values) => {
       console.log(values);
       registerHandler(values);
-      LoginSuccess();
+      Success("Registered Successfully");
     },
   });
 

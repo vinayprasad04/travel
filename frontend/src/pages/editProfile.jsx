@@ -3,7 +3,7 @@ import ProfileImg from "../assets/img/music.png";
 import { useFormik } from "formik";
 import { validation } from "../components/profileValidation";
 import axios from "axios";
-import { DatePicker, Select } from "antd";
+import { DatePicker } from "antd";
 
 const EditProfile = () => {
   const [date, setDate] = useState();

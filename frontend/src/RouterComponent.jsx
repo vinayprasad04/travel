@@ -1,23 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
+import { useSelector } from "react-redux";
+
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 import Favorites from "./pages/Favorites";
+import Home from "./pages/Home";
 import Notifications from "./pages/Notifications";
 import Profile from "./pages/Profile";
 import Feedback from "../src/pages/Feedback/Feedback";
 import Setting from "./pages/Setting";
 import Login from "./pages/Login";
 import EditProfile from "./pages/editProfile";
-import ModalForm from "./components/modalForm/ModalForm";
-import { useSelector } from "react-redux";
 import UserRegistration from "./pages/UserRegistration";
+import Recommendations from "./pages/Recommendations";
 
 const RouterComponent = () => {
   const IsLogin = useSelector((state) => state.userLogin.isLoggedIn);
   console.log(IsLogin);
-
   const token = localStorage.getItem("Token");
 
   return (
@@ -25,7 +26,7 @@ const RouterComponent = () => {
       <>
         <Navbar />
         <Routes>
-          {token ? (
+          {token || IsLogin ? (
             <>
               <Route path="/home" element={<Home />} />
               <Route path="/favorites" element={<Favorites />} />
@@ -35,7 +36,7 @@ const RouterComponent = () => {
               <Route path="/feedback" element={<Feedback />} />
               <Route path="/setting" element={<Setting />} />
               <Route path="/edit-profile" element={<EditProfile />} />
-              <Route path="/addreview" element={<ModalForm />} />
+              <Route path="/recommendations" element={<Recommendations />} />
             </>
           ) : (
             <>

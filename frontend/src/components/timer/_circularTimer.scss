@@ -1,0 +1,16 @@
+.Circular-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  font-size: 20px;
+}
+
+@font-face {
+  font-family: Ivymode;
+  src: url("../../assets/fonts/IvyMode-Regular.ttf");
+}
+
+span {
+  font-family: Ivymode;
+}
