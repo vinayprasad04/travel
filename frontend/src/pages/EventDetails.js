@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { swiperHandle } from "../assets/js/swiper-handle.js";
 import "../assets/scss/index.css";
 import "../assets/scss/swiper-bundle.min.css";
-import RatingCard from "../components/Event-Details/RatingCard.jsx";
-import EventRecommendation from "../components/Event-Details/EventRecommendation.jsx";
-import EventImage from "../components/Event-Details/EventImage.jsx";
-import ViboMeter from "../components/Event-Details/ViboMeter.jsx";
-import EventDescription from "../components/Event-Details/EventDescription.jsx";
-import EventReserveForm from "../components/Event-Details/EventReserveForm.jsx";
-import EventTitle from "../components/Event-Details/EventTitle.jsx";
+import RatingCard from "../components/Event-Details/RatingCard.js";
+import EventRecommendation from "../components/Event-Details/EventRecommendation.js";
+import EventImage from "../components/Event-Details/EventImage.js";
+import ViboMeter from "../components/Event-Details/ViboMeter.js";
+import EventDescription from "../components/Event-Details/EventDescription.js";
+import EventReserveForm from "../components/Event-Details/EventReserveForm.js";
+import EventTitle from "../components/Event-Details/EventTitle.js";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getEventOperations,
@@ -17,11 +17,26 @@ import {
   getScheduledEvents,
   getUserReviews,
 } from "../store/dataStore.js";
-import EventOperation from "../components/Event-Details/EventOperation.jsx";
+import EventOperation from "../components/Event-Details/EventOperation.js";
 
 const EventDetails = () => {
+  const recSliderRef = useRef(null);
+
+  const setRecSlider = () => {
+    let wWidth = window.innerWidth,
+      cWidth = recSliderRef.current?.offsetWidth,
+      marg = wWidth - cWidth;
+    if (wWidth > 767) {
+      recSliderRef.current.style.margin = "0px";
+      recSliderRef.current.style.marginLeft = marg + "px";
+    } else {
+      recSliderRef.current.style.margin = "0 16px";
+    }
+  };
+
   useEffect(() => {
     swiperHandle();
+    setRecSlider();
   }, []);
 
   const review = useSelector((state) => state.reviews);
@@ -101,7 +116,7 @@ const EventDetails = () => {
         </div>
         {/* 
 <!-- Recommendations --> */}
-        <div className="recSlider recSlider--ratingCards">
+        <div className="recSlider recSlider--ratingCards" ref={recSliderRef}>
           <div className="swiper tailored">
             <div className="swiper-wrapper">
               <RatingCard reviewData={reviewData} />

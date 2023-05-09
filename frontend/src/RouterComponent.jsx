@@ -10,6 +10,7 @@ import Feedback from "./pages/Feedback";
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
 import EventDetails from "./pages/EventDetails";
+import UpcomingEvent from "./pages/UpcomingEvent";
 
 const RouterComponent = () => {
   return (
@@ -18,7 +19,7 @@ const RouterComponent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/favorites" element={<Favorites />} />
-        <Route path="/upcoming-events" element={<Favorites />} />
+        <Route path="/upcoming-events" element={<UpcomingEvent />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/feedback" element={<Feedback />} />

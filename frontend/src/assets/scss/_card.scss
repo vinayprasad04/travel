@@ -60,6 +60,25 @@
       color: $primary;
     }
   }
+  &__addFav {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary;
+    background-color: transparent;
+    font-size: 1.2rem;
+    padding: 0;
+    transition: color 300ms ease;
+    z-index: 1;
+    cursor: pointer;
+  }
+
   &__remove {
     position: absolute;
     top: 20px;

@@ -16,7 +16,6 @@ const useFetch = (url) => {
     fetch();
   }, [url]);
 
-  // console.log(data);
   return [data];
 };
 

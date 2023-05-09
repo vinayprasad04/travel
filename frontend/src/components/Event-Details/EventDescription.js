@@ -1,6 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
-
-import pic from "../../assets/img/overwhelmed.svg";
+import React, { Fragment } from "react";
 import { useSelector } from "react-redux";
 
 const EventDescription = ({ eventData }) => {

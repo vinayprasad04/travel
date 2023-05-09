@@ -13,6 +13,12 @@ const initialOperationManageData = {
   operations: [],
   error: "",
 };
+const initialFavourites = {
+  loading: false,
+  favourites: [],
+  error: "",
+};
+
 const initialExperience = { experience: [] };
 
 export const getEventsData = createAsyncThunk("events/getEventsData", () => {
@@ -129,6 +135,16 @@ const experienceSlice = createSlice({
   },
 });
 
+const favouritesSlice = createSlice({
+  name: "favourites",
+  initialState: initialFavourites,
+  reducers: {
+    getFavourites(state, action) {
+      state.favourites = action.payload;
+    },
+  },
+});
+
 const store = configureStore({
   reducer: {
     events: eventsSlice.reducer,
@@ -136,8 +152,11 @@ const store = configureStore({
     schedules: scheduledEventsSlice.reducer,
     operations: eventOperationsSlice.reducer,
     experience: experienceSlice.reducer,
+    favourites: favouritesSlice.reducer,
   },
 });
 
 export const experienceActions = experienceSlice.actions;
+export const favouritesActions = favouritesSlice.actions;
+
 export default store;

@@ -61,8 +61,6 @@ const ViboMeter = ({ reviewData, id, eventData }) => {
     }
   }
 
-  console.log("let", viboMeterData);
-
   useEffect(() => {
     if (viboMeterData) {
       const url = `http://localhost:8080/api/event-update/update/${id}`;
