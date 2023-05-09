@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import banner from "../assets/img/banner.jpg";
 import CircularTimer from "../components/timer/CircularTimer";
+import axios from "axios";
 
 const Recommendations = () => {
+  const [events, setEvents] = useState();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4000/events")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <main className="content home recommendation--page">
       {" "}
@@ -14,7 +28,7 @@ const Recommendations = () => {
             <div className="swiper-wrapper">
               {/* <!-- Slides --> */}
               <div className="swiper-slide">
-                <img src={banner} alt="event title" />
+                <img className="banner_img" src={banner} alt="event title" />
                 <div className="banner__info">
                   <h2 className="banner__info__title">
                     Medusa's <br />
