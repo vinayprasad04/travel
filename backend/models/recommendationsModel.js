@@ -30,23 +30,4 @@ const Recommendation = sequelize.define("recommendations", {
   },
 });
 
-// console.log("Starting transaction...");
-// sequelize
-//   .transaction((t) => {
-//     console.log("Inside transaction...");
-//     return Recommendation.sync({ transaction: t })
-//       .then(() => {
-//         console.log("Table created successfully.");
-//       })
-//       .catch((error) => {
-//         console.error("Unable to create the table:", error);
-//       });
-//   })
-//   .then(() => {
-//     console.log("Transaction completed successfully.");
-//   })
-//   .catch((error) => {
-//     console.error("Transaction failed:", error);
-//   });
-
 module.exports = Recommendation;

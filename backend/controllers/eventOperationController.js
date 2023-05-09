@@ -48,9 +48,6 @@ const eventOperationGet = async (req, res) => {
       include: EventOperation,
     });
 
-    // const eventsWithReviews = await Event.findAll({
-    //   include: [{ model: Review, include: [{ model: User }] }],
-    // });
     res.status(200).json(operations);
   } catch (error) {
     res.status(400).json({ error: error.message });
