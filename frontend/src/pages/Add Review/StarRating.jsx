@@ -1,28 +1,22 @@
 import React, { useState } from "react";
-// import starEmpty from "../../assets/img/star-regular.svg";
-// import starFilled from "../../assets/img/star_filled.svg";
+
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import { colors } from "@mui/material";
 
 function StarRating(props) {
+  const { setRating, name } = props;
 
-const {setRating,name} = props
+  const [starvalue, setStarValue] = useState(0);
 
-//   const [rating, setRating] = useState(0);
+  const changeHandler = (newValue) => {
+    const data = { name: name, value: newValue };
+    setRating(data.value);
+  };
 
-
-  const [starvalue,setStarValue] = useState(0)
-
-  
-const changeHandler=(newValue)=>{
-    console.log(newValue)
-const data = {name:name,value:newValue}   
-setRating(data)
-}
-  
-
-  
-
+  const my = {
+    color: "#FF385C",
+  };
   return (
     <>
       <div className="star--rating">
@@ -32,14 +26,13 @@ setRating(data)
             value={starvalue}
             precision={0.5}
             onChange={(event, newValue) => {
-                console.log(newValue)
-                setStarValue(newValue);
-                changeHandler(newValue)
-              }}
-           
+              console.log("newValue", newValue);
+              setStarValue(newValue);
+              changeHandler(newValue);
+            }}
+            style={my}
           />
         </Stack>
-      
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import EventBanner from "../../assets/img/Event-Banner.png";
 import overwhelmed from "../../assets/img/overwhelmed.svg";
 import appreciation from "../../assets/img/appreciation.svg";
@@ -9,12 +9,13 @@ import joy from "../../assets/img/joy.svg";
 
 import ModalReview from "../Add Review/ModalReview";
 
-function Cards({ item, userData }) {
-  const [modal, setModal] = useState(false);
 
-  // console.log("USer Data", userData[0].name);
+function Cards({ item, userData, setModal,modal }) {
+  
+  // console.log("item", item);
 
-  console.log("Event Rating Data", item.eventrating);
+
+  // console.log("Event Rating Data", item.eventrating);
 
   return (
     <>
@@ -121,7 +122,7 @@ function Cards({ item, userData }) {
                 Add a review
               </button>
             )}
-            {modal && <ModalReview/> }
+            { modal && <ModalReview setModal={(visible) => setModal(visible)} />}
           </ul>
         </div>
       </li>
@@ -130,104 +131,3 @@ function Cards({ item, userData }) {
 }
 
 export default Cards;
-
-/* <li className="emotion__list--item" key={index}>
-<img
-  src={vl}
-  alt=""
-/>
-</li> */
-
-// emotions
-// emotion.map((vl, index) => {
-//   console.log("vl" , vl);
-
-//   console.log("Val.emotions", item.emotions); // true
-
-//   const styleVibeOMeter = item.emotions ? "active" : " ";
-
-//   return (
-//     <>
-//       <li className= {`emotion__list--item active ${styleVibeOMeter}` } key={index}>
-//         <img
-//           src={vl}
-//           alt="emojis"
-//         />
-//       </li>
-//     </>
-//   );
-// })
-// )
-
-// Dummy Data :
-
-// const cardDescription = [
-//   {
-//     date: "Nov 10-29,2022",
-//     title: "Great experience!",
-//     imageURL: EventBanner,
-//     eventName: "Surfing at leasure",
-//     description:
-//       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
-//     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
-//     reviews: 123,
-//     item.eventrating: 5.0,
-//   },
-
-//   {
-//     date: "Nov 10-29,2022",
-//     title: "Great experience!",
-//     imageURL: EventBanner,
-//     eventName: "Surfing at leasure",
-//     description: false,
-//     emotion: false,
-//     reviews: 123,
-//     item.eventrating: 5.0,
-//   },
-
-//   {
-//     date: "Nov 10-29,2022",
-//     title: "Great experience!",
-//     imageURL: EventBanner,
-//     eventName: "Surfing at leasure",
-//     description:
-//       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
-//     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
-//     reviews: 123,
-//     item.eventrating: 5.0,
-//   },
-
-//   {
-//     date: "Nov 10-29,2022",
-//     title: "Great experience!",
-//     imageURL: EventBanner,
-//     eventName: "Surfing at leasure",
-//     description:
-//       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
-//     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
-//     reviews: 123,
-//     item.eventrating: 5.0,
-//   },
-//   {
-//     date: "Nov 10-29,2022",
-//     title: "Great experience!",
-//     imageURL: EventBanner,
-//     eventName: "Surfing at leasure",
-//     description:
-//       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, seddiam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum",
-//     emotion: [overwhelmed, appreciation, anger, dissappointed, boredom],
-//     reviews: 123,
-//     item.eventrating: 5.0,
-//   },
-// ];
-
-// ('Swimming game for below 18 year kids', 'Hey Charlie, you havent added you feedback yet. Please share your experience with us to serve you better next time!', 'Nov 17, 2022', '123', '5.0'
-// 	  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elit.'
-// , 'false'),
-
-// ('Live comedy Performance in front of live audience', 'Thank you Unified Guests for this great experience!', 'Nov 17, 2022', '123', '5.0'
-// 	  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elit.'
-// , 'true'),
-// ('Surfing at leasure', 'Love all the activities!', 'Nov 17, 2022', '123', '5.0'
-// 	  'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elit.'
-// , 'true')

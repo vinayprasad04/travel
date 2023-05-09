@@ -8,7 +8,10 @@ function Feedback() {
   const [rating, setRating] = useState();
   const [ratingArray, setRatingArray] = useState([]);
   const [data, setData] = useState([]);
+  const [modal, setModal] = useState(false);
 
+
+  
   // Users
   const users = async () => {
     await axios
@@ -68,7 +71,7 @@ function Feedback() {
           sum = sum + parseFloat(res.data[i].eventrating);
         }
 
-        console.log("Resultant Rating : ", Math.floor(sum / res.data.length));
+        // console.log("Resultant Rating : ", Math.floor(sum / res.data.length));
 
         const ratingResult = Math.floor(sum / res.data.length);
 
@@ -80,22 +83,6 @@ function Feedback() {
   };
 
   let feeling;
-
-  // if (rating >= 4 && rating < 5) {
-  //   feeling = "joy";
-  // } else if (rating >= 3 && rating < 4) {
-  //   feeling = "appreciation";
-  // } else if (rating >= 2 && rating < 3) {
-  //   feeling = "boredom";
-  // } else if (rating >= 1 && rating < 2) {
-  //   feeling = "dissapointed";
-  // } else {
-  //   feeling = "anger";
-  // }
-
-  // if (rating === 5) {
-  //   feeling = "overwhelmed";
-  // }
 
   if (rating > 0 && rating < 1) {
     feeling = "angry";
@@ -125,7 +112,7 @@ function Feedback() {
     users();
   }, []);
 
-  console.log("Rating: ", rating);
+  // console.log("Rating: ", rating);
 
   return (
     <>
@@ -176,9 +163,13 @@ function Feedback() {
               here are the glimpse of your feedback shared with us.
             </h2>
             <ul className="feedback__list">
-              {data.map((item, index) => {
-                return <Cards key={index} item={item} userData={user.data} />;
-              })}
+              {
+             
+             data.map((item, index) => {
+                return <Cards setModal={(visible) => setModal(visible)} modal={modal} key={index} item={item} userData={user.data} />;
+              })
+              
+              }
             </ul>
           </div>
         </div>
