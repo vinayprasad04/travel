@@ -15,7 +15,7 @@ const Navbar = () => {
     console.log("hello");
     setTimeout(() => {
       window.location.reload();
-    }, 300);
+    }, 100);
   };
 
   return (

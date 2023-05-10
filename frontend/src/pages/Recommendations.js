@@ -12,11 +12,14 @@ const Recommendations = () => {
       .get("http://localhost:4000/events")
       .then((res) => {
         console.log(res);
+        setEvents(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  console.log(events);
 
   return (
     <main className="content home recommendation--page">
