@@ -10,6 +10,10 @@ import Feedback from '../src/pages/Feedback/Feedback';
 import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
 
+import UserLogin from '../src/pages/User/UserLogin';
+import UserSignup from '../src/pages/User/UserSignup';
+
+
 const RouterComponent = () => {
   return (
     <>
@@ -23,6 +27,8 @@ const RouterComponent = () => {
         <Route path="/feedback" element={<Feedback />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/Login" element={<UserLogin/>} />
+      <Route path="/Signup" element={<UserSignup/>} />
       </Routes>
       <Footer />
     </>

@@ -62,13 +62,11 @@ function ModalReview({ setModal }) {
       .get("http://localhost:5000/getReview")
       .then((res) => {
         console.log("Get Data from Backend" ,res.data);
-        setBackendData(res.rows)
+        setBackendData(res.data)
       })
       .catch((error) => {
         console.log(error);
       });
-
- 
   };
 
   const submitReview = () => {};
@@ -100,7 +98,9 @@ function ModalReview({ setModal }) {
               with us?
             </p>
 
-            {currentPage ? (
+            {
+            
+            currentPage ? (
               <VibeOMeter gaugeValue={Math.floor(avgValue)} />
             ) : (
               <>
