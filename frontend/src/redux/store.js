@@ -5,7 +5,7 @@ import PopUpReducer from "./features/PopupSlice";
 import EventReducer from "./features/EventsSlice";
 import { UserLoginReducer } from "./features/LoginSlice";
 import RescheduleReducer from "./features/RescheduleForm";
-import rescheduleDataReducer from "./features/RescheduleForm";
+import { RescheduleDataReducer } from "./features/RescheduleForm";
 
 const store = configureStore({
   reducer: {
@@ -15,7 +15,7 @@ const store = configureStore({
     popup: PopUpReducer,
     events: EventReducer,
     rescheduleForm: RescheduleReducer,
-    rescheduleData: rescheduleDataReducer,
+    rescheduleData: RescheduleDataReducer,
   },
 });
 

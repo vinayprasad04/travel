@@ -9,8 +9,17 @@ import { DisplayModal } from "../redux/features/PopupSlice";
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userInitials = JSON.parse(localStorage.getItem("userDetails"));
-  console.log("USEERRRRRR", userInitials.userDetails);
+  const token = localStorage.getItem("Token");
+
+  if (token) {
+    const userInitials = JSON.parse(localStorage.getItem("userDetails"));
+    console.log("mmmmmmmmmmmmmm", userInitials.user_name);
+
+    var initials = userInitials.user_name.split("");
+    console.log("intialssssss", initials[0]);
+  }
+
+  // console.log("USEERRRRRR", userInitials.userDetails);
   const popUpShow = useSelector((state) => state.popup.display);
   console.log("pop", popUpShow);
   const cancelledEvent = useSelector(
@@ -107,7 +116,9 @@ const Navbar = () => {
                   <div className="header__nav__link__menu">
                     <span className="icon-menu"></span>
                     <div className="header__nav__link__user">
-                      <div className="header__nav__link__user--init">S</div>
+                      <div className="header__nav__link__user--init">
+                        {initials ? initials[0] : "?"}
+                      </div>
                       <div className="nav__link__user--pic"></div>
                     </div>
                   </div>

@@ -23,12 +23,13 @@ const rescheduleFormData = createSlice({
   },
   reducers: {
     setData: (state, action) => {
-      console.log(action.payload);
+      state.date = action.payload[0];
+      state.time = action.payload[1];
     },
   },
 });
 
 export default rescheduleForm.reducer;
 export const { RescheduleVisible, RescheduleHide } = rescheduleForm.actions;
-export const { rescheduleDataReducer } = rescheduleFormData.reducer;
+export const RescheduleDataReducer = rescheduleFormData.reducer;
 export const { setData } = rescheduleFormData.actions;

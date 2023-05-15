@@ -11,6 +11,8 @@ const PopUp = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const popdetail = useSelector((state) => state.events.data.eventCancelled);
+  const userInfo = useSelector((state) => state);
+  console.log("userrrrrrrrrrrrrrrrrrrrrrrrrr", userInfo);
   console.log("POPPPDETALS", popdetail);
   const rescheduleHandler = () => {
     navigate("/recommendations");

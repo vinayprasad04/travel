@@ -6,9 +6,15 @@ import banner from "../assets/img/banner.jpg";
 import CircularTimer from "../components/timer/CircularTimer";
 import { useDispatch, useSelector } from "react-redux";
 import RescheduleModal from "../components/RescheduleModal";
+import { RescheduleVisible } from "../redux/features/RescheduleForm";
 
 const Recommendations = () => {
+  const dispatch = useDispatch();
   const showModalForm = useSelector((state) => state.rescheduleForm.visible);
+  const bannerImg = useSelector((state) => state.events.data.eventCancelled);
+
+  const rescheduleBanner = bannerImg[0].img;
+  const d = new Date(bannerImg[0].starts);
 
   return (
     <main className="content home recommendation--page">
@@ -20,17 +26,20 @@ const Recommendations = () => {
             <div className="swiper-wrapper">
               {/* <!-- Slides --> */}
               <div className="swiper-slide">
-                <img className="banner_img" src={banner} alt="event title" />
+                <img
+                  className="banner_img"
+                  src={bannerImg ? `${rescheduleBanner}` : banner}
+                  // src={`${rescheduleBanner}`}
+                  alt="event title"
+                />
                 <div className="banner__info">
-                  <h2 className="banner__info__title">
-                    Medusa's <br />
-                    New Year Musical Concert
-                  </h2>
+                  <h2 className="banner__info__title">{bannerImg[0].title}</h2>
                   <div className="banner__info__location">
                     Jumeirah Palm Beach, Dubai
                   </div>
                   <div className="banner__info__date">
-                    Jan 01, 2023 at 00:00
+                    {d.toLocaleString("default", { month: "short" })}{" "}
+                    {d.getDate()}, {d.getFullYear()} at {d.toLocaleTimeString()}
                   </div>
                   <div className="banner__info__countdown">
                     <div
@@ -41,7 +50,13 @@ const Recommendations = () => {
 
                   <CircularTimer />
                   <div className="banner__info__link">
-                    <Link href="#">Yes, I am in</Link>
+                    <button
+                      onClick={() => dispatch(RescheduleVisible())}
+                      className="btn btn__black"
+                      href="#"
+                    >
+                      {bannerImg[0] ? "Reschedule" : "Yes I am in !"}
+                    </button>
                   </div>
                 </div>
               </div>
@@ -51,7 +66,7 @@ const Recommendations = () => {
           </div>
         </div>
       </div>
-      <div class="card__grid"></div>
+      <div className="card__grid"></div>
     </main>
   );
 };

@@ -26,3 +26,16 @@ const cancelledEvents = async (req, res) => {
     console.log(error);
   }
 };
+
+exports.rescheduleEvents = async (req, res) => {
+  console.log("ffdfdfdhhhhhhhhhhhhhhhhhh", req.body);
+  const date = req.body.date;
+  const query = `update events set starts = $1, ends = $1 ,status = 'Reschedulled' where status = 'Cancelled';`;
+
+  try {
+    const result = await pool.query(query, [date]);
+    res.json({ msg: "Successfully rescheduled" });
+  } catch (err) {
+    console.log(err);
+  }
+};

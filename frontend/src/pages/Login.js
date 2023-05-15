@@ -36,7 +36,10 @@ const Login = () => {
         Success("Logged In Successfully 😁");
         dispatch(login());
         localStorage.setItem("Token", res.data.token);
-        localStorage.setItem("userDetails", JSON.stringify(res.data));
+        localStorage.setItem(
+          "userDetails",
+          JSON.stringify(res.data.userDetails)
+        );
         navigate("/home");
       })
       .catch((err) => {
