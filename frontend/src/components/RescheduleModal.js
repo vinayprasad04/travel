@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import cross from "../assets/img/close-icon.png";
+import { useDispatch } from "react-redux";
+import {
+  RescheduleHide,
+  RescheduleVisible,
+} from "../redux/features/RescheduleForm";
 
-const RescheduleModal = ({ showModalForm }) => {
-  console.log("ff", showModalForm);
+const RescheduleModal = () => {
+  const [formdata, setFormData] = useState([]);
+  const dispatch = useDispatch();
+
+  const submitModalHandler = () => {
+    dispatch(RescheduleHide());
+  };
+
   return (
     <div className="modelOverlay active">
       <div className="modelInner">
@@ -46,10 +57,15 @@ const RescheduleModal = ({ showModalForm }) => {
             </select>
           </div>
         </form>
-        <button className="btn rescheduledPopupBtn">Reserve</button>
+        <button
+          onClick={() => submitModalHandler()}
+          className="btn rescheduledPopupBtn"
+        >
+          Reserve
+        </button>
 
         <div className="rescheduled__close">
-          <button onClick={() => showModalForm(false)}>
+          <button onClick={() => dispatch(RescheduleHide())}>
             <img width={25} src={cross} alt="cc" />
           </button>
         </div>

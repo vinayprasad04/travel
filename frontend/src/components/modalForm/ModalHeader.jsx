@@ -13,7 +13,6 @@ const ModalHeader = () => {
   return (
     <div className="modal-header">
       <button className="close" onClick={() => cancelHandler()}>
-        <xml version="1.0" encoding="utf-8" />
         <svg
           version="1.1"
           id="Layer_1"

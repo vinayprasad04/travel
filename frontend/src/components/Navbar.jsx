@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/img/logo-black.svg";
 import { Link, useNavigate, NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/features/LoginSlice";
 import PopUp from "./PopUp";
+import { DisplayModal } from "../redux/features/PopupSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userInitials = JSON.parse(localStorage.getItem("userDetails"));
+  console.log("USEERRRRRR", userInitials.userDetails);
+  const popUpShow = useSelector((state) => state.popup.display);
+  console.log("pop", popUpShow);
+  const cancelledEvent = useSelector(
+    (state) => state.events.data.eventCancelled
+  );
+
+  const popUpHandler = () => {
+    if (cancelledEvent) {
+      setTimeout(() => {
+        dispatch(DisplayModal());
+      }, 2000);
+    }
+  };
+
+  useEffect(() => {
+    popUpHandler();
+  }, [cancelledEvent]);
+  console.log("ddddddddddd", cancelledEvent);
 
   const logoutHandler = () => {
     dispatch(logout());
     localStorage.removeItem("Token");
+    localStorage.removeItem("userDetails");
     console.log("hello");
     setTimeout(() => {
       window.location.reload();
@@ -78,7 +100,7 @@ const Navbar = () => {
                   <span className="circle"></span>
                 </Link>
 
-                <PopUp />
+                {popUpShow && <PopUp />}
               </li>
               <li className="header__nav__item header__nav__item--menu">
                 <Link className="header__nav__link">

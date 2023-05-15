@@ -2,19 +2,25 @@ import React, { useState } from "react";
 
 import Hand from "../assets/img/hand.svg";
 import { useNavigate } from "react-router-dom";
-import RescheduleModal from "./RescheduleModal";
+
+import { useDispatch, useSelector } from "react-redux";
+import { HideModal } from "../redux/features/PopupSlice";
+import { RescheduleVisible } from "../redux/features/RescheduleForm";
 
 const PopUp = () => {
   const navigate = useNavigate();
-  const [showModalForm, setShowModalForm] = useState(false);
+  const dispatch = useDispatch();
+  const popdetail = useSelector((state) => state.events.data.eventCancelled);
+  console.log("POPPPDETALS", popdetail);
   const rescheduleHandler = () => {
     navigate("/recommendations");
-    setShowModalForm(true);
+    dispatch(HideModal());
+    dispatch(RescheduleVisible());
   };
   const PopCancelHandler = () => {
     navigate("/recommendations");
+    dispatch(HideModal());
   };
-
   return (
     <div className="popup">
       <h4 className="popup__title">
@@ -34,11 +40,7 @@ const PopUp = () => {
         <button className="popup__btn" onClick={() => rescheduleHandler()}>
           Reschedule
         </button>
-        {showModalForm && (
-          <RescheduleModal
-            showModalForm={(visible) => setShowModalForm(visible)}
-          />
-        )}
+
         <button className="popup__btn" onClick={() => PopCancelHandler()}>
           Cancel
         </button>

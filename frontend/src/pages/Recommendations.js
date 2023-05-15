@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import banner from "../assets/img/banner.jpg";
+
 import CircularTimer from "../components/timer/CircularTimer";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import RescheduleModal from "../components/RescheduleModal";
 
 const Recommendations = () => {
-  const [events, setEvents] = useState();
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4000/events")
-      .then((res) => {
-        console.log(res);
-        setEvents(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  console.log(events);
+  const showModalForm = useSelector((state) => state.rescheduleForm.visible);
 
   return (
     <main className="content home recommendation--page">
-      {" "}
+      {showModalForm && <RescheduleModal />}
       <div className="banner">
         <div className="container">
           <div className=" mainbanner">
@@ -62,6 +51,7 @@ const Recommendations = () => {
           </div>
         </div>
       </div>
+      <div class="card__grid"></div>
     </main>
   );
 };

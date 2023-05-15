@@ -32,10 +32,11 @@ const Login = () => {
     axios
       .post(`${process.env.REACT_APP_BASE_URL}/login`, { values })
       .then((res) => {
-        console.log(res);
+        console.log("loginnnnnnnnnnnnnnnn", res);
         Success("Logged In Successfully 😁");
         dispatch(login());
         localStorage.setItem("Token", res.data.token);
+        localStorage.setItem("userDetails", JSON.stringify(res.data));
         navigate("/home");
       })
       .catch((err) => {
