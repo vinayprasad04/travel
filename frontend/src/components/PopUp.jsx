@@ -51,7 +51,9 @@ const PopUp = () => {
       <button
         style={{ background: "transparent", border: "none" }}
         className="popup__close"
-        // onClick={cancelPopUpHandler}
+        onClick={() => {
+          dispatch(HideModal());
+        }}
       >
         <svg
           version="1.1"

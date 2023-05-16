@@ -13,7 +13,6 @@ const Navbar = () => {
 
   if (token) {
     const userInitials = JSON.parse(localStorage.getItem("userDetails"));
-    console.log("mmmmmmmmmmmmmm", userInitials.user_name);
 
     var initials = userInitials.user_name.split("");
     console.log("intialssssss", initials[0]);
@@ -27,23 +26,24 @@ const Navbar = () => {
   );
 
   const popUpHandler = () => {
-    if (cancelledEvent) {
+    if (cancelledEvent?.length > 0) {
       setTimeout(() => {
         dispatch(DisplayModal());
       }, 2000);
+    } else {
+      return;
     }
   };
 
   useEffect(() => {
     popUpHandler();
   }, [cancelledEvent]);
-  console.log("ddddddddddd", cancelledEvent);
+  console.log("Cancelled event", cancelledEvent);
 
   const logoutHandler = () => {
     dispatch(logout());
     localStorage.removeItem("Token");
     localStorage.removeItem("userDetails");
-    console.log("hello");
     setTimeout(() => {
       window.location.reload();
     }, 100);

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import banner from "../assets/img/banner.jpg";
 
 import CircularTimer from "../components/timer/CircularTimer";
-import { useDispatch, useSelector } from "react-redux";
+
 import RescheduleModal from "../components/RescheduleModal";
 import { RescheduleVisible } from "../redux/features/RescheduleForm";
 
@@ -13,8 +13,7 @@ const Recommendations = () => {
   const showModalForm = useSelector((state) => state.rescheduleForm.visible);
   const bannerImg = useSelector((state) => state.events.data.eventCancelled);
 
-  const rescheduleBanner = bannerImg[0].img;
-  const d = new Date(bannerImg[0].starts);
+  const d = new Date(bannerImg[0]?.starts);
 
   return (
     <main className="content home recommendation--page">
@@ -22,18 +21,17 @@ const Recommendations = () => {
       <div className="banner">
         <div className="container">
           <div className=" mainbanner">
-            {/* <!-- Additional required wrapper --> */}
             <div className="swiper-wrapper">
-              {/* <!-- Slides --> */}
               <div className="swiper-slide">
                 <img
                   className="banner_img"
-                  src={bannerImg ? `${rescheduleBanner}` : banner}
-                  // src={`${rescheduleBanner}`}
+                  src={bannerImg ? `${bannerImg[0]?.img}` : banner}
                   alt="event title"
                 />
                 <div className="banner__info">
-                  <h2 className="banner__info__title">{bannerImg[0].title}</h2>
+                  <h2 className="banner__info__title">
+                    {bannerImg[0]?.title} || title
+                  </h2>
                   <div className="banner__info__location">
                     Jumeirah Palm Beach, Dubai
                   </div>
@@ -61,8 +59,6 @@ const Recommendations = () => {
                 </div>
               </div>
             </div>
-
-            {/* <!-- If we need navigation buttons --> */}
           </div>
         </div>
       </div>
