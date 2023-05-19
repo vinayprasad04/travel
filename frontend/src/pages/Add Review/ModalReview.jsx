@@ -58,7 +58,7 @@ function ModalReview({ setModal }) {
         console.log(error);
       });
 
-  axios
+    axios
       .get("http://localhost:5000/getReview")
       .then((res) => {
         console.log("Get Data from Backend" ,res.data);
@@ -79,7 +79,7 @@ function ModalReview({ setModal }) {
 
   useEffect(() => {
     submitReview();
-  
+     
   }, []);
 
   console.log("Submit button Revew data : ", submitButton);

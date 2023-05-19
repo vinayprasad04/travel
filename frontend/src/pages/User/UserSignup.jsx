@@ -3,19 +3,37 @@ import "./login.css";
 import { useForm } from "react-hook-form";
 import logo from "../../assets/img/logo-black.svg";
 import swal from "sweetalert";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const UserSignup = () => {
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    if (data) {
-      swal("Success!", "Verification email sent succesfully!", "success");
-    } else {
-      swal("Oops!", "Eailed to send email", "error");
-    }
+
+  console.log("Data" , data)
+    axios.post("http://localhost:5000/createUser" ,data)
+    .then((res)=>{
+      console.log("Response from Signup.js : ", res );
+      if (res.data.exists) {
+        swal("Oops!", "Already Existing User", "error");
+        navigate('/login');
+      }
+      else{
+        swal("Success!", "Verification email sent succesfully!", "success");
+        navigate('/feedback');
+      }
+    }).catch((error)=>{
+      console.log(error);
+    })
+
+    
 
     console.log("SIGNUP DATA", data);
   };
+
+
 
   return (
     <>

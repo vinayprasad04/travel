@@ -11,7 +11,7 @@ import Setting from "./pages/Setting";
 import EditProfile from "./pages/editProfile";
 
 import UserLogin from '../src/pages/User/UserLogin';
-import UserSignup from '../src/pages/User/UserSignup';
+import UserSignup from './pages/User/UserSignup';
 
 
 const RouterComponent = () => {
@@ -28,7 +28,7 @@ const RouterComponent = () => {
         <Route path="/setting" element={<Setting />} />
         <Route path="/edit-profile" element={<EditProfile />} />
         <Route path="/Login" element={<UserLogin/>} />
-      <Route path="/Signup" element={<UserSignup/>} />
+        <Route path="/Signup" element={<UserSignup/>} />
       </Routes>
       <Footer />
     </>

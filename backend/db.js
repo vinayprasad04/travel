@@ -6,7 +6,7 @@ const pool = new Pool({
   port: "5432",
   user: "postgres",
   password: "12345",
-  database: "PuneetDB",
+  database: "PuneetDb",
 });
 
 const p = pool.query("Select * from feedback", (err, res) => {
