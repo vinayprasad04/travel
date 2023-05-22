@@ -9,7 +9,7 @@ import dissappointed from "../../assets/img/disappointed.svg";
 import anger from "../../assets/img/anger.svg";
 import joy from "../../assets/img/joy.svg";
 
-import "./arc.css";
+import '../../assets/scss/arc.css';
 
 function VibeMeter(props) {
   // const [emotions, setEmotions] = useState(0);

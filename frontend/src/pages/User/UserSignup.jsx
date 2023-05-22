@@ -1,5 +1,5 @@
 import React from "react";
-import "./login.css";
+import '../../assets/scss/login.css';
 import { useForm } from "react-hook-form";
 import logo from "../../assets/img/logo-black.svg";
 import swal from "sweetalert";
